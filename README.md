@@ -6,11 +6,11 @@ Final Group Assignment for Python Programming Course in the Second Year
 
 基于 2024 年 1 月共享单车骑行数据，完成数据清洗、基础特征探索，并为时间预测和空间调度分析提供统一的数据接口。
 
-**仓库：[hhkQWQ/Pyclass](https://github.com/hhkQWQ/Pyclass)｜负责人：马文博｜计划制定日期：2026-10-24｜开发分支：`feat/data-cleaning-eda`**
+**仓库：[hhkQWQ/Pyclass](https://github.com/hhkQWQ/Pyclass)｜负责人：马文博｜开发分支：`feat/data-cleaning-eda`**
 
 ## 当前进度
 
-- [x] 根据《共享单车项目分工方案》整理马文博的任务、交付物和时间安排。
+- [x] 根据《共享单车项目分工方案》整理马文博的任务、交付物和验收标准。
 - [x] 核对本地原始 CSV：238,834 行、13 个字段。
 - [ ] 完成数据清洗与双子集导出。
 - [ ] 完成基础探索图 1–3、Notebook 和报告前四节。
@@ -31,22 +31,6 @@ Final Group Assignment for Python Programming Course in the Second Year
 | 马文博（本人） | 数据工程、基础探索、项目统筹 | `src/utils.py`、`src/data_cleaning.py`、Notebook 01、报告前四节、图 1–3 |
 | 陈宇涵 | 时间规律与需求预测 | `src/temporal_analysis.py`、`src/demand_model.py`、Notebook 02、图 4–8 |
 | 康炜奕 | 空间分布、潮汐失衡与调度 | `src/spatial_analysis.py`、`src/imbalance_dispatch.py`、Notebook 03、图 9–12 |
-
-## 马文博的推进节点
-
-| 时间 | 要完成的工作 | 完成标志 |
-| --- | --- | --- |
-| 10 月 24 日 | 建库、目录与接口约定 | 陈宇涵、康炜奕可以克隆仓库，了解字段和运行方式 |
-| 10 月 25 日上午 | 数据审查、清洗、特征与双子集 | 陈宇涵、康炜奕可以各自在本地生成所需数据 |
-| 10 月 25 日下午 | 基础探索与图 1–3 | 三张 300 DPI 图表可用于报告 |
-| 10 月 26 日 | Notebook 与报告前四节 | 分析过程可复现，文字与图表对应 |
-| 10 月 27 日 | 全组图表规范、PPT 框架 | 各模块使用一致的配色、字体和编号 |
-| 10 月 28 日 | 全流程联调、合并发布 | 按 README 可复现，`dev` 合入 `main` |
-| 10 月 29–30 日 | PPT 定稿与 5 分钟视频 | 完成试播和文件检查 |
-| 10 月 31 日 | 提交 PPT 与视频 | 按分工方案要求上传学习通 |
-| 11 月 1–8 日 | 课堂汇报、Word 统稿与提交 | 完成电子版和纸质版提交 |
-
-以上日期按本次项目的 2026 年排期整理；数据分析月份仍为 **2024 年 1 月**。截止节点来自分工方案，提交前再核对课程通知。
 
 ## 数据与成果提交约定
 
