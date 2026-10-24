@@ -1,0 +1,22 @@
+# Local datasets: source files and generated subsets
+/data/raw/
+/data/processed/
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Local configuration and temporary files
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+~$*
+/tmp/
