@@ -4,7 +4,7 @@
 
 本次计划提交到 `feat/data-cleaning-eda`，通过 Pull Request 合入 `dev`。后续完成的分析成果继续按阶段提交；全组联调通过后，再将 `dev` 合入 `main`。
 
-## 1. 克隆仓库并切换到 A 的分支
+## 1. 克隆仓库并切换到马文博的分支
 
 首次在自己的电脑上使用仓库时，在 PowerShell 中执行：
 
@@ -24,13 +24,13 @@ git status
 | --- | --- |
 | `main` | 可交付的稳定版本 |
 | `dev` | 三人模块联调 |
-| `feat/data-cleaning-eda` | A 的数据清洗、基础探索、计划与报告草稿 |
+| `feat/data-cleaning-eda` | 马文博的数据清洗、基础探索、计划与报告草稿 |
 | `feat/temporal-and-modeling` | B 开发时从 `dev` 创建 |
 | `feat/spatial-and-dispatch` | C 开发时从 `dev` 创建 |
 
 ## 2. 后续每完成一步就提交一次
 
-每次开始工作前，在 A 分支获取最新联调内容：
+每次开始工作前，在马文博的分支获取最新联调内容：
 
 ```powershell
 git switch feat/data-cleaning-eda
@@ -77,9 +77,9 @@ git status --short
 - [ ] 提交作者对应本人账号，提交说明对应实际工作。
 - [ ] 仓库中没有原始或清洗后的 CSV、虚拟环境和缓存。
 - [ ] README 和文档之间的链接可以打开。
-- [ ] A 的 Pull Request 指向 `dev`。
+- [ ] 马文博的 Pull Request 指向 `dev`。
 - [ ] 后续成果按阶段提交，未完成事项继续保持未勾选状态。
 
 ## 5. 这次提交包含什么
 
-本次包含 README 的项目入口、A 的 8 步执行计划、本协作说明和 `.gitignore`，保留仓库原有英文介绍。清洗脚本、Notebook、图表和报告在后续阶段完成。
+本次包含 README 的项目入口、马文博的 8 步执行计划、本协作说明和 `.gitignore`，保留仓库原有英文介绍。清洗脚本、Notebook、图表和报告在后续阶段完成。

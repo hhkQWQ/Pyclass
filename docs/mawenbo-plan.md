@@ -1,8 +1,8 @@
-# 同学 A 分步完成计划
+# 马文博的分步完成计划
 
 **目标：先交付 B、C 能使用的数据，再完成自己的图表与报告，最后统筹全组提交。**
 
-本计划依据《共享单车项目分工方案.pdf》中 A 的职责、协作方式与时间表编写。下面的函数拆分、补充产物和字段约定属于实施建议；分工方案没有完整显示的清洗阈值，必须在开发前记录清楚。
+本计划依据《共享单车项目分工方案.pdf》中马文博的职责、协作方式与时间表编写。下面的函数拆分、补充产物和字段约定属于实施建议；分工方案没有完整显示的清洗阈值，必须在开发前记录清楚。
 
 ## 一、需要交付什么
 
@@ -25,8 +25,8 @@
 
 **要做的事**
 
-1. 使用现有仓库 `https://github.com/hhkQWQ/Pyclass`。保留已有 `main`，建立 `dev` 和 A 的 `feat/data-cleaning-eda` 分支，将计划提交到 A 分支并通过 Pull Request 合入 `dev`。
-2. 按下方目录创建 A 要使用的文件；B、C 的代码由各自创建。
+1. 使用现有仓库 `https://github.com/hhkQWQ/Pyclass`。保留已有 `main`，建立 `dev` 和马文博的 `feat/data-cleaning-eda` 分支，将计划提交到马文博的分支并通过 Pull Request 合入 `dev`。
+2. 按下方目录创建马文博要使用的文件；B、C 的代码由各自创建。
 3. 将本地 CSV 复制到 `data/raw/`，用 `git check-ignore` 确认被忽略。
 4. 约定脚本都从项目根目录运行，路径通过 `pathlib.Path` 获取，避免写死个人电脑路径。
 5. 记录运行环境，初始依赖建议为 `pandas`、`numpy`、`matplotlib`、`seaborn`、`jupyter`；B、C 的额外依赖随后统一补充。
@@ -104,10 +104,10 @@
 
 | 本地输出 | 用途 | 筛选原则 |
 | --- | --- | --- |
-| `data/processed/clean_trips.csv` | B 的全城时间分析，以及 A 的基础探索 | 满足冻结的基础有效性规则；站点缺失本身不直接作为全量删除条件 |
+| `data/processed/clean_trips.csv` | B 的全城时间分析，以及马文博的基础探索 | 满足冻结的基础有效性规则；站点缺失本身不直接作为全量删除条件 |
 | `data/processed/station_trips.csv` | C 的站点、OD、潮汐分析，以及 B 的站点需求分析 | 从全量有效集筛出起终点站点 ID 均有效的记录 |
 
-空间图表另筛选有效坐标；A 的距离分布也使用距离非空的子样本并标注样本量。CSV 重新读入时，B、C 需按字典指定 ID、时间、布尔类型，特别避免将字符串 `"False"` 直接强转为 bool。
+空间图表另筛选有效坐标；马文博的距离分布也使用距离非空的子样本并标注样本量。CSV 重新读入时，B、C 需按字典指定 ID、时间、布尔类型，特别避免将字符串 `"False"` 直接强转为 bool。
 
 **完成标准：**
 
@@ -149,7 +149,7 @@
 
 1. 10 月 27 日检查全组字体、配色、单位、图号和图注，搭建 PPT 结构。
 2. 确认 B 使用全量有效集做全城分析，使用站点子集做站点分析；C 使用站点子集统计站点与 OD。
-3. 确认 C 将 Top 10 潮汐站点名单交给 B，B 再把预测结果交给 C，A 跟进这两个交接点。
+3. 确认 C 将 Top 10 潮汐站点名单交给 B，B 再把预测结果交给 C，马文博跟进这两个交接点。
 4. 在新建环境或全新克隆目录中按 README 运行：安装依赖 → 放置数据 → 清洗 → 三人分析脚本 → Notebook。
 5. 检查 B 的连续 744 小时网格、按时间划分训练测试集等约定是否与数据接口一致，具体实现由 B 负责。
 6. 各功能分支以 Pull Request 合入 `dev`，联调通过后再将 `dev` 合入 `main`。
@@ -159,7 +159,7 @@
 
 ### 第 8 步：统筹展示与最终报告（10 月 29 日至 11 月 8 日）
 
-**10 月 29–30 日：**汇总 B、C 的 PPT 页与讲稿，统一版式，录制和试播 5 分钟视频。建议时间分配：背景与数据 30 秒、A 清洗和探索 60 秒、B 时间规律和预测 90 秒、C 空间调度 90 秒、GitHub/代码展示 20 秒、结论 10 秒，总计 300 秒。
+**10 月 29–30 日：**汇总 B、C 的 PPT 页与讲稿，统一版式，录制和试播 5 分钟视频。建议时间分配：背景与数据 30 秒、马文博负责的清洗和探索 60 秒、B 时间规律和预测 90 秒、C 空间调度 90 秒、GitHub/代码展示 20 秒、结论 10 秒，总计 300 秒。
 
 **10 月 31 日：**按分工方案要求，将视频和 PPT 以 `组号_题目编号_组长姓名.mp4`、`组号_题目编号_组长姓名.pptx` 命名并提交学习通。
 
@@ -194,7 +194,7 @@ Pyclass/
 ├── .gitignore
 ├── requirements.txt
 ├── docs/
-│   ├── member-a-plan.md
+│   ├── mawenbo-plan.md
 │   ├── github-upload.md
 │   └── data-dictionary.md
 ├── data/
@@ -202,29 +202,29 @@ Pyclass/
 │   └── processed/                   # 本地生成数据，忽略
 ├── src/
 │   ├── __init__.py
-│   ├── utils.py                     # A
-│   ├── data_cleaning.py             # A
+│   ├── utils.py                     # 马文博
+│   ├── data_cleaning.py             # 马文博
 │   ├── temporal_analysis.py         # B
 │   ├── demand_model.py              # B
 │   ├── spatial_analysis.py          # C
 │   └── imbalance_dispatch.py        # C
 ├── notebooks/
-│   ├── 01_cleaning_and_eda.ipynb     # A
+│   ├── 01_cleaning_and_eda.ipynb     # 马文博
 │   ├── 02_temporal_and_model.ipynb   # B
 │   └── 03_spatial_and_dispatch.ipynb # C
 └── reports/
-    ├── figures/                     # A: fig01–03；B: fig04–08；C: fig09–12
+    ├── figures/                     # 马文博：fig01–03；B: fig04–08；C: fig09–12
     ├── tables/
     │   └── data_quality_summary.md
     └── sections/
-        ├── 01_intro_and_cleaning.md  # A
+        ├── 01_intro_and_cleaning.md  # 马文博
         ├── 02_temporal_and_prediction.md
         └── 03_spatial_and_dispatch.md
 ```
 
 ## 五、交付前逐项打勾
 
-- [ ] A 的代码、Notebook、图 1–3、报告前四节均完成。
+- [ ] 马文博的代码、Notebook、图 1–3、报告前四节均完成。
 - [ ] 清洗阈值、排除计数、行数差异和字段口径都有说明。
 - [ ] B、C 已能从相同原始数据生成各自需要的子集。
 - [ ] README 记录实际可运行的命令和验证过的环境。
