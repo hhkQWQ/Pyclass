@@ -29,15 +29,15 @@ Final Group Assignment for Python Programming Course in the Second Year
 | 成员 | 主要职责 | 文件和图表范围 |
 | --- | --- | --- |
 | 马文博（本人） | 数据工程、基础探索、项目统筹 | `src/utils.py`、`src/data_cleaning.py`、Notebook 01、报告前四节、图 1–3 |
-| B | 时间规律与需求预测 | `src/temporal_analysis.py`、`src/demand_model.py`、Notebook 02、图 4–8 |
-| C | 空间分布、潮汐失衡与调度 | `src/spatial_analysis.py`、`src/imbalance_dispatch.py`、Notebook 03、图 9–12 |
+| 陈宇涵 | 时间规律与需求预测 | `src/temporal_analysis.py`、`src/demand_model.py`、Notebook 02、图 4–8 |
+| 康炜奕 | 空间分布、潮汐失衡与调度 | `src/spatial_analysis.py`、`src/imbalance_dispatch.py`、Notebook 03、图 9–12 |
 
 ## 马文博的推进节点
 
 | 时间 | 要完成的工作 | 完成标志 |
 | --- | --- | --- |
-| 10 月 24 日 | 建库、目录与接口约定 | B、C 可以克隆仓库，了解字段和运行方式 |
-| 10 月 25 日上午 | 数据审查、清洗、特征与双子集 | B、C 可以各自在本地生成所需数据 |
+| 10 月 24 日 | 建库、目录与接口约定 | 陈宇涵、康炜奕可以克隆仓库，了解字段和运行方式 |
+| 10 月 25 日上午 | 数据审查、清洗、特征与双子集 | 陈宇涵、康炜奕可以各自在本地生成所需数据 |
 | 10 月 25 日下午 | 基础探索与图 1–3 | 三张 300 DPI 图表可用于报告 |
 | 10 月 26 日 | Notebook 与报告前四节 | 分析过程可复现，文字与图表对应 |
 | 10 月 27 日 | 全组图表规范、PPT 框架 | 各模块使用一致的配色、字体和编号 |

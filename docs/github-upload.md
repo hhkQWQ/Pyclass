@@ -25,8 +25,8 @@ git status
 | `main` | 可交付的稳定版本 |
 | `dev` | 三人模块联调 |
 | `feat/data-cleaning-eda` | 马文博的数据清洗、基础探索、计划与报告草稿 |
-| `feat/temporal-and-modeling` | B 开发时从 `dev` 创建 |
-| `feat/spatial-and-dispatch` | C 开发时从 `dev` 创建 |
+| `feat/temporal-and-modeling` | 陈宇涵开发时从 `dev` 创建 |
+| `feat/spatial-and-dispatch` | 康炜奕开发时从 `dev` 创建 |
 
 ## 2. 后续每完成一步就提交一次
 
