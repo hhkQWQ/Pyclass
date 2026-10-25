@@ -1,0 +1,8 @@
+﻿dimension,category,label,count,denominator,percent
+station_structure,station_complete,双端站点完整,180914,233180,77.585556
+station_structure,dockless_ebike_proxy,疑似无桩电单车,52266,233180,22.414444
+station_structure,other_missing_station,其他缺站点,0,233180,0.000000
+loop_availability,known,环线可判定,180914,233180,77.585556
+loop_availability,unknown,环线未知,52266,233180,22.414444
+loop_structure,different_station,异站骑行,176303,180914,97.451275
+loop_structure,loop_trip,同站环线,4611,180914,2.548725

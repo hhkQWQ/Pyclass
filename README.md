@@ -38,7 +38,7 @@ Pyclass/
 ├── config/            # 清洗规则与阈值
 ├── data/raw/          # 原始 CSV，随仓库提供
 ├── data/processed/    # 两份清洗后的 CSV，随仓库提供
-├── src/               # 路径工具、数据审查与清洗导出代码
+├── src/               # 公共绘图工具、数据审查、清洗与基础探索代码
 ├── notebooks/         # 分析 Notebook
 ├── reports/figures/   # 图表
 ├── reports/sections/  # 报告章节
@@ -86,4 +86,32 @@ station_trips = read_clean_data("data/processed/station_trips.csv")
 
 站点信息不足时，`is_loop_trip` 为未知，不能直接当作非环线。两份 CSV 随代码共享，也可运行清洗脚本重新生成，原始文件保持不变。
 
-已完成数据审查和清洗数据导出，后续图表与建模分析尚未完成。
+## 基础探索图表
+
+```powershell
+.\.venv\Scripts\python.exe -m src.basic_eda
+```
+
+| 图表 | 内容 |
+| --- | --- |
+| [图1](reports/figures/fig01_cleaning_funnel.png) | 数据清洗与双子集分流 |
+| [图2](reports/figures/fig02_duration_distance_distribution.png) | 车型、用户类型的时长与直线距离箱线图 |
+| [图3](reports/figures/fig03_trip_structure.png) | 站点记录结构与已知站点中的环线占比 |
+
+三张 PNG 均为 300 DPI，并标注样本量与统计口径。图2不显示离群点，全部有效观测仍参与分位数计算；图3将站点信息不足的环线状态记为未知。
+
+配套数值见 [分组描述统计](reports/tables/basic_eda_summary.csv) 和 [结构占比统计](reports/tables/trip_structure_summary.csv)。
+
+公共绘图接口位于 `src/utils.py`：`set_plot_style()` 自动选择可用中文字体并统一样式，`save_figure(fig, filename)` 保存图片到 `reports/figures/`。车型与用户类型使用固定的 `RIDEABLE_COLORS`、`MEMBER_COLORS`，供全组复用。没有可用中文字体时会提示安装字体。
+
+## Notebook 复现
+
+[01_cleaning_and_eda.ipynb](notebooks/01_cleaning_and_eda.ipynb) 串联原始数据概览、清洗规则、质量审查、双子集导出、图1–3、动态数值结论和数据接口检查。
+
+在 Jupyter 中打开该文件，选择 `Python (Pyclass)` 内核，执行“重启内核并运行全部单元格”。Notebook 可从项目根目录或 `notebooks/` 目录启动，直接调用 `src/` 中的现有函数，不维护另一套清洗规则。
+
+运行会重新生成两份 CSV、审查与统计表和三张 300 DPI 图片，并检查原始文件未改动、子集一致性和导出类型。分析结论从本次运行数据计算；保存后的 Notebook 内嵌图表，方便预览。
+
+该 Notebook 已在独立新内核中从头执行通过，并保存全部运行输出。
+
+当前仓库提供数据质量审查、清洗数据导出、基础探索图1–3及对应的 Notebook 复现入口。
