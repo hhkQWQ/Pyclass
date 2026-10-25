@@ -1,0 +1,12 @@
+﻿scope,stage,removed_rows,remaining_rows
+full,raw,0,238834
+full,missing_ride_id,0,238834
+full,duplicate_ride_id,0,238834
+full,invalid_timestamp,0,238834
+full,outside_analysis_month,0,238834
+full,unsupported_rideable_type,0,238834
+full,unsupported_member_type,0,238834
+full,nonpositive_duration,135,238699
+full,short_duration,4722,233977
+full,long_duration,797,233180
+station_branch,station_complete,52266,180914

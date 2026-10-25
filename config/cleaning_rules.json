@@ -1,0 +1,13 @@
+{
+  "analysis_start": "2024-01-01 00:00:00",
+  "analysis_end_exclusive": "2024-02-01 00:00:00",
+  "duration_min_inclusive": 1.0,
+  "duration_max_inclusive": 180.0,
+  "overdue_min_exclusive": 1440.0,
+  "allowed_rideable_types": ["classic_bike", "electric_bike"],
+  "allowed_member_types": ["member", "casual"],
+  "reference_counts": {
+    "clean_trips": 233180,
+    "station_trips": 180914
+  }
+}

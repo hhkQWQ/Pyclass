@@ -1,0 +1,18 @@
+﻿flag,description,handling,row_count,percent_of_raw
+missing_ride_id,订单号缺失,排除,0,0.0
+duplicate_ride_id,重复订单号中首次出现之后的记录,排除,0,0.0
+invalid_timestamp,起止时间缺失或解析失败,排除,0,0.0
+outside_analysis_month,出发时间不在分析月份,排除,0,0.0
+unsupported_rideable_type,车型缺失或不在约定枚举内,排除,0,0.0
+unsupported_member_type,用户类型缺失或不在约定枚举内,排除,0,0.0
+nonpositive_duration,骑行时长小于或等于零,排除,135,0.056525
+short_duration,正时长但小于最短时长阈值,排除,4722,1.977105
+long_duration,时长大于最长时长阈值,排除,797,0.333705
+overdue_duration,超过超时审查阈值，仅凭时长不能确认丢车,审查标记,228,0.095464
+missing_station,至少一端站点 ID 缺失,只影响站点子集,54946,23.005937
+station_id_name_mismatch,同一端站点 ID 与名称的缺失状态不一致,审查标记,0,0.0
+missing_coordinate,至少一个坐标缺失,只影响空间或距离分析,203,0.084996
+nonnumeric_coordinate,非空坐标无法转为数值,只影响空间或距离分析,0,0.0
+invalid_coordinate_range,数值坐标非有限数或超出经纬度范围,只影响空间或距离分析,0,0.0
+station_name_variant,同一站点 ID 的名称与规范名称不同,按 ID 统一名称,5,0.002094
+classic_missing_station,经典车至少一端站点 ID 缺失,审查标记,222,0.092952

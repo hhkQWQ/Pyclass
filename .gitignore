@@ -1,6 +1,9 @@
-# Local datasets: source files and generated subsets
-/data/raw/
-/data/processed/
+# Share the source dataset and the two verified analysis subsets
+/data/raw/*
+!/data/raw/题5_共享单车骑行_202401.csv
+/data/processed/*
+!/data/processed/clean_trips.csv
+!/data/processed/station_trips.csv
 
 # Python environments and caches
 .venv/

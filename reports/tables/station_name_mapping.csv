@@ -1,0 +1,763 @@
+﻿station_id,canonical_name,observed_name,occurrence_count,is_canonical
+30200,9th St & Pennsylvania Ave NW,9th St & Pennsylvania Ave NW,1139,True
+30201,9th & G St NW,9th & G St NW,1290,True
+31000,Eads St & 15th St S,Eads St & 15th St S,374,True
+31002,Crystal Dr & 20th St S,Crystal Dr & 20th St S,347,True
+31003,Crystal Dr & 15th St S,Crystal Dr & 15th St S,376,True
+31004,Aurora Hills Cmty Ctr / 18th St & S Hayes St,Aurora Hills Cmty Ctr / 18th St & S Hayes St,187,True
+31005,Pentagon City Metro / 12th St & S Hayes St,Pentagon City Metro / 12th St & S Hayes St,575,True
+31006,Pentagon Row Plaza / Army Navy Dr & Joyce St,Pentagon Row Plaza / Army Navy Dr & Joyce St,351,True
+31007,Crystal City Metro / 18th St & S Bell St,Crystal City Metro / 18th St & S Bell St,503,True
+31009,Crystal Dr & 27th St S,Crystal Dr & 27th St S,128,True
+31010,S Glebe Rd & Potomac Ave,S Glebe Rd & Potomac Ave,119,True
+31011,Crystal Dr & 23rd St S,Crystal Dr & 23rd St S,341,True
+31012,Clark St & 26th St S,Clark St & 26th St S,111,True
+31013,Eads St & 22nd St S,Eads St & 22nd St S,217,True
+31014,19th St N & Ft Myer Dr,19th St N & Ft Myer Dr,502,True
+31015,Wilson Blvd & Ft Myer Dr,Wilson Blvd & Ft Myer Dr,236,True
+31016,Clarendon Blvd & Pierce St,Clarendon Blvd & Pierce St,371,True
+31017,Wilson Blvd & N Uhle St,Wilson Blvd & N Uhle St,381,True
+31018,Rhodes St & 16th St N,Rhodes St & 16th St N,138,True
+31019,Wilson Blvd & N Edgewood St,Wilson Blvd & N Edgewood St,381,True
+31020,Wilson Blvd & N Franklin Rd,Wilson Blvd & N Franklin Rd,203,True
+31021,Clarendon Blvd & N Fillmore St,Clarendon Blvd & N Fillmore St,306,True
+31022,Clarendon Metro / Wilson Blvd & N Highland St,Clarendon Metro / Wilson Blvd & N Highland St,879,True
+31023,Fairfax Dr & Wilson Blvd,Fairfax Dr & Wilson Blvd,269,True
+31024,Virginia Square Metro / Monroe St & 9th St N,Virginia Square Metro / Monroe St & 9th St N,500,True
+31025,Central Library / Quincy St & 10th St N,Central Library / Quincy St & 10th St N,229,True
+31026,Washington Blvd & 10th St N,Washington Blvd & 10th St N,237,True
+31027,Wilson Blvd & N Quinn St,Wilson Blvd & N Quinn St,430,True
+31028,N Veitch St & Key Blvd,N Veitch St & Key Blvd,116,True
+31029,N Veitch St & 20th St N,N Veitch St & 20th St N,378,True
+31030,Langston Blvd & N Adams St,Langston Blvd & N Adams St,335,True
+31031,15th St & N Scott St,15th St & N Scott St,275,True
+31032,Washington Blvd & 7th St N,Washington Blvd & 7th St N,88,True
+31033,Barcroft Community Center,Barcroft Community Center,102,True
+31034,Fairfax Dr & N Randolph St,Fairfax Dr & N Randolph St,221,True
+31035,N Quincy St & Glebe Rd,N Quincy St & Glebe Rd,128,True
+31036,George Mason Dr & Wilson Blvd,George Mason Dr & Wilson Blvd,116,True
+31037,Ballston Metro / Stuart St & 9th St N,Ballston Metro / Stuart St & 9th St N,643,True
+31038,Glebe Rd & 11th St N,Glebe Rd & 11th St N,222,True
+31039,Wilson Blvd & N Quincy St,Wilson Blvd & N Quincy St,563,True
+31040,GMU/Fairfax Dr & Kenmore St,GMU/Fairfax Dr & Kenmore St,285,True
+31041,Prince St & Union St,Prince St & Union St,203,True
+31042,Market Square / King St & Royal St,Market Square / King St & Royal St,223,True
+31043,St Asaph & Pendleton St,St Asaph & Pendleton St,119,True
+31044,King St & Patrick St,King St & Patrick St,158,True
+31045,Commerce St & Fayette St,Commerce St & Fayette St,106,True
+31046,Henry St & Pendleton St,Henry St & Pendleton St,49,True
+31047,Braddock Rd Metro North,Braddock Rd Metro North,101,True
+31048,King St Metro South,King St Metro South,178,True
+31049,Fairfax Dr & N Taylor St,Fairfax Dr & N Taylor St,249,True
+31050,Barton St & 10th St N,Barton St & 10th St N,111,True
+31051,12th St N & N Pierce St,12th St N & N Pierce St,155,True
+31052,Potomac Ave & 35th St S,Potomac Ave & 35th St S,161,True
+31053,Columbia Pike & S Courthouse Rd,Columbia Pike & S Courthouse Rd,178,True
+31054,Wakefield High School,Wakefield High School,30,True
+31055,28th St & S Meade St,28th St & S Meade St,97,True
+31056,S Troy St & 26th St S,S Troy St & 26th St S,94,True
+31057,S Four Mile Run Dr & Shirlington Rd,S Four Mile Run Dr & Shirlington Rd,77,True
+31058,Columbia Pike & Monroe St,Columbia Pike & Monroe St,73,True
+31059,S Four Mile Run Dr & Walter Reed Dr,S Four Mile Run Dr & Walter Reed Dr,147,True
+31060,S Arlington Mill Dr & Campbell Ave,S Arlington Mill Dr & Campbell Ave,187,True
+31061,S Kenmore St & 24th St S,S Kenmore St & 24th St S,42,True
+31062,Roosevelt Island,Roosevelt Island,93,True
+31063,S George Mason Dr & S Four Mile Run Dr,S George Mason Dr & S Four Mile Run Dr,82,True
+31064,Gravelly Point,Gravelly Point,469,True
+31065,N Pershing Dr & N Wayne St,N Pershing Dr & N Wayne St,179,True
+31066,Columbia Pike & S Orme St,Columbia Pike & S Orme St,63,True
+31067,Columbia Pike & S Walter Reed Dr,Columbia Pike & S Walter Reed Dr,86,True
+31068,Arlington Mill Cmty Center / Columbia Pike & S Dinwiddie St,Arlington Mill Cmty Center / Columbia Pike & S Dinwiddie St,270,True
+31069,N Pershing Dr & N George Mason Dr,N Pershing Dr & N George Mason Dr,154,True
+31070,Arlington Blvd & Fillmore St,Arlington Blvd & Fillmore St,176,True
+31071,Eads St & 12th St S,Eads St & 12th St S,371,True
+31072,31st St & S Woodrow St,31st St & S Woodrow St,27,True
+31073,Washington Blvd & Walter Reed Dr,Washington Blvd & Walter Reed Dr,157,True
+31074,TJ Cmty Ctr / 2nd St & S Old Glebe Rd,TJ Cmty Ctr / 2nd St & S Old Glebe Rd,178,True
+31075,Rolfe St & 9th St S,Rolfe St & 9th St S,119,True
+31076,S Randolph St & Campbell Ave,S Randolph St & Campbell Ave,42,True
+31077,Iwo Jima Memorial / Meade & 14th St N,Iwo Jima Memorial / Meade & 14th St N,262,True
+31078,Arlington Blvd & S George Mason Dr,Arlington Blvd & S George Mason Dr,218,True
+31079,Langston Blvd & N Cleveland St,Langston Blvd & N Cleveland St,317,True
+31080,Langston Blvd & N Scott St,Langston Blvd & N Scott St,281,True
+31081,Duke St & John Carlyle St,Duke St & John Carlyle St,113,True
+31082,Eisenhower Ave & Mill Race Ln,Eisenhower Ave & Mill Race Ln,165,True
+31083,Potomac Greens Dr & Slaters Ln,Potomac Greens Dr & Slaters Ln,138,True
+31084,Ballenger Ave & Dulaney St,Ballenger Ave & Dulaney St,93,True
+31085,Mount Vernon Ave & E Nelson Ave,Mount Vernon Ave & E Nelson Ave,161,True
+31086,Mount Vernon Ave & E Del Ray Ave,Mount Vernon Ave & E Del Ray Ave,162,True
+31087,Monroe Ave & Leslie Ave,Monroe Ave & Leslie Ave,203,True
+31088,Mount Vernon Ave & Kennedy St,Mount Vernon Ave & Kennedy St,74,True
+31089,Court House Metro / 15th St & N Uhle St,Court House Metro / 15th St & N Uhle St,538,True
+31090,Long Bridge Park / Long Bridge Dr & 6th St S,Long Bridge Park / Long Bridge Dr & 6th St S,53,True
+31091,Joyce St & 16th St S,Joyce St & 16th St S,305,True
+31092,Langston Blvd & N Monroe St,Langston Blvd & N Monroe St,190,True
+31093,21st St & N Pierce St,21st St & N Pierce St,294,True
+31094,Langston Blvd & N Kirkwood Rd,Langston Blvd & N Kirkwood Rd,77,True
+31095,Army Navy Dr & S Nash St,Army Navy Dr & S Nash St,34,True
+31096,Columbia Pike & S Highland St,Columbia Pike & S Highland St,150,True
+31097,Saint Asaph St & Madison St,Saint Asaph St & Madison St,119,True
+31098,King St Metro North / Cameron St,King St Metro North / Cameron St,268,True
+31099,Madison St & N Henry St,Madison St & N Henry St,47,True
+31100,19th St & Pennsylvania Ave NW,19th St & Pennsylvania Ave NW,669,True
+31101,14th & V St NW,14th & V St NW,3825,True
+31102,11th & Kenyon St NW,11th & Kenyon St NW,2085,True
+31104,Adams Mill & Columbia Rd NW,Adams Mill & Columbia Rd NW,2731,True
+31105,14th & Harvard St NW,14th & Harvard St NW,653,True
+31106,Calvert & Biltmore St NW,Calvert & Biltmore St NW,442,True
+31107,Lamont & Mt Pleasant NW,Lamont & Mt Pleasant NW,1978,True
+31108,4th & M St SW,4th & M St SW,2258,True
+31109,7th St & Florida Ave NW,7th St & Florida Ave NW,1247,True
+31110,20th St & Florida Ave NW,20th St & Florida Ave NW,819,True
+31111,10th & U St NW,10th & U St NW,1059,True
+31112,Harvard St & Adams Mill Rd NW,Harvard St & Adams Mill Rd NW,311,True
+31113,Columbia Rd & Belmont St NW,Columbia Rd & Belmont St NW,1400,True
+31114,18th St & Wyoming Ave NW,18th St & Wyoming Ave NW,2267,True
+31115,Columbia Rd & Georgia Ave NW,Columbia Rd & Georgia Ave NW,1392,True
+31116,California St & Florida Ave NW,California St & Florida Ave NW,2221,True
+31117,15th & Euclid St NW,15th & Euclid St NW,1640,True
+31118,3rd & Elm St NW,3rd & Elm St NW,1552,True
+31119,14th & Belmont St NW,14th & Belmont St NW,2362,True
+31120,10th St & Florida Ave NW,10th St & Florida Ave NW,1649,True
+31121,Calvert St & Woodley Pl NW,Calvert St & Woodley Pl NW,1145,True
+31122,16th & Irving St NW,16th & Irving St NW,1278,True
+31123,14th & Girard St NW,14th & Girard St NW,1242,True
+31124,14th & Irving St NW,14th & Irving St NW,2807,True
+31125,15th & W St NW,15th & W St NW,2590,True
+31126,11th & Girard St NW,11th & Girard St NW,1771,True
+31127,22nd & H St NW,22nd & H St NW,763,True
+31128,23rd & M St NW,23rd & M St NW,2322,True
+31129,15th St & Pennsylvania Ave NW,15th St & Pennsylvania Ave NW,725,True
+31130,7th & S St NW,7th & S St NW,1598,True
+31131,14th & Otis Pl NW,14th & Otis Pl NW,1612,True
+31132,13th & U St NW,13th & U St NW,1609,True
+31133,20th & Columbia Rd NW,20th & Columbia Rd NW,1524,True
+31134,8th & V St NW,8th & V St NW,1813,True
+31135,16th & Harvard St NW,16th & Harvard St NW,1574,True
+31136,11th & Clifton St NW,11th & Clifton St NW,1466,True
+31137,Park Pl & Rock Creek Church Rd NW,Park Pl & Rock Creek Church Rd NW,630,True
+31138,4th & College St NW,4th & College St NW,289,True
+31200,Massachusetts Ave & Dupont Circle NW,Massachusetts Ave & Dupont Circle NW,3327,True
+31201,15th & P St NW,15th & P St NW,4094,True
+31202,14th & R St NW,14th & R St NW,3053,True
+31203,14th St & Rhode Island Ave NW,14th St & Rhode Island Ave NW,2630,True
+31204,20th & E St NW,20th & E St NW,788,True
+31205,21st & I St NW,21st & I St NW,1865,True
+31206,19th & E Street NW,19th & E Street NW,148,True
+31207,Georgia Ave & Fairmont St NW,Georgia Ave & Fairmont St NW,434,True
+31208,M St & New Jersey Ave SE,M St & New Jersey Ave SE,818,True
+31209,1st & N St SE,1st & N St SE,1008,True
+31210,17th St & Rhode Island Ave NW,17th St & Rhode Island Ave NW,1323,True
+31211,Kennedy Center,Kennedy Center,619,True
+31212,New Hampshire Ave & Ward Pl NW,New Hampshire Ave & Ward Pl NW,2063,True
+31213,17th & K St NW,17th & K St NW,1928,True
+31214,17th & Corcoran St NW,17th & Corcoran St NW,2684,True
+31215,Georgetown Harbor / 30th St NW,Georgetown Harbor / 30th St NW,1155,True
+31216,14th St & New York Ave NW,14th St & New York Ave NW,800,True
+31217,USDA / 12th & C St SW,USDA / 12th & C St SW,467,True
+31218,L'Enfant Plaza / 7th & C St SW,L'Enfant Plaza / 7th & C St SW,923,True
+31219,10th St & Constitution Ave NW,10th St & Constitution Ave NW,888,True
+31220,21st & E St NW,21st & E St NW,857,True
+31221,18th & M St NW,18th & M St NW,1494,True
+31222,15th St & New York Ave NW,15th St & New York Ave NW,1142,True
+31223,Convention Center / 7th & M St NW,Convention Center / 7th & M St NW,2189,True
+31224,18th & L St NW,18th & L St NW,1435,True
+31225,C & O Canal & Wisconsin Ave NW,C & O Canal & Wisconsin Ave NW,1096,True
+31226,34th St & Wisconsin Ave NW,34th St & Wisconsin Ave NW,858,True
+31227,13th St & New York Ave NW,13th St & New York Ave NW,738,True
+31228,8th & H St NW,8th & H St NW,2301,True
+31229,New Hampshire Ave & T St NW,New Hampshire Ave & T St NW,5093,True
+31230,Metro Center / 12th & G St NW,Metro Center / 12th & G St NW,1795,True
+31231,14th & D St NW / John A Wilson Building,14th & D St NW / John A Wilson Building,905,True
+31232,7th & F St NW / National Portrait Gallery,7th & F St NW / National Portrait Gallery,2160,True
+31233,17th & K St NW / Farragut Square,17th & K St NW / Farragut Square,1803,True
+31234,20th & O St NW / Dupont South,20th & O St NW / Dupont South,1784,True
+31235,19th St & Constitution Ave NW,19th St & Constitution Ave NW,368,True
+31236,37th & O St NW / Georgetown University,37th & O St NW / Georgetown University,2457,True
+31237,25th St & Pennsylvania Ave NW,25th St & Pennsylvania Ave NW,1628,True
+31238,14th & G St NW,14th & G St NW,882,True
+31239,Rhode Island & Connecticut Ave NW,Rhode Island & Connecticut Ave NW,1163,True
+31240,Ohio Dr & West Basin Dr SW / MLK & FDR Memorials,Ohio Dr & West Basin Dr SW / MLK & FDR Memorials,486,True
+31241,Thomas Circle,Thomas Circle,2097,True
+31242,18th St & Pennsylvania Ave NW,18th St & Pennsylvania Ave NW,1210,True
+31243,4th & C St SW,4th & C St SW,1148,True
+31244,4th & E St SW,4th & E St SW,875,True
+31245,7th & R St NW / Shaw Library,7th & R St NW / Shaw Library,874,True
+31246,M St & Pennsylvania Ave NW,M St & Pennsylvania Ave NW,1532,True
+31247,Jefferson Dr & 14th St SW,Jefferson Dr & 14th St SW,1213,True
+31248,Smithsonian-National Mall / Jefferson Dr & 12th St SW,Smithsonian-National Mall / Jefferson Dr & 12th St SW,1210,True
+31249,Jefferson Memorial,Jefferson Memorial,619,True
+31250,20th & L St NW,20th & L St NW,1356,True
+31251,12th & L St NW,12th & L St NW,1368,True
+31252,21st St & Pennsylvania Ave NW,21st St & Pennsylvania Ave NW,965,True
+31253,19th & I St NW,19th & I St NW,908,True
+31254,15th & K St NW,15th & K St NW,1049,True
+31255,24th & N St NW,24th & N St NW,1010,True
+31256,10th & E St NW,10th & E St NW,1079,True
+31257,22nd & I St NW / Foggy Bottom,22nd & I St NW / Foggy Bottom,1588,True
+31258,Lincoln Memorial,Lincoln Memorial,1417,True
+31259,20th St & Virginia Ave NW,20th St & Virginia Ave NW,323,True
+31260,23rd & E St NW,23rd & E St NW,911,True
+31261,Virginia Ave & C St NW,Virginia Ave & C St NW,351,True
+31262,11th & F St NW,11th & F St NW,749,True
+31263,10th & K St NW,10th & K St NW,1377,True
+31264,6th St & Indiana Ave NW,6th St & Indiana Ave NW,1103,True
+31265,5th St & Massachusetts Ave NW,5th St & Massachusetts Ave NW,2070,True
+31266,11th & M St NW,11th & M St NW,3132,True
+31267,17th St & Massachusetts Ave NW,17th St & Massachusetts Ave NW,1175,True
+31268,12th & U St NW,12th & U St NW,981,True
+31269,3rd St & Pennsylvania Ave SE,3rd St & Pennsylvania Ave SE,1442,True
+31270,8th & D St NW,8th & D St NW,820,True
+31271,Constitution Ave & 2nd St NW/DOL,Constitution Ave & 2nd St NW/DOL,1168,True
+31272,Washington & Independence Ave SW/HHS,Washington & Independence Ave SW/HHS,952,True
+31273,Hains Point/Buckeye & Ohio Dr SW,Hains Point/Buckeye & Ohio Dr SW,441,True
+31274,10th & G St NW,10th & G St NW,918,True
+31275,New Hampshire Ave & 24th St NW,New Hampshire Ave & 24th St NW,1627,True
+31276,15th & L St NW,15th & L St NW,1105,True
+31277,17th & G St NW,17th & G St NW,1564,True
+31278,18th & R St NW,18th & R St NW,1779,True
+31279,19th & G St NW,19th & G St NW,1091,True
+31280,11th & S St NW,11th & S St NW,1972,True
+31281,8th & O St NW,8th & O St NW,3113,True
+31282,16th & R St NW,16th & R St NW,1482,True
+31283,14th & L St NW,14th & L St NW,1352,True
+31284,18th & C St NW,18th & C St NW,312,True
+31285,22nd & P ST NW,22nd & P ST NW,1550,True
+31286,11th & O St NW,11th & O St NW,1829,True
+31287,10th St & L'Enfant Plaza SW,10th St & L'Enfant Plaza SW,462,True
+31288,4th St & Madison Dr NW,4th St & Madison Dr NW,1914,True
+31289,Henry Bacon Dr & Lincoln Memorial Circle NW,Henry Bacon Dr & Lincoln Memorial Circle NW,1098,True
+31290,17th St & Independence Ave SW,17th St & Independence Ave SW,588,True
+31291,Vermont Ave & I St NW,Vermont Ave & I St NW,1377,True
+31292,22nd St & Constitution Ave NW,22nd St & Constitution Ave NW,557,True
+31293,Thomas Jefferson St NW & Water/K St NW,Thomas Jefferson St NW & Water/K St NW,916,True
+31294,7th & E St SW,7th & E St SW,410,True
+31295,Potomac & M St NW,Potomac & M St NW,1214,True
+31296,Columbia & Ontario Rd NW,Columbia & Ontario Rd NW,2007,True
+31297,Virginia Ave & 25th St NW,Virginia Ave & 25th St NW,814,True
+31298,15th & M St NW,15th & M St NW,1479,True
+31299,Connecticut Ave & R St NW,Connecticut Ave & R St NW,1503,True
+31300,Van Ness Metro / UDC,Van Ness Metro / UDC,354,True
+31301,Ward Circle / American University,Ward Circle / American University,290,True
+31302,Wisconsin Ave & Newark St NW,Wisconsin Ave & Newark St NW,674,True
+31303,Tenleytown / Wisconsin Ave & Albemarle St NW,Tenleytown / Wisconsin Ave & Albemarle St NW,510,True
+31304,36th & Calvert St NW / Glover Park,36th & Calvert St NW / Glover Park,325,True
+31305,Connecticut Ave & Macomb St NW / Cleveland Park,Connecticut Ave & Macomb St NW / Cleveland Park,626,True
+31306,39th & Calvert St NW / Stoddert,39th & Calvert St NW / Stoddert,493,True
+31307,3000 Connecticut Ave NW / National Zoo,3000 Connecticut Ave NW / National Zoo,541,True
+31308,39th & Veazey St NW,39th & Veazey St NW,190,True
+31309,Fessenden St & Wisconsin Ave NW,Fessenden St & Wisconsin Ave NW,111,True
+31310,Connecticut & Nebraska Ave NW,Connecticut & Nebraska Ave NW,363,True
+31311,13th & O St NW/ Logan Circle,13th & O St NW/ Logan Circle,1820,True
+31312,Wisconsin Ave & O St NW,Wisconsin Ave & O St NW,1520,True
+31313,Connecticut Ave & Tilden St NW,Connecticut Ave & Tilden St NW,252,True
+31314,34th & Water St NW,34th & Water St NW,349,True
+31315,Connecticut Ave & McKinley St NW,Connecticut Ave & McKinley St NW,155,True
+31316,Yuma St & Tenley Circle NW,Yuma St & Tenley Circle NW,92,True
+31317,Wisconsin Ave & Ingomar St NW,Wisconsin Ave & Ingomar St NW,78,True
+31318,Connecticut Ave & Yuma St NW,Connecticut Ave & Yuma St NW,186,True
+31319,Wisconsin Ave & Brandywine St NW,Wisconsin Ave & Brandywine St NW,319,True
+31320,American University East Campus,American University East Campus,360,True
+31321,15th St & Constitution Ave NW,15th St & Constitution Ave NW,887,True
+31322,48th Pl & MacArthur Blvd NW,48th Pl & MacArthur Blvd NW,119,True
+31323,Woodley Park Metro / Calvert St & Connecticut Ave NW,Woodley Park Metro / Calvert St & Connecticut Ave NW,1021,True
+31324,18th & New Hampshire Ave NW,18th & New Hampshire Ave NW,2297,True
+31325,Reservoir Rd & 38th St NW,Reservoir Rd & 38th St NW,1098,True
+31326,Hardy Rec Center,Hardy Rec Center,289,True
+31327,14th & Q St NW,14th & Q St NW,1782,True
+31328,21st St & G st NW,21st St & G st NW,1204,True
+31329,White House,White House,15,True
+31330,17th & P St NW,17th & P St NW,2318,True
+31331,Arizona Ave & MacArthur Blvd NW,Arizona Ave & MacArthur Blvd NW,128,True
+31332,11th & V St NW,11th & V St NW,1265,True
+31333,Wisconsin Ave & Rodman St NW,Wisconsin Ave & Rodman St NW,273,True
+31334,Loughboro Rd & Dalecarlia Pkwy NW / Sibley Hospital,Loughboro Rd & Dalecarlia Pkwy NW / Sibley Hospital,78,True
+31380,Sunrise Valley Dr & Roland Clarke Pl,Sunrise Valley Dr & Roland Clarke Pl,10,True
+31380,Sunrise Valley Dr & Roland Clarke Pl,Roland Clarke Pl & Sunrise Valley Dr,5,False
+31381,Westbranch Dr & Maitland St,Westbranch Dr & Maitland St,6,True
+31383,N Shore Dr & Bandit Loop,N Shore Dr & Bandit Loop,15,True
+31385,Old Meadow Rd & Old Meadow Ln,Old Meadow Rd & Old Meadow Ln,50,True
+31386,Prosperity Ave & Avenir Pl,Prosperity Ave & Avenir Pl,38,True
+31387,Kingsbridge Dr & Draper Dr,Kingsbridge Dr & Draper Dr,11,True
+31389,Route 29 & Circle Woods Dr,Route 29 & Circle Woods Dr,41,True
+31390,Whitehaven Pkwy & Foxhall Rd NW / GWU Mt. Vernon,Whitehaven Pkwy & Foxhall Rd NW / GWU Mt. Vernon,97,True
+31391,44th St & New Mexico Ave NW,44th St & New Mexico Ave NW,110,True
+31392,39th St & Tunlaw Rd NW,39th St & Tunlaw Rd NW,231,True
+31393,Wisconsin Ave & Upton St NW,Wisconsin Ave & Upton St NW,218,True
+31394,New Mexico & Cathedral Ave NW,New Mexico & Cathedral Ave NW,126,True
+31395,Massachusetts & Idaho Ave NW,Massachusetts & Idaho Ave NW,189,True
+31396,Dorr Ave & Prosperity Ave,Dorr Ave & Prosperity Ave,5,True
+31397,Mission Square Dr & Miranda Ct,Mission Square Dr & Miranda Ct,6,True
+31398,Tyco Rd & Boyd Pointe Way,Tyco Rd & Boyd Pointe Way,34,True
+31399,Old Meadow Rd & Cathy Ln,Old Meadow Rd & Cathy Ln,39,True
+31400,Georgia & New Hampshire Ave NW,Georgia & New Hampshire Ave NW,1205,True
+31401,14th St & Spring Rd NW,14th St & Spring Rd NW,1230,True
+31402,14th St Heights / 14th & Crittenden St NW,14th St Heights / 14th & Crittenden St NW,151,True
+31403,5th & Kennedy St NW,5th & Kennedy St NW,201,True
+31404,9th & Upshur St NW,9th & Upshur St NW,722,True
+31405,Georgia Ave & Emerson St NW,Georgia Ave & Emerson St NW,146,True
+31406,14th & Upshur St NW,14th & Upshur St NW,352,True
+31407,14th St & Colorado Ave NW,14th St & Colorado Ave NW,386,True
+31408,Takoma Metro,Takoma Metro,658,True
+31411,Georgia & Missouri Ave NW,Georgia & Missouri Ave NW,337,True
+31412,3rd St & Riggs Rd NE,3rd St & Riggs Rd NE,235,True
+31413,3rd & Underwood St NW,3rd & Underwood St NW,213,True
+31414,Georgia Ave & Piney Branch Rd NW,Georgia Ave & Piney Branch Rd NW,184,True
+31415,Georgia Ave & Kennedy St NW,Georgia Ave & Kennedy St NW,141,True
+31416,14th St & Luzon Ave NW,14th St & Luzon Ave NW,175,True
+31417,Kansas Ave & Sherman Cr NW,Kansas Ave & Sherman Cr NW,704,True
+31418,New Hampshire & Gallatin St NW,New Hampshire & Gallatin St NW,416,True
+31419,Georgia Ave & Morton St NW,Georgia Ave & Morton St NW,1079,True
+31420,17th & Upshur St NW,17th & Upshur St NW,160,True
+31421,Grant Circle,Grant Circle,568,True
+31422,Broad Branch Rd & Northampton St NW,Broad Branch Rd & Northampton St NW,121,True
+31423,Kansas Ave & Longfellow St NW,Kansas Ave & Longfellow St NW,169,True
+31424,9th & Ingraham St NW,9th & Ingraham St NW,429,True
+31425,Georgia Ave & Dahlia St NW,Georgia Ave & Dahlia St NW,234,True
+31426,10th St & Spring Rd NW,10th St & Spring Rd NW,406,True
+31500,4th & W St NE,4th & W St NE,771,True
+31501,12th & Newton St NE,12th & Newton St NE,230,True
+31502,John McCormack Dr & Michigan Ave NE,John McCormack Dr & Michigan Ave NE,186,True
+31503,Florida Ave & R St NW,Florida Ave & R St NW,1403,True
+31504,10th & Monroe St NE,10th & Monroe St NE,351,True
+31505,Eckington Pl & Q St NE,Eckington Pl & Q St NE,2410,True
+31506,1st & Rhode Island Ave NW,1st & Rhode Island Ave NW,1709,True
+31507,1st & Washington Hospital Center NW,1st & Washington Hospital Center NW,628,True
+31508,Gallaudet / 8th St & Florida Ave NE,Gallaudet / 8th St & Florida Ave NE,248,True
+31509,New Jersey Ave & R St NW,New Jersey Ave & R St NW,1493,True
+31510,18th St & Rhode Island Ave NE,18th St & Rhode Island Ave NE,100,True
+31511,12th & Irving St NE,12th & Irving St NE,309,True
+31512,Neal St & Trinidad Ave NE,Neal St & Trinidad Ave NE,513,True
+31513,Rhode Island Ave & V St NE,Rhode Island Ave & V St NE,317,True
+31514,Hamlin & 7th St NE,Hamlin & 7th St NE,539,True
+31515,Fort Totten Metro,Fort Totten Metro,762,True
+31516,Rhode Island Ave Metro,Rhode Island Ave Metro,594,True
+31517,Union Market,Union Market,615,True
+31518,New York Ave & Hecht Ave NE,New York Ave & Hecht Ave NE,1022,True
+31519,1st & O St NW,1st & O St NW,1277,True
+31520,24th & R St NE / National Arboretum,24th & R St NE / National Arboretum,210,True
+31521,18th & Monroe St NE,18th & Monroe St NE,84,True
+31522,2nd St & Seaton Pl NE,2nd St & Seaton Pl NE,694,True
+31523,Lincoln Rd & Seaton Pl NE/Harry Thomas Rec Center,Lincoln Rd & Seaton Pl NE/Harry Thomas Rec Center,447,True
+31524,Montello Ave & Holbrook Terr NE,Montello Ave & Holbrook Terr NE,659,True
+31525,Trinidad Rec Center,Trinidad Rec Center,436,True
+31526,Rhode Island & Montana Ave NE,Rhode Island & Montana Ave NE,117,True
+31527,North Capitol & R St NE,North Capitol & R St NE,915,True
+31528,John McCormack Rd NE,John McCormack Rd NE,150,True
+31529,Edgewood Rec Center,Edgewood Rec Center,543,True
+31530,Capitol Ave & Kendall St NE,Capitol Ave & Kendall St NE,251,True
+31531,MBT & Bryant St NE,MBT & Bryant St NE,1466,True
+31532,4th & Florida Ave NE,4th & Florida Ave NE,2238,True
+31533,Tanner Park,Tanner Park,2128,True
+31534,7th & Monroe St NE,7th & Monroe St NE,479,True
+31535,10th St & Rhode Island Ave NE,10th St & Rhode Island Ave NE,177,True
+31536,5th & Morse St NE,5th & Morse St NE,1185,True
+31537,Fort Lincoln Dr & 33rd Pl NE,Fort Lincoln Dr & 33rd Pl NE,49,True
+31538,South Dakota Ave & Bladensburg Rd NE,South Dakota Ave & Bladensburg Rd NE,41,True
+31539,South Dakota Ave & 33rd St NE,South Dakota Ave & 33rd St NE,21,True
+31540,3rd & N St NE,3rd & N St NE,1123,True
+31541,10th & Quincy St NE / Turkey Thicket Rec,10th & Quincy St NE / Turkey Thicket Rec,269,True
+31542,12th & Varnum St NE,12th & Varnum St NE,100,True
+31543,24th St & Rhode Island Ave NE,24th St & Rhode Island Ave NE,48,True
+31600,5th & K St NW,5th & K St NW,3712,True
+31601,19th & East Capitol St SE,19th & East Capitol St SE,509,True
+31602,Park Rd & Holmead Pl NW,Park Rd & Holmead Pl NW,1940,True
+31603,1st & M St NE,1st & M St NE,3500,True
+31604,3rd & H St NW,3rd & H St NW,1507,True
+31605,3rd & D St SE,3rd & D St SE,1171,True
+31606,Potomac & Pennsylvania Ave SE,Potomac & Pennsylvania Ave SE,852,True
+31607,13th & E St SE,13th & E St SE,368,True
+31608,8th & Eye St SE / Barracks Row,8th & Eye St SE / Barracks Row,547,True
+31609,Maine Ave & 7th St SW,Maine Ave & 7th St SW,1407,True
+31610,Eastern Market / 7th & North Carolina Ave SE,Eastern Market / 7th & North Carolina Ave SE,1540,True
+31611,13th & H St NE,13th & H St NE,1456,True
+31612,D St & Maryland Ave NE,D St & Maryland Ave NE,1361,True
+31613,Eastern Market Metro / Pennsylvania Ave & 8th St SE,Eastern Market Metro / Pennsylvania Ave & 8th St SE,3695,True
+31615,6th & H St NE,6th & H St NE,2836,True
+31616,3rd & H St NE,3rd & H St NE,1901,True
+31617,Bladensburg Rd & Benning Rd NE,Bladensburg Rd & Benning Rd NE,307,True
+31618,4th & East Capitol St NE,4th & East Capitol St NE,1155,True
+31619,Lincoln Park / 13th & East Capitol St NE,Lincoln Park / 13th & East Capitol St NE,1507,True
+31620,5th & F St NW,5th & F St NW,1246,True
+31621,4th & D St NW / Judiciary Square,4th & D St NW / Judiciary Square,596,True
+31622,13th & D St NE,13th & D St NE,1212,True
+31623,Columbus Circle / Union Station,Columbus Circle / Union Station,5955,True
+31624,North Capitol St & F St NW,North Capitol St & F St NW,1292,True
+31625,3rd & G St SE,3rd & G St SE,1593,True
+31626,15th St & Massachusetts Ave SE,15th St & Massachusetts Ave SE,800,True
+31627,M St & Delaware Ave NE,M St & Delaware Ave NE,3496,True
+31628,1st & I St SE,1st & I St SE,2047,True
+31629,8th & East Capitol St NE,8th & East Capitol St NE,605,True
+31630,15th & East Capitol St NE,15th & East Capitol St NE,855,True
+31631,8th & F St NE,8th & F St NE,1496,True
+31632,15th & F St NE,15th & F St NE,708,True
+31633,Independence Ave & L'Enfant Plaza SW/DOE,Independence Ave & L'Enfant Plaza SW/DOE,350,True
+31634,3rd & Tingey St SE,3rd & Tingey St SE,630,True
+31635,Potomac Ave & 8th St SE,Potomac Ave & 8th St SE,492,True
+31636,New Jersey Ave & N St NW/Dunbar HS,New Jersey Ave & N St NW/Dunbar HS,1031,True
+31637,North Capitol St & G Pl NE,North Capitol St & G Pl NE,704,True
+31638,1st & H St NW,1st & H St NW,1095,True
+31639,2nd & G St NE,2nd & G St NE,1696,True
+31640,Maryland Ave & E St NE,Maryland Ave & E St NE,1526,True
+31641,2nd St & Massachusetts Ave NE,2nd St & Massachusetts Ave NE,1974,True
+31642,New Jersey Ave & K St NW,New Jersey Ave & K St NW,855,True
+31643,1st & D St SE,1st & D St SE,1206,True
+31644,12th St & Pennsylvania Ave SE,12th St & Pennsylvania Ave SE,723,True
+31645,6th & K St NE,6th & K St NE,978,True
+31646,Maine Ave & 9th St SW,Maine Ave & 9th St SW,1161,True
+31647,7th St & Massachusetts Ave NE,7th St & Massachusetts Ave NE,418,True
+31648,Potomac Ave & Half St SW,Potomac Ave & Half St SW,485,True
+31649,14th & Newton St NW,14th & Newton St NW,1130,True
+31650,1st & M St SE,1st & M St SE,1391,True
+31651,11th & Park Rd NW,11th & Park Rd NW,1389,True
+31652,4th & M St SE,4th & M St SE,1097,True
+31653,7th & K St NW,7th & K St NW,2326,True
+31654,King Greenleaf Rec Center,King Greenleaf Rec Center,269,True
+31655,New Jersey Ave & F St NW,New Jersey Ave & F St NW,2221,True
+31656,Maryland Ave & 17th St NE,Maryland Ave & 17th St NE,630,True
+31657,Massachusetts Ave & 6th St NE,Massachusetts Ave & 6th St NE,1042,True
+31658,Rosedale Rec Center,Rosedale Rec Center,302,True
+31659,11th & C St SE,11th & C St SE,764,True
+31660,8th & K St NE,8th & K St NE,832,True
+31661,8th & H St NE,8th & H St NE,1055,True
+31662,1st & K St NE,1st & K St NE,2063,True
+31663,14th & D St SE,14th & D St SE,1185,True
+31664,Half & Water St SW,Half & Water St SW,621,True
+31665,Stadium Armory Metro,Stadium Armory Metro,252,True
+31666,4th & G St SW,4th & G St SW,1344,True
+31667,2nd & V St SW / James Creek Marina,2nd & V St SW / James Creek Marina,417,True
+31668,1st St & Potomac Ave SE,1st St & Potomac Ave SE,491,True
+31669,3rd & M St SE,3rd & M St SE,887,True
+31670,12th St & New York Ave NW,12th St & New York Ave NW,1020,True
+31671,53rd & D St SE/C.W. Harris Elementary,53rd & D St SE/C.W. Harris Elementary,16,True
+31672,10th & H St NE,10th & H St NE,1047,True
+31673,Waterfront Park,Waterfront Park,306,True
+31674,Maine Ave & Water St SW,Maine Ave & Water St SW,606,True
+31675,North Capitol & K St NE,North Capitol & K St NE,664,True
+31676,1st & Q St SW,1st & Q St SW,405,True
+31677,1st & L St NW,1st & L St NW,1012,True
+31678,4th & O St SW,4th & O St SW,615,True
+31700,Marion Barry Ave & Naylor Rd SE,Marion Barry Ave & Naylor Rd SE,45,True
+31701,Branch & Pennsylvania Ave SE,Branch & Pennsylvania Ave SE,106,True
+31703,Minnesota Ave Metro/DOES,Minnesota Ave Metro/DOES,60,True
+31704,Nannie Helen Burroughs & Minnesota Ave NE,Nannie Helen Burroughs & Minnesota Ave NE,9,True
+31705,Benning Branch Library,Benning Branch Library,33,True
+31706,Fairfax Village,Fairfax Village,18,True
+31707,Benning Rd & East Capitol St NE / Benning Rd Metro,Benning Rd & East Capitol St NE / Benning Rd Metro,96,True
+31708,Anacostia Ave & Benning Rd NE / River Terrace,Anacostia Ave & Benning Rd NE / River Terrace,114,True
+31710,Nannie Helen Burroughs Ave & 49th St NE,Nannie Helen Burroughs Ave & 49th St NE,4,True
+31711,Deanwood Rec Center,Deanwood Rec Center,20,True
+31712,Oklahoma Ave & D St NE,Oklahoma Ave & D St NE,475,True
+31713,Division Ave & Foote St NE,Division Ave & Foote St NE,10,True
+31714,61st St & Banks Pl NE,61st St & Banks Pl NE,4,True
+31716,Kingman Island/The Fields at RFK,Kingman Island/The Fields at RFK,108,True
+31717,Kenilworth Terr & Hayes St. NE,Kenilworth Terr & Hayes St. NE,33,True
+31718,Ridge Rd Community Center,Ridge Rd Community Center,8,True
+31719,Oklahoma Ave & Benning Rd NE,Oklahoma Ave & Benning Rd NE,164,True
+31720,Anacostia Roller Skating Pavilion,Anacostia Roller Skating Pavilion,56,True
+31721,Anacostia Ave & East Capitol St NE,Anacostia Ave & East Capitol St NE,57,True
+31722,Woody Ward Rec Center,Woody Ward Rec Center,7,True
+31723,Ridge Rd & Southern Ave SE,Ridge Rd & Southern Ave SE,2,True
+31799,Randle Circle & Minnesota Ave SE,Randle Circle & Minnesota Ave SE,16,True
+31800,Alabama & MLK Ave SE,Alabama & MLK Ave SE,37,True
+31801,Anacostia Metro,Anacostia Metro,148,True
+31802,MLK & Marion Barry Ave SE,MLK & Marion Barry Ave SE,111,True
+31803,14th St & Marion Barry Ave SE,14th St & Marion Barry Ave SE,95,True
+31804,Anacostia Library,Anacostia Library,88,True
+31805,Pennsylvania & Minnesota Ave SE,Pennsylvania & Minnesota Ave SE,39,True
+31806,Congress Heights Metro,Congress Heights Metro,98,True
+31807,Pleasant St & MLK Ave SE,Pleasant St & MLK Ave SE,21,True
+31811,South Capitol & Atlantic St SW,South Capitol & Atlantic St SW,30,True
+31812,16th & Q St SE / Anacostia HS,16th & Q St SE / Anacostia HS,51,True
+31813,Alabama Ave & Stanton Rd SE / Shops at Park Village,Alabama Ave & Stanton Rd SE / Shops at Park Village,22,True
+31814,Mississippi Ave & 19th St SE / THEARC,Mississippi Ave & 19th St SE / THEARC,28,True
+31815,19th & Savannah St SE,19th & Savannah St SE,11,True
+31816,4th St & Mississippi Ave SE,4th St & Mississippi Ave SE,10,True
+31817,1st & S Capitol St SE / Oxon Run Trail,1st & S Capitol St SE / Oxon Run Trail,19,True
+31818,Livingston Rd & 3rd St SE,Livingston Rd & 3rd St SE,5,True
+31819,Joliet St & MLK Ave SW/Bald Eagle Rec Ctr,Joliet St & MLK Ave SW/Bald Eagle Rec Ctr,4,True
+31820,Anacostia Park,Anacostia Park,17,True
+31822,Stanton Square SE,Stanton Square SE,8,True
+31823,United Medical Center,United Medical Center,2,True
+31824,Valley Ave & Wheeler Rd SE,Valley Ave & Wheeler Rd SE,8,True
+31825,Fort Stanton Rec Center,Fort Stanton Rec Center,9,True
+31826,Minnesota Ave & R St SE,Minnesota Ave & R St SE,40,True
+31827,St. Elizabeths West Campus/DHS,St. Elizabeths West Campus/DHS,175,True
+31828,New Jersey Ave & H St SE,New Jersey Ave & H St SE,1293,True
+31829,16th & Bangor St SE,16th & Bangor St SE,28,True
+31830,South Capitol St and Southern Ave SE,South Capitol St and Southern Ave SE,11,True
+31900,Langston Blvd & N Woodstock St,Langston Blvd & N Woodstock St,72,True
+31901,Washington Blvd & N Frederick St,Washington Blvd & N Frederick St,39,True
+31902,Wilson Blvd & N Illinois St,Wilson Blvd & N Illinois St,112,True
+31903,Royal St & Wilkes St,Royal St & Wilkes St,145,True
+31904,East Falls Church Metro / Sycamore St & 19th St N,East Falls Church Metro / Sycamore St & 19th St N,399,True
+31905,Kennebec St & 11th St N,Kennebec St & 11th St N,174,True
+31906,Commonwealth Ave & Oak St,Commonwealth Ave & Oak St,42,True
+31907,Franklin St & S Washington St,Franklin St & S Washington St,114,True
+31908,Radford & Osage St,Radford & Osage St,13,True
+31909,Mount Vernon Ave & Four Mile Run Park,Mount Vernon Ave & Four Mile Run Park,72,True
+31910,Potomac Ave & Main Line Blvd,Potomac Ave & Main Line Blvd,129,True
+31912,Mount Vernon Ave & Bruce St,Mount Vernon Ave & Bruce St,68,True
+31913,Commonwealth Ave & E Monroe Ave,Commonwealth Ave & E Monroe Ave,101,True
+31914,Lee Center,Lee Center,55,True
+31915,Powhatan St & Bashford Ln,Powhatan St & Bashford Ln,123,True
+31916,Potomac Ave & Swann Ave,Potomac Ave & Swann Ave,89,True
+31917,N Lynn St & Fairfax Dr,N Lynn St & Fairfax Dr,399,True
+31918,Madison St & Fairfax St,Madison St & Fairfax St,103,True
+31919,Carlin Springs Rd & N Thomas St,Carlin Springs Rd & N Thomas St,156,True
+31920,Washington-Liberty High School / N Stafford St & Generals Way,Washington-Liberty High School / N Stafford St & Generals Way,169,True
+31921,Westover Library / Washington Blvd & N McKinley Rd,Westover Library / Washington Blvd & N McKinley Rd,104,True
+31923,Columbia Pike & S George Mason Dr,Columbia Pike & S George Mason Dr,115,True
+31924,Wilson Blvd & N Troy St,Wilson Blvd & N Troy St,173,True
+31926,Wilson Blvd & N Vermont St,Wilson Blvd & N Vermont St,202,True
+31927,Wheeler Ave & S. Floyd St.,Wheeler Ave & S. Floyd St.,24,True
+31928,N. Beauregard St. & Berkley St.,N. Beauregard St. & Berkley St.,91,True
+31929,Mt Vernon Trail & S. Washington St.,Mt Vernon Trail & S. Washington St.,268,True
+31930,Eisenhower Ave & Ike Dr,Eisenhower Ave & Ike Dr,39,True
+31931,N Pitt St & Montgomery St,N Pitt St & Montgomery St,183,True
+31932,Van Dorn Metro,Van Dorn Metro,5,True
+31933,Duke St & Strand (Robinson Terminal),Duke St & Strand (Robinson Terminal),88,True
+31935,National Airport,National Airport,177,True
+31936,Army Navy Dr & Fern St,Army Navy Dr & Fern St,65,True
+31937,Arlington Blvd & Ft Myer Dr,Arlington Blvd & Ft Myer Dr,277,True
+31938,23rd St S & Hayes St,23rd St S & Hayes St,198,True
+31939,Wilson Blvd & N Oak St,Wilson Blvd & N Oak St,427,True
+31940,Arlington Blvd & Fairfax Dr,Arlington Blvd & Fairfax Dr,216,True
+31941,N Hampton Dr & Ford Ave,N Hampton Dr & Ford Ave,47,True
+31942,Whiting & Lane Dr,Whiting & Lane Dr,7,True
+31943,N Howard St & Taney Ave,N Howard St & Taney Ave,16,True
+31944,S Clark St & 33rd St,S Clark St & 33rd St,130,True
+31945,Columbia Pike & S Greenbrier St,Columbia Pike & S Greenbrier St,125,True
+31946,Kenmore Ave & Seminary Rd,Kenmore Ave & Seminary Rd,13,True
+31947,Rosslyn Metro / Wilson Blvd & N Moore St,Rosslyn Metro / Wilson Blvd & N Moore St,944,True
+31948,W&OD Trail & Langston Blvd,W&OD Trail & Langston Blvd,74,True
+31949,Columbia Pike & S Scott St/12th St S,Columbia Pike & S Scott St/12th St S,79,True
+31950,Long Bridge Aquatic Center,Long Bridge Aquatic Center,187,True
+31951,8th Rd & S Frederick St,8th Rd & S Frederick St,115,True
+31952,N Howard St & N Imboden St,N Howard St & N Imboden St,8,True
+31953,S Pickett St & Shillings St,S Pickett St & Shillings St,4,True
+31954,S Jordan St & Venable St,S Jordan St & Venable St,14,True
+31955,King St & Peyton St,King St & Peyton St,62,True
+31956,Reed & Edison,Reed & Edison,71,True
+31957,King St & Kenwood Ave,King St & Kenwood Ave,8,True
+31958,S Washington St & Wilkes St,S Washington St & Wilkes St,51,True
+31959,Main Line Blvd & E Glebe,Main Line Blvd & E Glebe,262,True
+31960,Commonwealth and Reed,Commonwealth and Reed,191,True
+31961,Fillmore & Bisdorf,Fillmore & Bisdorf,25,True
+31962,King St & W Braddock Rd,King St & W Braddock Rd,26,True
+31963,Holmes Run Pkwy & N Pickett St,Holmes Run Pkwy & N Pickett St,42,True
+31964,Virginia Theological Seminary,Virginia Theological Seminary,8,True
+31966,Duke St & Jordan St,Duke St & Jordan St,23,True
+31967,S Reynolds St & Edsall Rd,S Reynolds St & Edsall Rd,3,True
+31968,King St & N Pitt St,King St & N Pitt St,223,True
+31969,Braddock Rd Metro South,Braddock Rd Metro South,582,True
+31970,First St & Fayette St,First St & Fayette St,130,True
+31971,S Wayne St and 9th St S,S Wayne St and 9th St S,99,True
+31972,S Wakefield St & 28th St S,S Wakefield St & 28th St S,31,True
+31973,N Pershing Dr & N Quebec St,N Pershing Dr & N Quebec St,78,True
+31974,Mandeville Ln & Stovall St,Mandeville Ln & Stovall St,93,True
+31976,Virginia Hospital Center,Virginia Hospital Center,81,True
+31977,Marymount University / Yorktown Blvd & 26th St N,Marymount University / Yorktown Blvd & 26th St N,9,True
+31978,Arlington National Cemetery,Arlington National Cemetery,445,True
+31979,Potomac Yard Metro South,Potomac Yard Metro South,157,True
+32000,Norfolk Ave & Fairmont St,Norfolk Ave & Fairmont St,88,True
+32001,Fenton St & New York Ave,Fenton St & New York Ave,87,True
+32002,Bethesda Ave & Arlington Rd,Bethesda Ave & Arlington Rd,162,True
+32003,Montgomery Ave & Waverly St,Montgomery Ave & Waverly St,40,True
+32004,Fallsgrove Blvd & Fallsgrove Dr,Fallsgrove Blvd & Fallsgrove Dr,12,True
+32005,Traville Gateway Dr & Gudelsky Dr,Traville Gateway Dr & Gudelsky Dr,9,True
+32006,13th St & Eastern Ave,13th St & Eastern Ave,57,True
+32007,E Montgomery Ave & Maryland Ave,E Montgomery Ave & Maryland Ave,10,True
+32008,Cordell & Norfolk Ave,Cordell & Norfolk Ave,133,True
+32009,Frederick Ave & Horners Ln,Frederick Ave & Horners Ln,11,True
+32011,Maple & Ritchie Ave,Maple & Ritchie Ave,44,True
+32012,Silver Spring Metro / Colesville Rd & Wayne Ave,Silver Spring Metro / Colesville Rd & Wayne Ave,62,True
+32014,Friendship Hts Metro / Wisconsin Ave & Wisconsin Cir,Friendship Hts Metro / Wisconsin Ave & Wisconsin Cir,257,True
+32016,Fallsgrove Dr & W Montgomery Ave,Fallsgrove Dr & W Montgomery Ave,7,True
+32017,Monroe St & Monroe Pl,Monroe St & Monroe Pl,16,True
+32018,Needwood Rd & Eagles Head Ct,Needwood Rd & Eagles Head Ct,7,True
+32019,East West Hwy & Blair Mill Rd,East West Hwy & Blair Mill Rd,89,True
+32021,47th & Elm St,47th & Elm St,24,True
+32022,Dennis Ave & Amherst Ave,Dennis Ave & Amherst Ave,24,True
+32023,Montgomery College / W Campus Dr & Mannakee St,Montgomery College / W Campus Dr & Mannakee St,16,True
+32024,Fenton St & Gist Ave,Fenton St & Gist Ave,62,True
+32025,Carroll & Westmoreland Ave,Carroll & Westmoreland Ave,114,True
+32026,Carroll & Ethan Allen Ave,Carroll & Ethan Allen Ave,149,True
+32027,Battery Ln & Trolley Trail,Battery Ln & Trolley Trail,101,True
+32028,Norfolk & Rugby Ave,Norfolk & Rugby Ave,28,True
+32029,Offutt Ln & Chevy Chase Dr,Offutt Ln & Chevy Chase Dr,25,True
+32032,Fleet St & Ritchie Pkwy,Fleet St & Ritchie Pkwy,9,True
+32033,Piccard & W Gude Dr,Piccard & W Gude Dr,15,True
+32034,Silver Spring Transit Center - Top Level,Silver Spring Transit Center - Top Level,26,True
+32035,Georgia Ave & Spring St,Georgia Ave & Spring St,11,True
+32036,Fenton St & Ellsworth Dr,Fenton St & Ellsworth Dr,100,True
+32037,King Farm Blvd & Pleasant Dr,King Farm Blvd & Pleasant Dr,34,True
+32038,King Farm Blvd & Piccard Dr,King Farm Blvd & Piccard Dr,27,True
+32039,Old Georgetown Rd & Southwick St,Old Georgetown Rd & Southwick St,60,True
+32040,Friendship Blvd & Willard Ave,Friendship Blvd & Willard Ave,140,True
+32041,Medical Center Dr & Key West Ave,Medical Center Dr & Key West Ave,9,True
+32043,Veterans Pl & Pershing Dr,Veterans Pl & Pershing Dr,23,True
+32044,Rockville Metro East,Rockville Metro East,7,True
+32045,Shady Grove Metro West,Shady Grove Metro West,27,True
+32046,River Rd & Landy Ln,River Rd & Landy Ln,128,True
+32047,Rockville Metro West,Rockville Metro West,12,True
+32048,Bethesda Metro / Wisconsin Ave & Old Georgetown Rd,Bethesda Metro / Wisconsin Ave & Old Georgetown Rd,214,True
+32049,WAU / Flower Ave & Division St,WAU / Flower Ave & Division St,65,True
+32050,Spring St & 2nd Ave,Spring St & 2nd Ave,12,True
+32051,Connecticut Ave & Chevy Chase Lake Dr,Connecticut Ave & Chevy Chase Lake Dr,10,True
+32052,Key West Ave & Siesta Key Way,Key West Ave & Siesta Key Way,7,True
+32053,Medical Center Metro,Medical Center Metro,64,True
+32054,Lyttonsville Rd & Lyttonsville Pl,Lyttonsville Rd & Lyttonsville Pl,11,True
+32055,Woodmont Ave & Strathmore St,Woodmont Ave & Strathmore St,155,True
+32056,East West Hwy & 16th St,East West Hwy & 16th St,35,True
+32057,Pooks Hill Rd & Linden Ave,Pooks Hill Rd & Linden Ave,14,True
+32058,Sligo Ave & Carroll Ln,Sligo Ave & Carroll Ln,32,True
+32059,Takoma Park Rec Center,Takoma Park Rec Center,4,True
+32061,New Hampshire & Kirklynn Ave,New Hampshire & Kirklynn Ave,19,True
+32062,Wheaton Metro / Georgia Ave & Reedie Dr,Wheaton Metro / Georgia Ave & Reedie Dr,93,True
+32063,Amherst Ave & Elkins St,Amherst Ave & Elkins St,33,True
+32064,Amherst Ave & Prichard Rd,Amherst Ave & Prichard Rd,2,True
+32065,Grandview & Blueridge Ave,Grandview & Blueridge Ave,38,True
+32066,Windham Ln & Amherst Ave,Windham Ln & Amherst Ave,21,True
+32067,Shady Grove Metro East,Shady Grove Metro East,49,True
+32068,Columbus Ave & Tribeca St,Columbus Ave & Tribeca St,29,True
+32069,Columbus Ave & Gramercy Blvd,Columbus Ave & Gramercy Blvd,19,True
+32071,Corporate Blvd & Omega Dr,Corporate Blvd & Omega Dr,2,True
+32072,Key West Ave & Diamondback Dr,Key West Ave & Diamondback Dr,7,True
+32073,Blueridge Ave & Elkin St,Blueridge Ave & Elkin St,39,True
+32074,Twinbrook Metro,Twinbrook Metro,56,True
+32075,North Bethesda Metro,North Bethesda Metro,90,True
+32076,Citadel Ave & McGrath Blvd,Citadel Ave & McGrath Blvd,49,True
+32077,Rockville Pike & Old Georgetown Rd,Rockville Pike & Old Georgetown Rd,11,True
+32078,Woodglen Dr & Executive Blvd,Woodglen Dr & Executive Blvd,29,True
+32079,Executive Blvd & E Jefferson St,Executive Blvd & E Jefferson St,42,True
+32080,Fishers Ln & Rock Creek Mill Rd,Fishers Ln & Rock Creek Mill Rd,12,True
+32081,Congressional Ln & E Jefferson St,Congressional Ln & E Jefferson St,43,True
+32082,Garland Ave & Walden Rd,Garland Ave & Walden Rd,17,True
+32083,Rockville Pike & Rose Ave,Rockville Pike & Rose Ave,18,True
+32084,Wheaton Library & Community Rec Center,Wheaton Library & Community Rec Center,7,True
+32086,Briggs Chaney & Castle Dr,Briggs Chaney & Castle Dr,6,True
+32087,White Oak Rec Center,White Oak Rec Center,2,True
+32088,Briggs Chaney Park & Ride,Briggs Chaney Park & Ride,22,True
+32089,New Hampshire & Lockwood,New Hampshire & Lockwood,5,True
+32090,Stewart & April,Stewart & April,3,True
+32092,Castle Blvd & Castle Ln,Castle Blvd & Castle Ln,5,True
+32094,Oak Leaf & Lockwood,Oak Leaf & Lockwood,1,True
+32200,Spring Hill Metro,Spring Hill Metro,17,True
+32201,Westpark Dr & Leesburg Pike,Westpark Dr & Leesburg Pike,15,True
+32203,Tysons Metro South,Tysons Metro South,26,True
+32204,Tysons Metro North,Tysons Metro North,68,True
+32205,Westpark & Jones Branch Dr,Westpark & Jones Branch Dr,26,True
+32206,Jones Branch & Westbranch Dr,Jones Branch & Westbranch Dr,33,True
+32207,Westpark & Park Run Dr,Westpark & Park Run Dr,4,True
+32208,Tysons West Transit Center,Tysons West Transit Center,1,True
+32209,North Shore & Cameron Crescent Dr/Crescent Apartments,North Shore & Cameron Crescent Dr/Crescent Apartments,13,True
+32210,Town Center Pkwy & Bowman Towne Dr,Town Center Pkwy & Bowman Towne Dr,26,True
+32211,Greensboro Metro East,Greensboro Metro East,27,True
+32212,New Dominion Pkwy & Fountain Dr,New Dominion Pkwy & Fountain Dr,14,True
+32213,W&OD Trail/Sunset Hills Rd & Old Reston Ave,W&OD Trail/Sunset Hills Rd & Old Reston Ave,36,True
+32214,W&OD Trail & Explorer St/Reston Bus Station,W&OD Trail & Explorer St/Reston Bus Station,49,True
+32215,Wiehle-Reston Metro South,Wiehle-Reston Metro South,48,True
+32216,Library St & Freedom Dr,Library St & Freedom Dr,20,True
+32217,Sunset Hills Rd & Discovery Square,Sunset Hills Rd & Discovery Square,13,True
+32218,Temporary Rd & Old Reston Ave,Temporary Rd & Old Reston Ave,7,True
+32219,Reston YMCA,Reston YMCA,35,True
+32220,W&OD Trail/Sunset Hills Rd & Isaac Newton Sq,W&OD Trail/Sunset Hills Rd & Isaac Newton Sq,51,True
+32221,Greensboro & International Dr,Greensboro & International Dr,1,True
+32222,Towers Crescent Dr & Tysons One Pl,Towers Crescent Dr & Tysons One Pl,15,True
+32223,North Shore Dr & Village Rd,North Shore Dr & Village Rd,13,True
+32224,Town Center Pkwy & Sunset Hills Rd,Town Center Pkwy & Sunset Hills Rd,31,True
+32225,Reston Pkwy & Spectrum Dr,Reston Pkwy & Spectrum Dr,10,True
+32227,Greensboro & Pinnacle Dr,Greensboro & Pinnacle Dr,14,True
+32228,Reston Station Blvd & Sunset Hills Rd,Reston Station Blvd & Sunset Hills Rd,6,True
+32229,Park Run & Onyx Dr,Park Run & Onyx Dr,41,True
+32230,McLean Metro,McLean Metro,120,True
+32231,Dunn Loring Metro,Dunn Loring Metro,102,True
+32232,West Falls Church Metro,West Falls Church Metro,31,True
+32233,Jones Branch Drive & Scotts Crossing Rd,Jones Branch Drive & Scotts Crossing Rd,19,True
+32234,Merrilee Dr & Lauren Elizabeth Lane,Merrilee Dr & Lauren Elizabeth Lane,32,True
+32235,Merrifield Cinema & Merrifield Town Center,Merrifield Cinema & Merrifield Town Center,44,True
+32236,Vy Reston Heights,Vy Reston Heights,21,True
+32237,Baron Cameron Ave & North Hampton Ave,Baron Cameron Ave & North Hampton Ave,34,True
+32238,Ridge Heights Rd & Seahawks Dr,Ridge Heights Rd & Seahawks Dr,7,True
+32239,Becontree Ln & Goldenrain Ct,Becontree Ln & Goldenrain Ct,3,True
+32240,Ring Rd & North Shore Dr,Ring Rd & North Shore Dr,2,True
+32241,Reston Pkwy & Bennington Woods Rd,Reston Pkwy & Bennington Woods Rd,6,True
+32242,Market St & St Francis St,Market St & St Francis St,36,True
+32243,Reston Town Center Metro North,Reston Town Center Metro North,97,True
+32244,Vantage Hill Rd & Wainwright Dr,Vantage Hill Rd & Wainwright Dr,6,True
+32245,Links Dr & Wedge Dr,Links Dr & Wedge Dr,4,True
+32246,Golf Course Sq and Golf Course Dr,Golf Course Sq and Golf Course Dr,43,True
+32247,South Lakes Dr and Reston Pkwy,South Lakes Dr and Reston Pkwy,25,True
+32248,Olde Crafts Dr and Cartwright Pl,Olde Crafts Dr and Cartwright Pl,8,True
+32249,Green Range Dr and Glade Dr,Green Range Dr and Glade Dr,5,True
+32250,Glade Dr & Pinecrest Rd/Cathy Hudgins Cmty Ctr,Glade Dr & Pinecrest Rd/Cathy Hudgins Cmty Ctr,9,True
+32251,Lake Newport Rd and Autumn Ridge Cir,Lake Newport Rd and Autumn Ridge Cir,18,True
+32252,Ridge Heights and Owl Cove Ln,Ridge Heights and Owl Cove Ln,20,True
+32253,Soapstone Dr Convenience Center,Soapstone Dr Convenience Center,16,True
+32255,Hartland Rd & Harte Pl,Hartland Rd & Harte Pl,38,True
+32256,North Village and Park Garden,North Village and Park Garden,15,True
+32258,Reston Town Center Metro South,Reston Town Center Metro South,38,True
+32259,N Shore Dr & Wainwright Dr,N Shore Dr & Wainwright Dr,39,True
+32260,Vienna Metro South,Vienna Metro South,83,True
+32261,Vaden Dr & Royal Victoria Dr/Jim Scott Cmty Ctr,Vaden Dr & Royal Victoria Dr/Jim Scott Cmty Ctr,8,True
+32262,District Ave & Strawberry Ln/Mosaic Market Garage,District Ave & Strawberry Ln/Mosaic Market Garage,84,True
+32263,Gatehouse Rd & Telestar Ct,Gatehouse Rd & Telestar Ct,15,True
+32264,Pimmit Dr & Idyl Ln,Pimmit Dr & Idyl Ln,11,True
+32265,Pimmit Dr & Los Pueblos Ln,Pimmit Dr & Los Pueblos Ln,60,True
+32266,Emma Lee St & Morris St,Emma Lee St & Morris St,17,True
+32267,Route 29 & Bisvey Dr,Route 29 & Bisvey Dr,3,True
+32268,Arlington Blvd & Allen St,Arlington Blvd & Allen St,30,True
+32269,Jones Branch Dr & Blyton St,Jones Branch Dr & Blyton St,19,True
+32270,Westbranch & Jones Branch Dr,Westbranch & Jones Branch Dr,8,True
+32271,Madron Ln & Bermudez Ct,Madron Ln & Bermudez Ct,16,True
+32272,Madrillon Rd & Boss St,Madrillon Rd & Boss St,23,True
+32274,Beech Dr at Draper Dr Park,Beech Dr at Draper Dr Park,8,True
+32275,Fairfax Blvd & Pickett Rd South,Fairfax Blvd & Pickett Rd South,8,True
+32276,Fairfax Blvd & Pickett Rd North,Fairfax Blvd & Pickett Rd North,15,True
+32277,Layton Hall Dr & University Dr,Layton Hall Dr & University Dr,6,True
+32278,Blenheim Blvd & North St,Blenheim Blvd & North St,14,True
+32279,George Mason Blvd & Armstrong St,George Mason Blvd & Armstrong St,8,True
+32280,University Dr & Democracy Ln,University Dr & Democracy Ln,15,True
+32281,Fair Woods Pkwy & Fairfax Blvd,Fair Woods Pkwy & Fairfax Blvd,15,True
+32282,School St & George Mason Blvd,School St & George Mason Blvd,23,True
+32283,South St & University Dr,South St & University Dr,6,True
+32400,1301 McCormick Dr / Wayne K. Curry Admin Bldg,1301 McCormick Dr / Wayne K. Curry Admin Bldg,2,True
+32401,Largo Town Center Metro,Largo Town Center Metro,11,True
+32402,Baltimore Ave & Van Buren St / Riverdale Park Station,Baltimore Ave & Van Buren St / Riverdale Park Station,76,True
+32403,Baltimore Ave & Jefferson St,Baltimore Ave & Jefferson St,42,True
+32404,Perry & 35th St,Perry & 35th St,91,True
+32405,Largo Rd & Campus Way / Prince Georges's Comm Col,Largo Rd & Campus Way / Prince Georges's Comm Col,6,True
+32406,Fleet St & Waterfront St,Fleet St & Waterfront St,41,True
+32407,Oxon Hill Park & Ride,Oxon Hill Park & Ride,13,True
+32408,Oglethorpe St & 42nd Ave,Oglethorpe St & 42nd Ave,128,True
+32409,Southern Ave Metro,Southern Ave Metro,3,True
+32410,Queens Chapel & Hamilton St,Queens Chapel & Hamilton St,24,True
+32411,Northwestern High School,Northwestern High School,20,True
+32412,New Hampshire Ave & East-West Hwy,New Hampshire Ave & East-West Hwy,57,True
+32413,Rhode Island Ave & 39th St / Brentwood Arts Exchange,Rhode Island Ave & 39th St / Brentwood Arts Exchange,47,True
+32414,Riggs Rd & East West Hwy,Riggs Rd & East West Hwy,42,True
+32415,Tanger Outlets,Tanger Outlets,28,True
+32416,Chillum Rd & Riggs Rd / Riggs Plaza,Chillum Rd & Riggs Rd / Riggs Plaza,115,True
+32417,Hyattsville Library / Adelphi Rd & Toledo Rd,Hyattsville Library / Adelphi Rd & Toledo Rd,10,True
+32418,West Hyattsville Metro,West Hyattsville Metro,331,True
+32419,Capitol Heights Metro,Capitol Heights Metro,3,True
+32420,Prince George's Plaza Metro,Prince George's Plaza Metro,136,True
+32421,Riverdale Park Town Center,Riverdale Park Town Center,128,True
+32422,The Mall at Prince Georges,The Mall at Prince Georges,79,True
+32423,National Harbor Carousel,National Harbor Carousel,77,True
+32424,Roosevelt Center & Crescent Rd,Roosevelt Center & Crescent Rd,6,True
+32425,Crescent Rd & Ridge Rd,Crescent Rd & Ridge Rd,8,True
+32426,Greenbelt Station Parkway,Greenbelt Station Parkway,6,True
+32600,Founders Row/W Broad St & West St,Founders Row/W Broad St & West St,34,True
+32601,Eden Center,Eden Center,51,True
+32602,N Oak St & W Broad St,N Oak St & W Broad St,42,True
+32603,Pennsylvania Ave & Park Ave,Pennsylvania Ave & Park Ave,23,True
+32604,E Fairfax St & S Washington St,E Fairfax St & S Washington St,46,True
+32605,W Broad St & Little Falls St,W Broad St & Little Falls St,65,True
+32606,N Roosevelt St & Roosevelt Blvd,N Roosevelt St & Roosevelt Blvd,78,True
+32607,S Maple Ave & S Washington St,S Maple Ave & S Washington St,62,True
+32608,Falls Church City Hall / Park Ave & Little Falls St,Falls Church City Hall / Park Ave & Little Falls St,80,True
+32609,W Columbia St & N Washington St,W Columbia St & N Washington St,91,True
+32901,6035 Warehouse,6035 Warehouse,8,True
+33200,17th St & New York Ave NW,17th St & New York Ave NW,400,True
