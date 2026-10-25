@@ -114,4 +114,8 @@ station_trips = read_clean_data("data/processed/station_trips.csv")
 
 该 Notebook 已在独立新内核中从头执行通过，并保存全部运行输出。
 
-当前仓库提供数据质量审查、清洗数据导出、基础探索图1–3及对应的 Notebook 复现入口。
+## 报告正文
+
+[引言、数据介绍、数据清洗与基础探索](reports/sections/01_intro_and_cleaning.md)由马文博撰写，包含统一的数据处理口径、图1–3、分组统计、结果解释与分析局限。正文数值可通过配套统计表和 Notebook 复核，可作为小组报告对应章节的内容。
+
+当前项目已完成数据质量审查、清洗数据导出、基础探索图1–3、对应的 Notebook 复现入口及上述报告章节。
