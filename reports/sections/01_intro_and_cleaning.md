@@ -145,7 +145,7 @@ T=\frac{\Delta t}{60}
 ```math
 \begin{aligned}
 a&=\sin^2\left(\frac{\varphi_2-\varphi_1}{2}\right)+\cos\varphi_1\cos\varphi_2\sin^2\left(\frac{\lambda_2-\lambda_1}{2}\right),\\
-d&=2R\operatorname{atan2}(\sqrt{a},\sqrt{1-a}).
+d&=2R\mathrm{atan2}(\sqrt{a},\sqrt{1-a}).
 \end{aligned}
 ```
 
