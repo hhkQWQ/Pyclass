@@ -1,4 +1,4 @@
-"""成员 C：站点空间分布、热门站点与高频 OD 走廊分析（图9、图10）。
+"""康炜奕：站点空间分布、热门站点与高频 OD 走廊分析（图9、图10）。
 
 输入为 ``data/processed/station_trips.csv``（双端站点 ID 完整的 180,914 条记录）。
 输出三张统计表（站点流量、OD 走廊、站点坐标）和两张图，每张图同时导出
@@ -279,7 +279,7 @@ def plot_station_heatmap(summary: pd.DataFrame, station: pd.DataFrame) -> plt.Fi
             zorder=6,
         )
 
-    axis.text(0.62, 0.035, "市中心商务区\n早高峰净流入为主", transform=axis.transAxes,
+    axis.text(0.62, 0.035, "站点月度流量分布\n时段差异另行分析", transform=axis.transAxes,
               fontsize=9, color="#2F5478", ha="center")
 
     figure.text(0.05, 0.070,
@@ -334,7 +334,7 @@ def run(figure_dir: Path = FIGURE_DIR) -> dict[str, float]:
             f"非环线骑行 {int(concentration['non_loop_trips']):,} 次，构成 {len(corridors):,} 个站点对。",
             "左图气泡条为月累计出发量与到达量，条尾数字为净流量；右图为双向合并后的高频走廊。"
             "Top10 走廊合计占非环线骑行的 "
-            f"{concentration['top10_share']:.2%}，说明骑行联系高度集中。",
+            f"{concentration['top10_share']:.2%}，说明少量走廊的覆盖比例有限。",
             top_stations.rename(columns={
                 "station_name": "站点", "departures": "出发量", "arrivals": "到达量",
                 "total_trips": "总流量", "net_flow": "净流量", "imbalance_index": "失衡指数",
@@ -347,8 +347,8 @@ def run(figure_dir: Path = FIGURE_DIR) -> dict[str, float]:
             "图10  城市站点骑行热度空间分布",
             f"站点 {len(summary)} 个，月累计 {int(station.shape[0]):,} 次骑行；"
             "气泡面积表示站点总流量，颜色冷暖表示净流出与净流入。",
-            "早高峰净流出集中在西北居住带，净流入集中在市中心商务区，空间上的方向性差异构成"
-            "后续潮汐失衡与调度分析的依据。",
+            "图中展示出发月份队列的月度站点总流量与净流量，不用于直接判断早晚高峰的方向。"
+            "净流量为订单流量指标，不能据此确认实际缺车或满桩。",
             summary.nsmallest(10, "rank_abs_net")[
                 ["station_name", "departures", "arrivals", "net_flow", "imbalance_index"]
             ].rename(columns={
