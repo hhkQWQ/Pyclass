@@ -1,0 +1,137 @@
+﻿period,target_station,target_need_per_day,source_station,source_capacity_per_day,volume_per_day,distance_km,priority
+早高峰,14th & V St NW,11.700000,17th St & Rhode Island Ave NW,8.400000,8.400000,1.350000,高
+早高峰,Maryland Ave & E St NE,8.500000,14th St & New York Ave NW,7.500000,7.500000,0.710000,高
+早高峰,New Hampshire Ave & T St NW,11.300000,Massachusetts Ave & Dupont Circle NW,7.300000,7.300000,0.800000,高
+早高峰,13th & O St NW/ Logan Circle,7.300000,15th & K St NW,9.700000,7.300000,0.820000,中
+早高峰,15th & W St NW,8.300000,15th & L St NW,7.700000,6.200000,1.710000,高
+早高峰,14th & Girard St NW,6.100000,17th & K St NW / Farragut Square,14.600000,6.100000,2.610000,中
+早高峰,17th & Corcoran St NW,9.200000,18th & M St NW,8.100000,6.000000,0.830000,高
+早高峰,Park Rd & Holmead Pl NW,6.000000,Vermont Ave & I St NW,6.500000,6.000000,3.310000,中
+早高峰,D St & Maryland Ave NE,6.000000,New Jersey Ave & F St NW,9.400000,6.000000,1.380000,中
+早高峰,15th & P St NW,7.800000,17th & K St NW,5.800000,5.800000,0.850000,中
+早高峰,11th & M St NW,7.700000,12th St & New York Ave NW,7.100000,5.700000,0.510000,中
+早高峰,18th St & Wyoming Ave NW,5.600000,19th & I St NW,8.300000,5.600000,1.920000,中
+早高峰,13th & D St NE,8.200000,Eastern Market Metro / Pennsylvania Ave & 8th St SE,7.500000,5.500000,1.360000,高
+早高峰,Adams Mill & Columbia Rd NW,6.100000,20th & L St NW,4.900000,4.900000,2.150000,中
+早高峰,11th & O St NW,7.800000,14th & L St NW,4.800000,4.800000,0.670000,中
+早高峰,5th & K St NW,7.400000,8th & H St NW,4.600000,4.600000,0.510000,中
+早高峰,8th & F St NE,8.900000,2nd St & Massachusetts Ave NE,4.500000,4.500000,0.770000,高
+早高峰,8th & F St NE,8.900000,Columbus Circle / Union Station,11.300000,4.300000,0.870000,高
+早高峰,14th & Otis Pl NW,6.000000,17th & K St NW / Farragut Square,7.300000,4.200000,3.600000,中
+早高峰,New Hampshire Ave & T St NW,11.300000,Rhode Island & Connecticut Ave NW,5.500000,4.000000,1.070000,高
+早高峰,20th & Columbia Rd NW,6.500000,20th & L St NW,8.900000,4.000000,1.630000,中
+早高峰,California St & Florida Ave NW,7.800000,18th & L St NW,6.700000,3.800000,1.570000,中
+早高峰,6th & H St NE,7.000000,Columbus Circle / Union Station,3.700000,3.700000,0.650000,中
+早高峰,Lamont & Mt Pleasant NW,5.000000,21st St & Pennsylvania Ave NW,8.600000,3.700000,3.440000,中
+早高峰,Columbia Rd & Georgia Ave NW,7.000000,M St & Delaware Ave NE,3.600000,3.600000,3.040000,中
+早高峰,14th St & Rhode Island Ave NW,6.000000,13th St & New York Ave NW,3.500000,3.500000,0.930000,中
+早高峰,Lincoln Park / 13th & East Capitol St NE,7.700000,3rd St & Pennsylvania Ave SE,3.300000,3.300000,1.220000,中
+早高峰,14th & R St NW,6.000000,17th & K St NW / Farragut Square,3.000000,3.000000,1.320000,中
+早高峰,14th & R St NW,6.000000,Vermont Ave & I St NW,9.500000,3.000000,1.340000,中
+早高峰,Florida Ave & R St NW,6.000000,North Capitol St & G Pl NE,3.000000,3.000000,1.480000,中
+早高峰,8th & O St NW,5.400000,10th & G St NW,4.700000,3.000000,1.190000,中
+早高峰,11th & Kenyon St NW,7.100000,18th & L St NW,2.900000,2.900000,3.120000,中
+早高峰,Florida Ave & R St NW,6.000000,North Capitol St & F St NW,2.900000,2.900000,1.700000,中
+早高峰,14th & Belmont St NW,5.500000,15th St & New York Ave NW,5.700000,2.800000,2.450000,中
+早高峰,13th & D St NE,8.200000,19th & East Capitol St SE,2.700000,2.700000,1.100000,高
+早高峰,14th & Belmont St NW,5.500000,19th & I St NW,2.700000,2.700000,2.380000,中
+早高峰,California St & Florida Ave NW,7.800000,New Hampshire Ave & Ward Pl NW,2.600000,2.600000,1.460000,中
+早高峰,20th & Columbia Rd NW,6.500000,23rd & M St NW,2.500000,2.500000,1.490000,中
+早高峰,8th & O St NW,5.400000,9th & G St NW,2.500000,2.500000,1.170000,中
+早高峰,14th St & Rhode Island Ave NW,6.000000,15th St & New York Ave NW,8.100000,2.400000,1.070000,中
+早高峰,Lincoln Park / 13th & East Capitol St NE,7.700000,Columbus Circle / Union Station,6.000000,2.300000,1.600000,中
+早高峰,11th & Kenyon St NW,7.100000,15th & K St NW,2.300000,2.300000,3.090000,中
+早高峰,15th & W St NW,8.300000,18th & M St NW,2.100000,2.100000,1.680000,高
+早高峰,11th & M St NW,7.700000,10th & K St NW,2.100000,2.100000,0.370000,中
+早高峰,6th & H St NE,7.000000,North Capitol & K St NE,2.100000,2.100000,0.900000,中
+早高峰,Lincoln Park / 13th & East Capitol St NE,7.700000,Eastern Market Metro / Pennsylvania Ave & 8th St SE,2.000000,2.000000,0.920000,中
+早高峰,Columbia Rd & Georgia Ave NW,7.000000,13th St & New York Ave NW,5.600000,2.000000,3.120000,中
+早高峰,11th & O St NW,7.800000,Convention Center / 7th & M St NW,1.900000,1.900000,0.510000,中
+早高峰,5th & K St NW,7.400000,7th & K St NW,1.800000,1.800000,0.210000,中
+早高峰,14th & Otis Pl NW,6.000000,Fort Totten Metro,1.800000,1.800000,3.280000,中
+早高峰,17th & Corcoran St NW,9.200000,15th & M St NW,1.700000,1.700000,0.820000,高
+早高峰,17th & Corcoran St NW,9.200000,Rhode Island & Connecticut Ave NW,1.600000,1.600000,0.690000,高
+早高峰,14th & V St NW,11.700000,17th St & Massachusetts Ave NW,1.500000,1.500000,1.200000,高
+早高峰,California St & Florida Ave NW,7.800000,24th & N St NW,1.400000,1.400000,1.560000,中
+早高峰,15th & P St NW,7.800000,15th & L St NW,1.400000,1.400000,0.690000,中
+早高峰,11th & Kenyon St NW,7.100000,Rhode Island Ave Metro,1.400000,1.400000,2.940000,中
+早高峰,Columbia Rd & Georgia Ave NW,7.000000,12th St & New York Ave NW,1.400000,1.400000,3.020000,中
+早高峰,Lamont & Mt Pleasant NW,5.000000,M St & Pennsylvania Ave NW,1.300000,1.300000,3.370000,中
+早高峰,6th & H St NE,7.000000,North Capitol St & G Pl NE,4.200000,1.200000,0.910000,中
+早高峰,Adams Mill & Columbia Rd NW,6.100000,17th & K St NW / Farragut Square,8.400000,1.200000,2.310000,中
+早高峰,14th & V St NW,11.700000,Georgia Ave & Fairmont St NW,1.100000,1.100000,1.160000,高
+早高峰,11th & O St NW,7.800000,10th & K St NW,3.200000,1.100000,0.670000,中
+早高峰,Maryland Ave & E St NE,8.500000,Columbus Circle / Union Station,7.000000,1.000000,1.040000,高
+早高峰,5th & K St NW,7.400000,5th & F St NW,3.900000,1.000000,0.650000,中
+晚高峰,20th & L St NW,5.600000,California St & Florida Ave NW,5.300000,5.300000,1.620000,中
+晚高峰,17th St & Rhode Island Ave NW,5.300000,14th & V St NW,6.100000,5.300000,1.350000,中
+晚高峰,17th & G St NW,9.700000,14th St & Rhode Island Ave NW,5.700000,5.200000,1.300000,高
+晚高峰,17th & G St NW,9.700000,17th & P St NW,4.600000,4.600000,1.270000,高
+晚高峰,15th & L St NW,5.300000,11th & S St NW,4.600000,4.600000,1.300000,中
+晚高峰,18th St & Pennsylvania Ave NW,9.200000,11th & M St NW,4.500000,4.500000,1.400000,高
+晚高峰,21st St & Pennsylvania Ave NW,6.200000,New Hampshire Ave & T St NW,4.400000,4.400000,1.720000,中
+晚高峰,21st & E St NW,5.000000,Columbia Rd & Belmont St NW,4.200000,4.200000,2.740000,中
+晚高峰,17th & K St NW / Farragut Square,7.300000,13th & O St NW/ Logan Circle,4.100000,4.100000,1.030000,中
+晚高峰,14th St & New York Ave NW,4.000000,15th & F St NE,4.300000,4.000000,0.130000,中
+晚高峰,19th & G St NW,8.300000,17th & Corcoran St NW,3.800000,3.800000,1.590000,高
+晚高峰,Vermont Ave & I St NW,6.100000,8th & O St NW,5.300000,3.500000,1.310000,中
+晚高峰,15th St & New York Ave NW,5.700000,5th St & Massachusetts Ave NW,3.600000,3.400000,1.290000,中
+晚高峰,Columbus Circle / Union Station,14.000000,6th & H St NE,3.300000,3.300000,0.650000,高
+晚高峰,17th & K St NW / Farragut Square,7.300000,14th & Q St NW,5.000000,3.300000,1.110000,中
+晚高峰,15th & K St NW,6.100000,11th & O St NW,3.300000,3.300000,0.910000,中
+晚高峰,2nd St & Massachusetts Ave NE,4.500000,8th & F St NE,4.700000,3.300000,0.770000,中
+晚高峰,19th & G St NW,8.300000,18th & R St NW,3.100000,3.100000,1.600000,高
+晚高峰,22nd St & Constitution Ave NW,5.700000,14th & R St NW,3.100000,3.100000,2.720000,中
+晚高峰,21st & I St NW,6.800000,16th & R St NW,3.000000,3.000000,1.590000,中
+晚高峰,19th & I St NW,5.600000,20th & Columbia Rd NW,3.000000,3.000000,1.850000,中
+晚高峰,Columbus Circle / Union Station,14.000000,D St & Maryland Ave NE,3.500000,2.900000,0.810000,高
+晚高峰,15th & K St NW,6.100000,8th & H St NW,3.100000,2.800000,0.950000,中
+晚高峰,19th St & Pennsylvania Ave NW,5.200000,15th & W St NW,3.700000,2.800000,2.210000,中
+晚高峰,18th & M St NW,3.900000,11th & V St NW,2.800000,2.800000,1.940000,中
+晚高峰,New Jersey Ave & F St NW,5.200000,1st & L St NW,2.700000,2.700000,0.760000,中
+晚高峰,Columbus Circle / Union Station,14.000000,3rd & H St NE,2.600000,2.600000,0.450000,高
+晚高峰,19th & I St NW,5.600000,18th St & Wyoming Ave NW,3.400000,2.500000,1.920000,中
+晚高峰,23rd & E St NW,4.700000,12th & U St NW,2.500000,2.500000,2.960000,中
+晚高峰,1st & D St SE,4.300000,11th & C St SE,2.500000,2.500000,1.260000,中
+晚高峰,Columbus Circle / Union Station,14.000000,Massachusetts Ave & 6th St NE,2.400000,2.400000,0.730000,高
+晚高峰,19th St & Pennsylvania Ave NW,5.200000,13th & U St NW,2.400000,2.400000,2.180000,中
+晚高峰,18th St & Pennsylvania Ave NW,9.200000,15th & P St NW,2.300000,2.300000,1.280000,高
+晚高峰,15th St & New York Ave NW,5.700000,5th & F St NW,2.300000,2.300000,1.230000,中
+晚高峰,New Jersey Ave & F St NW,5.200000,1st & M St NE,2.000000,2.000000,1.090000,中
+晚高峰,Washington & Independence Ave SW/HHS,4.900000,1st & I St SE,2.900000,1.900000,1.110000,中
+晚高峰,Reservoir Rd & 38th St NW,4.800000,39th & Calvert St NW / Stoddert,1.900000,1.900000,1.140000,中
+晚高峰,21st St & Pennsylvania Ave NW,6.200000,14th & R St NW,4.900000,1.800000,1.800000,中
+晚高峰,Metro Center / 12th & G St NW,5.500000,8th & O St NW,1.800000,1.800000,1.230000,中
+晚高峰,1st & D St SE,4.300000,4th & M St SW,2.000000,1.800000,1.360000,中
+晚高峰,Columbus Circle / Union Station,14.000000,1st & K St NE,1.700000,1.700000,0.600000,高
+晚高峰,21st & I St NW,6.800000,14th & Q St NW,1.700000,1.700000,1.690000,中
+晚高峰,Washington & Independence Ave SW/HHS,4.900000,New Jersey Ave & H St SE,1.600000,1.600000,0.980000,中
+晚高峰,18th & L St NW,3.500000,7th & S St NW,1.600000,1.600000,2.150000,中
+晚高峰,21st & I St NW,6.800000,20th St & Florida Ave NW,1.500000,1.500000,1.640000,中
+晚高峰,14th & D St NW / John A Wilson Building,4.700000,New Jersey Ave & N St NW/Dunbar HS,1.500000,1.500000,2.000000,中
+晚高峰,Eastern Market Metro / Pennsylvania Ave & 8th St SE,3.700000,Potomac & Pennsylvania Ave SE,1.500000,1.500000,0.890000,中
+晚高峰,Metro Center / 12th & G St NW,5.500000,3rd & H St NW,1.400000,1.400000,1.140000,中
+晚高峰,Washington & Independence Ave SW/HHS,4.900000,4th & G St SW,1.400000,1.400000,0.740000,中
+晚高峰,37th & O St NW / Georgetown University,4.200000,Columbia & Ontario Rd NW,1.400000,1.400000,3.240000,中
+晚高峰,37th & O St NW / Georgetown University,4.200000,15th & Euclid St NW,1.400000,1.400000,3.590000,中
+晚高峰,18th St & Pennsylvania Ave NW,9.200000,17th & Corcoran St NW,5.100000,1.300000,1.400000,高
+晚高峰,19th & G St NW,8.300000,Connecticut Ave & R St NW,1.900000,1.300000,1.610000,高
+晚高峰,Vermont Ave & I St NW,6.100000,7th & K St NW,1.300000,1.300000,1.140000,中
+晚高峰,Vermont Ave & I St NW,6.100000,7th & F St NW / National Portrait Gallery,1.300000,1.300000,1.140000,中
+晚高峰,22nd St & Constitution Ave NW,5.700000,Arlington Blvd & Ft Myer Dr,1.300000,1.300000,2.250000,中
+晚高峰,22nd St & Constitution Ave NW,5.700000,5th & K St NW,2.300000,1.300000,2.840000,中
+晚高峰,14th & D St NW / John A Wilson Building,4.700000,7th & R St NW / Shaw Library,1.300000,1.300000,2.180000,中
+晚高峰,23rd & E St NW,4.700000,Adams Mill & Columbia Rd NW,1.300000,1.300000,3.040000,中
+晚高峰,37th & O St NW / Georgetown University,4.200000,14th & Belmont St NW,3.400000,1.300000,3.740000,中
+晚高峰,Metro Center / 12th & G St NW,5.500000,New Jersey Ave & N St NW/Dunbar HS,2.700000,1.200000,1.480000,中
+晚高峰,Columbus Circle / Union Station,14.000000,2nd & G St NE,1.100000,1.100000,0.320000,高
+晚高峰,18th St & Pennsylvania Ave NW,9.200000,22nd & P ST NW,1.100000,1.100000,1.240000,高
+晚高峰,Metro Center / 12th & G St NW,5.500000,5th & K St NW,1.100000,1.100000,0.930000,中
+晚高峰,Reservoir Rd & 38th St NW,4.800000,36th & Calvert St NW / Glover Park,1.100000,1.100000,1.150000,中
+晚高峰,2nd St & Massachusetts Ave NE,4.500000,7th St & Massachusetts Ave NE,1.100000,1.100000,0.690000,中
+晚高峰,Eastern Market Metro / Pennsylvania Ave & 8th St SE,3.700000,14th & D St SE,1.100000,1.100000,0.770000,中
+晚高峰,Eastern Market Metro / Pennsylvania Ave & 8th St SE,3.700000,Lincoln Park / 13th & East Capitol St NE,5.300000,1.100000,0.920000,中
+晚高峰,Reservoir Rd & 38th St NW,4.800000,Hardy Rec Center,1.000000,1.000000,1.030000,中
+晚高峰,14th & D St NW / John A Wilson Building,4.700000,Maine Ave & Water St SW,1.000000,1.000000,2.180000,中
+晚高峰,18th & M St NW,3.900000,14th & Belmont St NW,2.000000,1.000000,1.970000,中
+晚高峰,18th & L St NW,3.500000,14th & Belmont St NW,1.000000,1.000000,2.130000,中
