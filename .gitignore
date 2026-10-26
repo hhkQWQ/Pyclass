@@ -1,0 +1,15 @@
+# Keep the agreed input; ignore temporary processed datasets
+/data/processed/*
+!/data/processed/clean_trips.csv
+
+# Local environment and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+/tmp/
+.env
+.env.*
+!.env.example
