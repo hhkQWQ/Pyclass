@@ -1,0 +1,25 @@
+# Share the source dataset and the two verified analysis subsets
+/data/raw/*
+!/data/raw/题5_共享单车骑行_202401.csv
+/data/processed/*
+!/data/processed/clean_trips.csv
+!/data/processed/station_trips.csv
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Local configuration and temporary files
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+~$*
+/tmp/

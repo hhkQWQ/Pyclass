@@ -1,0 +1,2 @@
+# Preserve CSV bytes and line endings so source checksums stay reproducible.
+*.csv -text

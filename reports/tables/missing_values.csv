@@ -1,0 +1,14 @@
+﻿field,missing_rows,percent_of_raw
+ride_id,0,0.0
+rideable_type,0,0.0
+started_at,0,0.0
+ended_at,0,0.0
+start_station_name,37220,15.584046
+start_station_id,37220,15.584046
+end_station_name,39741,16.639591
+end_station_id,39741,16.639591
+start_lat,0,0.0
+start_lng,0,0.0
+end_lat,203,0.084996
+end_lng,203,0.084996
+member_casual,0,0.0
