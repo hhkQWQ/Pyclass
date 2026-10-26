@@ -38,7 +38,7 @@ Pyclass/
 ├── config/            # 清洗规则与阈值
 ├── data/raw/          # 原始 CSV，随仓库提供
 ├── data/processed/    # 两份清洗后的 CSV，随仓库提供
-├── src/               # 公共绘图工具、数据审查、清洗与基础探索代码
+├── src/               # 公共绘图工具、数据审查、清洗、基础探索与空间调度分析代码
 ├── notebooks/         # 分析 Notebook
 ├── reports/figures/   # 图表
 ├── reports/sections/  # 报告章节
@@ -102,20 +102,56 @@ station_trips = read_clean_data("data/processed/station_trips.csv")
 
 配套数值见 [分组描述统计](reports/tables/basic_eda_summary.csv) 和 [结构占比统计](reports/tables/trip_structure_summary.csv)。
 
-公共绘图接口位于 `src/utils.py`：`set_plot_style()` 自动选择可用中文字体并统一样式，`save_figure(fig, filename)` 保存图片到 `reports/figures/`。车型与用户类型使用固定的 `RIDEABLE_COLORS`、`MEMBER_COLORS`，供全组复用。没有可用中文字体时会提示安装字体。
+公共绘图接口位于 `src/utils.py`：`set_plot_style()` 自动选择可用中文字体并统一样式，`save_figure(fig, filename)` 保存图片到 `reports/figures/`。车型与用户类型使用固定的 `RIDEABLE_COLORS`、`MEMBER_COLORS`，供全组复用。没有可用中文字体时会提示安装字体。`save_figure_html()` 在保存 300 DPI PNG 的同时输出自包含 HTML（图片以 base64 内嵌、附带数据表），图9–图12 使用该接口。
+
+## 空间分布、站点失衡与调度分析
+
+```powershell
+.\.venv\Scripts\python.exe -m src.spatial_analysis
+.\.venv\Scripts\python.exe -m src.imbalance_dispatch
+```
+
+| 图表 | 内容 |
+| --- | --- |
+| [图9](reports/figures/fig09_top_stations_od.html) | Top15 热门站点总流量与双向合并后的高频 OD 走廊 |
+| [图10](reports/figures/fig10_station_heatmap.html) | 站点骑行热度空间分布：面积表流量、颜色表净流量方向 |
+| [图11](reports/figures/fig11_peak_divergence.html) | 早晚高峰核心站点净流量正负双向对比 |
+| [图12](reports/figures/fig12_tidal_curves.html) | 居住区与商务区站点 24 小时净流量与累计净流量曲线 |
+
+四张图同时提供 300 DPI PNG（`fig09`–`fig12`）与自包含 HTML。HTML 内嵌 150 DPI 缩图，可离线直接打开，页面附表与正文数值一致。
+
+净流量定义为 `F = 出发量 − 到达量`，正值表示净流出（缺车）、负值表示净流入（积车）；失衡指数为 `I = |F| / (出发量 + 到达量 + 1)`，分母加 1 为防零平滑项。分时段统计中出发量按出发时间、到达量按还车时间（`ended_at`）归属：一次 6:50 出发、7:10 还车的骑行计入 7 时的到达，这样净流量才对应站点的库存变化；代价是同一窗口内缺车与积车不再配平，差额为跨越窗口边界的骑行（早高峰 +498 辆、晚高峰 −1,394 辆）。时段口径为工作日（周一至周五，含 1/1 与 1/15）早 7:00–9:59、晚 17:00–19:59，样本沿用 `data/processed/station_trips.csv` 的 180,914 条站点记录，不重复定义清洗规则。
+
+调运方案按“最近邻优先”在同一高峰内匹配积车点与缺车点，单程上限 6 km，量纲为辆/日（月累计 ÷ 23 个工作日），属于可执行的下界估计而非最优解。配套表格：
+
+- [站点流量汇总](reports/tables/station_flow_summary.csv)：760 个站点的出发量、到达量、净流量与失衡指数。
+- [OD 走廊汇总](reports/tables/od_corridor_summary.csv)：29,005 个站点对的双向次数与主向占比。
+- [高峰失衡汇总](reports/tables/peak_imbalance_summary.csv)：早晚高峰的净流量、失衡指数与分级。
+- [逐小时净流量面板](reports/tables/hourly_net_flow.csv)：站点 × 小时的工作日净流量。
+- [调运方案](reports/tables/dispatch_plan.csv)：130 条线路的目标站、取车站、调运量与直线距离。
+
+新增测试覆盖净流量与失衡指数公式、OD 双向合并与环线剔除、分级阈值、高峰时段筛选和调运方案的容量约束：
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest tests.test_spatial_dispatch -v
+```
 
 ## Notebook 复现
 
 [01_cleaning_and_eda.ipynb](notebooks/01_cleaning_and_eda.ipynb) 串联原始数据概览、清洗规则、质量审查、双子集导出、图1–3、动态数值结论和数据接口检查。
 
+[03_spatial_and_dispatch.ipynb](notebooks/03_spatial_and_dispatch.ipynb) 串联站点与 OD 汇总、图9–图12、失衡分级、调运方案和产物校验，最后调用 `src.spatial_analysis` 与 `src.imbalance_dispatch` 重写全部图表与统计表。
+
 在 Jupyter 中打开该文件，选择 `Python (Pyclass)` 内核，执行“重启内核并运行全部单元格”。Notebook 可从项目根目录或 `notebooks/` 目录启动，直接调用 `src/` 中的现有函数，不维护另一套清洗规则。
 
 运行会重新生成两份 CSV、审查与统计表和三张 300 DPI 图片，并检查原始文件未改动、子集一致性和导出类型。分析结论从本次运行数据计算；保存后的 Notebook 内嵌图表，方便预览。
 
-该 Notebook 已在独立新内核中从头执行通过，并保存全部运行输出。
+该 Notebook 已在独立新内核中从头执行通过，并保存全部运行输出。03 Notebook 同样已在独立新内核中执行通过。
 
 ## 报告正文
 
 [引言、数据介绍、数据清洗与基础探索](reports/sections/01_intro_and_cleaning.md)由马文博撰写，包含统一的数据处理口径、图1–3、分组统计、结果解释与分析局限。正文数值可通过配套统计表和 Notebook 复核，可作为小组报告对应章节的内容。
 
-当前项目已完成数据质量审查、清洗数据导出、基础探索图1–3、对应的 Notebook 复现入口及上述报告章节。
+[空间分布、站点潮汐失衡与车辆调度优化](reports/sections/03_spatial_and_dispatch.md)由康炜奕撰写，包含图9–图12、失衡分级、调运方案与解释边界；章节号暂按 5–6 节留给时间规律与需求预测部分编排，合并定稿时如调整顺序只需修改标题序号。
+
+当前项目已完成数据质量审查、清洗数据导出、基础探索图1–3、空间分布与调度分析图9–12、两份 Notebook 复现入口及上述报告章节。
