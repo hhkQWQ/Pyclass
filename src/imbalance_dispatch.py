@@ -40,14 +40,35 @@ def weekday_count(station: pd.DataFrame) -> int:
     return int(days)
 
 
+def with_return_time(station: pd.DataFrame) -> pd.DataFrame:
+    """补充按还车时间统计所需的列；出发小时仍用 hour（started_at）。"""
+    data = station.copy()
+    returned = pd.to_datetime(data["ended_at"], errors="coerce")
+    data["end_hour"] = returned.dt.hour.astype("int8")
+    data["end_weekday"] = returned.dt.dayofweek.astype("int8")
+    return data
+
+
 def build_peak_imbalance(station: pd.DataFrame) -> pd.DataFrame:
-    """按早/晚高峰分别汇总各站点的出发、到达、净流量、失衡指数与失衡等级。"""
-    weekday = station.loc[station["weekday"].lt(5)]
+    """按早/晚高峰汇总各站点的出发、到达、净流量与失衡等级。
+
+    出发量按出发时间归属，到达量按还车时间归属：一次 6:50 出发、7:10 还车的骑行
+    计入 7 时的到达而不是 7 时的出发。两种归属对应不同的订单集合，因此同一窗口内
+    各站点净流量之和不再为 0，差额是跨越窗口或跨日边界的骑行（见 ``window_boundary_flow``）。
+    """
+    data = with_return_time(station)
+    weekday_start = data.loc[data["weekday"].lt(5)]
+    weekday_end = data.loc[data["end_weekday"].lt(5)]
     frames = []
     for period, (start, end) in PEAK_WINDOWS.items():
-        window = weekday.loc[weekday["hour"].between(start, end)]
-        departures = window.groupby("start_station_id").size().rename("departures")
-        arrivals = window.groupby("end_station_id").size().rename("arrivals")
+        departures = (
+            weekday_start.loc[weekday_start["hour"].between(start, end)]
+            .groupby("start_station_id").size().rename("departures")
+        )
+        arrivals = (
+            weekday_end.loc[weekday_end["end_hour"].between(start, end)]
+            .groupby("end_station_id").size().rename("arrivals")
+        )
         table = pd.concat([departures, arrivals], axis=1).fillna(0).astype(int)
         table.index.name = "station_id"
         table = table.reset_index()
@@ -69,6 +90,19 @@ def build_peak_imbalance(station: pd.DataFrame) -> pd.DataFrame:
     return result.sort_values(["period", "net_flow"], ascending=[True, False]).reset_index(drop=True)
 
 
+def window_boundary_flow(peak: pd.DataFrame) -> pd.DataFrame:
+    """窗口内“出发总量 − 到达总量”：正值表示净有车辆骑出该窗口对应的时段。"""
+    grouped = peak.groupby("period").agg(
+        departures=("departures", "sum"),
+        arrivals=("arrivals", "sum"),
+        stations=("station_id", "nunique"),
+        deficit=("net_flow", lambda values: values.clip(lower=0).sum()),
+        surplus=("net_flow", lambda values: -values.clip(upper=0).sum()),
+    )
+    grouped["boundary_flow"] = grouped["departures"] - grouped["arrivals"]
+    return grouped
+
+
 def grade_of(row) -> str:
     """按失衡指数与净流量规模给出可执行的分级；小样本站点不会仅因指数高被列为严重。"""
     magnitude = abs(int(row.net_flow))
@@ -79,10 +113,12 @@ def grade_of(row) -> str:
 
 
 def build_hourly_panel(station: pd.DataFrame) -> pd.DataFrame:
-    """站点 × 小时的工作日净流量面板，供 24 小时潮汐曲线和后续模型复用。"""
-    weekday = station.loc[station["weekday"].lt(5)]
-    departures = weekday.groupby(["start_station_id", "hour"]).size().rename("departures")
-    arrivals = weekday.groupby(["end_station_id", "hour"]).size().rename("arrivals")
+    """站点 × 小时的工作日净流量面板；到达量按还车时间归入对应小时。"""
+    data = with_return_time(station)
+    weekday_start = data.loc[data["weekday"].lt(5)]
+    weekday_end = data.loc[data["end_weekday"].lt(5)]
+    departures = weekday_start.groupby(["start_station_id", "hour"]).size().rename("departures")
+    arrivals = weekday_end.groupby(["end_station_id", "end_hour"]).size().rename("arrivals")
     panel = pd.concat([departures, arrivals], axis=1).fillna(0).astype(int)
     panel.index.names = ["station_id", "hour"]
     panel = panel.reset_index()
@@ -93,10 +129,12 @@ def build_hourly_panel(station: pd.DataFrame) -> pd.DataFrame:
 
 
 def peak_profile(station: pd.DataFrame, station_name: str) -> pd.DataFrame:
-    """单个站点在工作日的 0–23 时净流量与累计净流量。"""
-    weekday = station.loc[station["weekday"].lt(5)]
-    departures = weekday.loc[weekday["start_station_name"].eq(station_name)].groupby("hour").size()
-    arrivals = weekday.loc[weekday["end_station_name"].eq(station_name)].groupby("hour").size()
+    """单个站点在工作日的 0–23 时净流量与累计净流量；到达量按还车小时归属。"""
+    data = with_return_time(station)
+    weekday_start = data.loc[data["weekday"].lt(5)]
+    weekday_end = data.loc[data["end_weekday"].lt(5)]
+    departures = weekday_start.loc[weekday_start["start_station_name"].eq(station_name)].groupby("hour").size()
+    arrivals = weekday_end.loc[weekday_end["end_station_name"].eq(station_name)].groupby("end_hour").size()
     hours = pd.RangeIndex(24, name="hour")
     profile = pd.DataFrame({
         "hour": hours,
@@ -182,8 +220,8 @@ def plot_peak_divergence(peak: pd.DataFrame, top_n: int = 10) -> plt.Figure:
     figure.text(0.045, 0.958, "图11  早晚高峰核心潮汐站点净流量双向对比",
                 fontsize=21, weight="bold", va="top")
     figure.text(0.045, 0.910,
-                "净流量 F = 出发量 − 到达量：正值（红，向右）为净流出即缺车，负值（蓝，向左）为净流入即积车",
-                fontsize=11, color="#657585", va="top")
+                "净流量 F = 出发量 − 到达量（出发量按出发时间、到达量按还车时间归属）：正值（红，向右）为净流出即缺车，负值（蓝，向左）为净流入即积车",
+                fontsize=10.6, color="#657585", va="top")
 
     for index, (period, position) in enumerate(zip(("早高峰", "晚高峰"),
                                                    ([0.255, 0.195, 0.245, 0.620], [0.625, 0.195, 0.245, 0.620]))):
@@ -216,13 +254,18 @@ def plot_peak_divergence(peak: pd.DataFrame, top_n: int = 10) -> plt.Figure:
                       va="center", ha=horizontal, fontsize=8.2,
                       color="white" if inside else "#203548")
 
+    boundary = {
+        period: int(block["departures"].sum() - block["arrivals"].sum())
+        for period, block in peak.groupby("period")
+    }
     figure.text(0.045, 0.120,
-                "统计口径：工作日（周一至周五，含 1/1 与 1/15）各高峰 3 小时；"
+                "统计口径：工作日（周一至周五，含 1/1 与 1/15）各高峰 3 小时；出发量按出发时间、到达量按还车时间归属，"
                 "每根条为该站点的月累计净流量，括号内为失衡指数 I。",
                 fontsize=10)
     figure.text(0.045, 0.078,
-                "早高峰缺车集中在西北居住带，积车集中在市中心商务区；晚高峰方向整体反转，构成同一批站点的潮汐往复。",
-                fontsize=10, color="#657585")
+                f"同一窗口内各站净流量之和不为 0，差额是跨窗口边界的骑行（早高峰 {boundary['早高峰']:+,} 辆、"
+                f"晚高峰 {boundary['晚高峰']:+,} 辆），因此不能用“缺车合计 = 积车合计”校验。",
+                fontsize=10)
     figure.text(0.045, 0.036,
                 "I = |净流量| ÷ (出发量 + 到达量 + 1)，分母加 1 为防零平滑项；完整分级见 reports/tables/peak_imbalance_summary.csv。",
                 fontsize=10, color="#657585")
@@ -260,24 +303,34 @@ def plot_tidal_curves(profiles: dict[str, pd.DataFrame], days: int) -> plt.Figur
     cumulative.axhline(0, color="#203548", linewidth=1.0)
     hourly.set_ylabel("逐小时净流量（辆/月）")
     cumulative.set_ylabel("累计净流量（辆/月）")
-    cumulative.set_xlabel("出发小时")
+    cumulative.set_xlabel("小时（出发与还车按各自时间归属）")
     hourly.set_title("(a) 逐小时净流量：早晚高峰方向相反", loc="left", pad=12)
-    cumulative.set_title("(b) 累计净流量：一个工作日周期内的“先失血、后回补”", loc="left", pad=12)
+    cumulative.set_title("(b) 累计净流量：居住区先“失血”后回补，商务区先“积压”后释放", loc="left", pad=12)
     hourly.legend(loc="upper left", frameon=False, fontsize=9, ncol=2)
-    cumulative.legend(loc="lower right", frameon=False, fontsize=9, ncol=2)
+
+    stacked = pd.concat([profile["cumulative_net"] for profile in profiles.values()])
+    span = float(stacked.max() - stacked.min()) or 1.0
+    cumulative.set_ylim(float(stacked.min()) - span * 0.20, float(stacked.max()) + span * 0.18)
 
     for label, profile in profiles.items():
+        color = DISPATCH_COLORS[label]
+        peak_row = profile.loc[profile["cumulative_net"].idxmax() if label == "居住区"
+                               else profile["cumulative_net"].idxmin()]
+        anchor_hour = min(float(peak_row["hour"]) + 0.6, 21.5)
+        value = float(peak_row["cumulative_net"]) + (span * 0.085 if label == "居住区" else -span * 0.085)
+        cumulative.annotate(f"{profile['station_name'].iloc[0]}（{label}）",
+                            xy=(anchor_hour, value), xytext=(anchor_hour, value),
+                            textcoords="data", ha="left", va="center", fontsize=9.2, color=color)
         row = profile.iloc[-1]
         cumulative.annotate(f"{row['cumulative_net']:+.0f}", xy=(23, row["cumulative_net"]),
                             xytext=(9, 0), textcoords="offset points", fontsize=9,
-                            color=DISPATCH_COLORS[label], va="center", clip_on=False)
+                            color=color, va="center", clip_on=False)
 
     figure.text(0.05, 0.118,
-                "浅灰竖带为早晚高峰（7–9 时、17–19 时）。居住区站点早高峰净流出、晚高峰净流入，"
-                "商务区站点方向相反，二者在同一日内相互对冲。",
+                "浅灰竖带为早晚高峰（7–9 时、17–19 时）。累计值为正表示当日累计净流出（账面车辆减少），为负表示累计净流入（账面增加）。",
                 fontsize=10)
     figure.text(0.05, 0.074,
-                "两条曲线按站点 24 小时出发、到达记录计算；累计值以 0 时为起点，反映“站在当日累计净丢车/净积车”的变化。",
+                "逐小时出发量按出发时间、到达量按还车时间统计；累计值以 0 时为起点，正负号即库存变化方向，不可反向解释。",
                 fontsize=10, color="#657585")
     figure.text(0.05, 0.032,
                 "站点选择规则：在早高峰且月流量 ≥ 800 次的站点中，分别取净流出与净流入最大者；不代表该站点的全部功能属性。",
@@ -313,12 +366,15 @@ def run(figure_dir: Path = FIGURE_DIR) -> dict[str, float]:
 
     am = peak.loc[peak["period"].eq("早高峰")]
     pm = peak.loc[peak["period"].eq("晚高峰")]
-    print(f"工作日 {days} 天；早高峰 {int(am['departures'].sum()):,} 次、"
-          f"晚高峰 {int(pm['departures'].sum()):,} 次。")
+    flows = window_boundary_flow(peak)
+    print(f"工作日 {days} 天；早高峰出发 {int(am['departures'].sum()):,} 次 / 到达 "
+          f"{int(am['arrivals'].sum()):,} 次，晚高峰出发 {int(pm['departures'].sum()):,} 次 / 到达 "
+          f"{int(pm['arrivals'].sum()):,} 次（到达按还车时间统计）。")
     for label, block in (("早高峰", am), ("晚高峰", pm)):
         deficit = block.loc[block["net_flow"].gt(0), "net_flow"].sum()
         surplus = -block.loc[block["net_flow"].lt(0), "net_flow"].sum()
-        print(f"{label}：缺车合计 {deficit:,.0f} 辆、积车合计 {surplus:,.0f} 辆；"
+        print(f"{label}：缺车合计 {deficit:,.0f} 辆、积车合计 {surplus:,.0f} 辆、"
+              f"窗口边界净流量 {flows.loc[label, 'boundary_flow']:+,} 辆；"
               f"严重失衡 {int(block['grade'].eq('严重失衡').sum())} 个站点。")
 
     representatives = choose_representatives(peak, summary)
@@ -331,10 +387,10 @@ def run(figure_dir: Path = FIGURE_DIR) -> dict[str, float]:
             plot_peak_divergence(peak),
             "fig11_peak_divergence",
             "图11  早晚高峰核心潮汐站点净流量双向对比",
-            f"早高峰 {int(am['departures'].sum()):,} 次、晚高峰 {int(pm['departures'].sum()):,} 次骑行；"
+            f"早高峰出发 {int(am['departures'].sum()):,} 次、到达 {int(am['arrivals'].sum()):,} 次；"
             "红色向右为净流出（缺车），蓝色向左为净流入（积车）。",
-            "同一批站点在早晚高峰方向相反：早高峰从商务区流向居住区，晚高峰反向回流，"
-            "这正是不平衡调度需要覆盖的时段。",
+            "出发量按出发时间、到达量按还车时间归属，因此同一窗口内净流量合计不为 0；"
+            "同一批站点在早晚高峰方向相反，正是不平衡调度需要覆盖的时段。",
             am.nlargest(10, "net_flow")[["station_name", "departures", "arrivals", "net_flow", "imbalance_index", "grade"]]
             .rename(columns={"station_name": "站点", "departures": "出发量", "arrivals": "到达量",
                              "net_flow": "净流量", "imbalance_index": "失衡指数", "grade": "分级"}),
@@ -345,8 +401,8 @@ def run(figure_dir: Path = FIGURE_DIR) -> dict[str, float]:
             "fig12_tidal_curves",
             "图12  典型居住区与商务区站点的 24 小时潮汐曲线",
             "；".join(f"{label}站点 {profiles[label]['station_name'].iloc[0]}" for label in profiles),
-            "居住区站点在早高峰累计净流出、晚高峰逐步回补；商务区站点相反。"
-            "两条曲线在 24 小时内的形态差异，为“早高峰从商务区调往居住区、晚高峰反向”的方案提供依据。",
+            "累计净流量为正表示当日账面车辆净减少（缺车方向），为负表示净增加（积车方向）。"
+            "居住区站点先失血后回补，商务区站点先积压后释放，二者方向相反但幅度不对等。",
             top_plan[["period", "target_station", "source_station", "volume_per_day", "distance_km", "priority"]]
             .rename(columns={"period": "时段", "target_station": "补车站点", "source_station": "取车站点",
                              "volume_per_day": "建议调运量(辆/日)", "distance_km": "直线距离(km)",

@@ -6,7 +6,8 @@ import numpy as np
 import pandas as pd
 
 from src.imbalance_dispatch import (
-    build_dispatch_plan, build_peak_imbalance, grade_of, weekday_count,
+    build_dispatch_plan, build_hourly_panel, build_peak_imbalance, grade_of,
+    peak_profile, weekday_count, window_boundary_flow,
 )
 from src.spatial_analysis import build_od_corridors, build_station_summary
 
@@ -37,6 +38,8 @@ def make_station_trips(rows: list[dict]) -> pd.DataFrame:
     data = pd.DataFrame(records)
     for column in ("start_station_id", "end_station_id"):
         data[column] = data[column].astype("string")
+    for column in ("started_at", "ended_at"):
+        data[column] = pd.to_datetime(data[column])
     return data
 
 
@@ -107,7 +110,36 @@ class PeakImbalanceTests(unittest.TestCase):
         by_period = self.peak.set_index(["period", "station_id"]).net_flow
         self.assertEqual(by_period.loc[("早高峰", "S1")], 2)
         self.assertEqual(by_period.loc[("晚高峰", "S1")], -1)
-        self.assertEqual(self.peak.groupby("period").net_flow.sum().abs().max(), 0)
+
+    def test_arrivals_use_return_time_not_departure_time(self) -> None:
+        trips = make_station_trips([
+            {"started_at": "2024-01-10 06:50:00"},
+            {"started_at": "2024-01-10 09:50:00"},
+            {"started_at": "2024-01-10 09:40:00", "end_station_id": "S1", "end_station_name": "Start",
+             "ended_at": "2024-01-10 09:55:00"},
+            {"started_at": "2024-01-10 09:50:00", "end_station_id": "S2", "end_station_name": "End",
+             "ended_at": "2024-01-10 10:05:00"},
+        ])
+        peak = build_peak_imbalance(trips)
+        am = peak.loc[peak.period.eq("早高峰")].set_index("station_id")
+        # 06:50→07:10 计入 7 时到达；09:50→10:05 不计入早高峰到达
+        self.assertEqual(am.loc["S2", "arrivals"], 1)
+        self.assertEqual(am.loc["S1", "arrivals"], 1)
+        # 出发仍按出发时间：9:40 与两次 9:50 出发计入早高峰，6:50 那次不计入
+        self.assertEqual(am.loc["S1", "departures"], 3)
+        flows = window_boundary_flow(peak).loc["早高峰"]
+        self.assertEqual(flows["boundary_flow"], flows["departures"] - flows["arrivals"])
+        self.assertNotEqual(flows["boundary_flow"], 0)
+
+    def test_hourly_panel_places_arrivals_in_return_hour(self) -> None:
+        trips = make_station_trips([{"started_at": "2024-01-10 06:55:00",
+                                     "ended_at": "2024-01-10 07:05:00"}])
+        panel = build_hourly_panel(trips).set_index(["station_id", "hour"])
+        self.assertEqual(panel.loc[("S1", 6), "departures"], 1)
+        self.assertEqual(panel.loc[("S1", 6), "arrivals"], 0)
+        self.assertEqual(panel.loc[("S2", 7), "arrivals"], 1)
+        profile = peak_profile(trips, "End")
+        self.assertEqual(int(profile.loc[profile.hour.eq(7), "arrivals"].iloc[0]), 1)
 
     def test_grade_requires_both_index_and_volume(self) -> None:
         row = pd.Series({"net_flow": 80, "imbalance_index": 0.5})
