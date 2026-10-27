@@ -1,10 +1,10 @@
 # 成员 B：时间分析与需求预测
 
-当前已完成任务 1、2：整体时间规律（图 4/5）、会员与车型的分时段差异（图 6A/6B/6C-1/6C-2），以及统计核验和离线 HTML。后续需求预测继续在本目录扩展。
+当前已完成任务 1、2：整体时间规律（图 4/5）、会员与车型的分时段差异（图 6A/6B/6C-1/6C-2），以及统计核验和离线 HTML。新增任务 3 的第一步：全城小时需求的整周预测（图 7/8）。站点筛选、站点预测及综合报告等待本步骤验收后另行开展。
 
 ## 环境与运行
 
-使用已有 Conda 环境 `Pyclass`，本地验证版本为 Python 3.13.5、NumPy 2.5.2、pandas 3.0.5、Matplotlib 3.11.0。当前环境已可直接运行，所需包记录在 `requirements.txt`。
+使用已有 Conda 环境 `Pyclass`，本地验证版本为 Python 3.13.5、NumPy 2.5.2、pandas 3.0.5、Matplotlib 3.11.0、scikit-learn 1.9.1。当前环境已可直接运行，所需包记录在 `requirements.txt`。
 
 在 PowerShell 中运行：
 
@@ -41,7 +41,7 @@ temporal_modeling/
 
 ## 输入数据与复用接口
 
-`data/processed/clean_trips.csv` 是从 `../data-cleaning-eda/data/processed/clean_trips.csv` 复制的分析输入，共 233,180 行、21 列。该数据来源于清洗模块，不属于成员 B 新增的清洗成果；本步读取后不再次筛选。
+`data/processed/clean_trips.csv` 是清洗模块交付的分析输入副本，共 233,180 行、21 列。该数据不属于成员 B 新增的清洗成果；本步读取后不再次筛选。上游目录可能调整，以以下版本与文件校验值核对输入。
 
 数据版本：`777c65867a129d6f0dba03c0acfefbbce1e98cae`；SHA-256：`1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0`。上游输入更新时，先核对版本与字段，再更新本目录的副本，避免两份数据混用。
 
@@ -84,4 +84,40 @@ temporal_modeling/
 
 ## Git 管理
 
-本目录和 `data-cleaning-eda` 由父目录 `D:\Pyclass\terminal` 的同一 Git 仓库管理，历史保留在父目录 `.git` 中。
+沿用本地现有 Git 仓库和历史；本步骤不提交、更改分支或清理已有修改。
+
+## 全城整周预测：任务 3 / 第一步
+
+```powershell
+conda run -n Pyclass python -m src.demand_model
+conda run -n Pyclass python -B -m unittest discover -s tests -p test_demand_model.py -v
+```
+
+独立入口 `src/demand_model.py` 支持 `--input` 和 `--output-dir`。它不调用时间分析的旧入口，也不覆盖图 4/5/6 或前两项报告。
+
+- 每周一 00:00 一次预测未来 168 小时，周内不回填真实需求。
+- 用 1 月 1–14 日预测 15–21 日作验证，按 MAE 选择参数及推荐方法；再用 1–21 日重训，预测 22–28 日作最终测试，不反向调参。
+- 比较历史同期均值、上周同期、Ridge、随机森林。学习模型共用日历信息和上周同期需求；去掉前 168 小时无滞后的训练行后，分别拟合 168 / 336 行。
+- 补充 RMSE、R²、高峰 MAE 和日／周总量偏差。高峰仅按训练期确定。骑行次数负预测截为 0，评估保留小数。
+- 1 月 29–31 日不参与本轮选型与评估，不输出跨月预测。只有一次验证与一次最终测试，不能保证长期稳定性。
+
+| 新增位置 | 内容 |
+|---|---|
+| [预测 HTML](reports/demand_prediction.html) | 先介绍模型与指标，再展示结果；图片内嵌，可独立离线阅读 |
+| [方法与结果](reports/sections/03_city_demand_prediction.md) | 四种方法的原理、拟合、理由、优点、局限与有效性证据 |
+| [图 7](reports/figures/fig07_city_weekly_prediction.png) | 最终测试周：真实值、历史均值、Ridge和随机森林 |
+| [验证周补充图](reports/figures/fig07_city_validation_prediction.png) | 相同三种预测与真实值，HTML中展开查看 |
+| [图 8](reports/figures/fig08_city_feature_importance.png) | 随机森林内部特征重要性（非因果解释） |
+| `reports/tables/city_hourly_demand.csv` | 744 小时原始计数 |
+| `reports/tables/city_weekly_predictions.csv` | 1,344 行：两周 × 四种方法 × 168 小时，附预测起点和滞后来源 |
+| `reports/tables/city_model_metrics.csv` | 两阶段四种方法的误差、拟合行数与截断次数 |
+| `reports/tables/city_parameter_candidates.csv` | 所有预定参数组合的验证表现与选择记录 |
+| `reports/tables/city_daily_weekly_totals.csv` | 每种方法的日、周总量及偏差 |
+| `reports/tables/city_model_selection.json` | 测试前冻结的选择、参数网格、特征、输入和代码指纹 |
+| `reports/tables/city_feature_importance.csv` | 随机森林逐特征重要性及分组 |
+| `reports/tables/city_prediction_validation.csv` | 运行时的输入、训练和预测边界核验 |
+| `tests/test_demand_model.py` | 手算基线、信息泄漏、边界与指标等独立测试 |
+
+CSV 保留 10 位小数；重复运行更新本步骤同名输出。交付检查另记录原成果校验值、重复运行一致性、独立重算及页面离线检查。
+
+HTML 按“认识模型 → 理解 MAE/RMSE/R² → 预测结果 → 结论与局限”组织。模型基础介绍直接显示；验证周曲线与随机森林特征重要性可展开。页面不显示上周同期预测曲线和结果行，也不显示核验、环境、运行命令或工程下载。完整四方法评估和工程记录仍保存在CSV、JSON、MD及成果包中。
