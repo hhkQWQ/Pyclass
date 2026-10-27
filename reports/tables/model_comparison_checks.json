@@ -1,0 +1,1528 @@
+{
+  "checks": [
+    {
+      "check": "frozen_station_ids",
+      "passed": true,
+      "observed": [
+        "31623",
+        "31101",
+        "31229",
+        "31233",
+        "31232",
+        "31277",
+        "31102",
+        "31202",
+        "31613",
+        "31640"
+      ],
+      "expected": [
+        "31623",
+        "31101",
+        "31229",
+        "31233",
+        "31232",
+        "31277",
+        "31102",
+        "31202",
+        "31613",
+        "31640"
+      ]
+    },
+    {
+      "check": "ten_unique_stations",
+      "passed": true,
+      "observed": 10,
+      "expected": 10
+    },
+    {
+      "check": "city:required_columns",
+      "passed": true,
+      "observed": [
+        "actual",
+        "forecast_origin",
+        "is_peak",
+        "lag_168h",
+        "lag_source_time",
+        "model",
+        "phase",
+        "prediction",
+        "raw_prediction",
+        "recommended_frozen",
+        "timestamp"
+      ],
+      "expected": [
+        "actual",
+        "forecast_origin",
+        "is_peak",
+        "lag_source_time",
+        "model",
+        "phase",
+        "prediction",
+        "recommended_frozen",
+        "timestamp"
+      ]
+    },
+    {
+      "check": "city:boolean_is_peak",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:boolean_recommended_frozen",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:model_set",
+      "passed": true,
+      "observed": [
+        "historical_mean",
+        "last_week",
+        "random_forest",
+        "ridge"
+      ],
+      "expected": [
+        "historical_mean",
+        "last_week",
+        "ridge",
+        "random_forest"
+      ]
+    },
+    {
+      "check": "city:phase_set",
+      "passed": true,
+      "observed": [
+        "test",
+        "validation"
+      ],
+      "expected": [
+        "validation",
+        "test"
+      ]
+    },
+    {
+      "check": "city:finite_values",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:unique_prediction_keys",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:prediction_rows",
+      "passed": true,
+      "observed": 1344,
+      "expected": 1344
+    },
+    {
+      "check": "city:lag_before_origin",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:lag_is_168h",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:frozen_recommended_flags",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:validation:origin",
+      "passed": true,
+      "observed": "2024-01-15 00:00:00",
+      "expected": "2024-01-15 00:00:00"
+    },
+    {
+      "check": "city:validation:168_hour_span",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:validation:complete_groups",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:test:origin",
+      "passed": true,
+      "observed": "2024-01-22 00:00:00",
+      "expected": "2024-01-22 00:00:00"
+    },
+    {
+      "check": "city:test:168_hour_span",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:test:complete_groups",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:actual_same_across_models",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:peaks_same_across_models",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:no_weekly_updates",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:no_post_test_tuning",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:horizon_168",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:required_columns",
+      "passed": true,
+      "observed": [
+        "actual",
+        "forecast_origin",
+        "is_peak",
+        "lag_in_168h",
+        "lag_out_168h",
+        "lag_source_time",
+        "model",
+        "phase",
+        "prediction",
+        "raw_prediction",
+        "recommended_frozen",
+        "station_id",
+        "target",
+        "timestamp"
+      ],
+      "expected": [
+        "actual",
+        "forecast_origin",
+        "is_peak",
+        "lag_source_time",
+        "model",
+        "phase",
+        "prediction",
+        "recommended_frozen",
+        "timestamp"
+      ]
+    },
+    {
+      "check": "station:boolean_is_peak",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:boolean_recommended_frozen",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:model_set",
+      "passed": true,
+      "observed": [
+        "historical_mean",
+        "last_week",
+        "random_forest",
+        "ridge"
+      ],
+      "expected": [
+        "historical_mean",
+        "last_week",
+        "ridge",
+        "random_forest"
+      ]
+    },
+    {
+      "check": "station:phase_set",
+      "passed": true,
+      "observed": [
+        "test",
+        "validation"
+      ],
+      "expected": [
+        "validation",
+        "test"
+      ]
+    },
+    {
+      "check": "station:finite_values",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:unique_prediction_keys",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:prediction_rows",
+      "passed": true,
+      "observed": 40320,
+      "expected": 40320
+    },
+    {
+      "check": "station:lag_before_origin",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:lag_is_168h",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:frozen_recommended_flags",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:origin",
+      "passed": true,
+      "observed": "2024-01-15 00:00:00",
+      "expected": "2024-01-15 00:00:00"
+    },
+    {
+      "check": "station:validation:168_hour_span",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:complete_groups",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:origin",
+      "passed": true,
+      "observed": "2024-01-22 00:00:00",
+      "expected": "2024-01-22 00:00:00"
+    },
+    {
+      "check": "station:test:168_hour_span",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:complete_groups",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:actual_same_across_models",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:peaks_same_across_models",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:no_weekly_updates",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:no_post_test_tuning",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:horizon_168",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:target_set",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:prediction_station_ids",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:selection_origins",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:screening_before_validation",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:net_actual_is_out_minus_in",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:net_prediction_is_out_minus_in",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:nonnegative_counts",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:nonnegative_directions",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:validation:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:validation:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31623:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31623:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31623:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31623:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31623:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31623:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31101:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31101:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31101:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31101:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31101:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31101:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31229:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31229:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31229:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31229:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31229:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31229:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31233:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31233:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31233:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31233:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31233:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31233:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31232:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31232:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31232:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31232:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31232:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31232:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31277:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31277:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31277:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31277:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31277:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31277:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31102:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31102:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31102:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31102:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31102:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31102:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31202:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31202:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31202:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31202:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31202:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31202:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31613:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31613:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31613:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31613:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31613:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31613:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31640:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31640:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31640:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31640:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31640:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation:31640:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:test:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:test:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31623:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31623:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31623:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31623:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31623:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31623:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31101:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31101:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31101:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31101:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31101:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31101:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31229:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31229:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31229:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31229:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31229:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31229:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31233:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31233:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31233:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31233:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31233:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31233:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31232:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31232:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31232:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31232:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31232:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31232:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31277:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31277:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31277:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31277:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31277:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31277:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31102:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31102:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31102:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31102:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31102:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31102:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31202:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31202:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31202:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31202:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31202:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31202:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31613:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31613:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31613:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31613:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31613:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31613:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31640:outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31640:outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31640:inflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31640:inflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31640:net_outflow:frozen_peak_definition",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:test:31640:net_outflow:actual_matches_saved_hourly",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:metrics_recomputed:keys",
+      "passed": true,
+      "observed": 8,
+      "expected": 8
+    },
+    {
+      "check": "city:metrics_recomputed:mae",
+      "passed": true,
+      "observed": 4.760636329592671e-11,
+      "expected": 0
+    },
+    {
+      "check": "city:metrics_recomputed:rmse",
+      "passed": true,
+      "observed": 4.7407411329913884e-11,
+      "expected": 0
+    },
+    {
+      "check": "city:metrics_recomputed:r2",
+      "passed": true,
+      "observed": 3.816413851609468e-11,
+      "expected": 0
+    },
+    {
+      "check": "city:metrics_recomputed:peak_mae",
+      "passed": true,
+      "observed": 4.9965365178650245e-11,
+      "expected": 0
+    },
+    {
+      "check": "city:metrics_recomputed:total_actual",
+      "passed": true,
+      "observed": 0.0,
+      "expected": 0
+    },
+    {
+      "check": "city:metrics_recomputed:total_predicted",
+      "passed": true,
+      "observed": 1.3023964129388332e-09,
+      "expected": 0
+    },
+    {
+      "check": "city:metrics_recomputed:total_bias",
+      "passed": true,
+      "observed": 1.3023964129388332e-09,
+      "expected": 0
+    },
+    {
+      "check": "station:metrics_recomputed:keys",
+      "passed": true,
+      "observed": 240,
+      "expected": 240
+    },
+    {
+      "check": "station:metrics_recomputed:mae",
+      "passed": true,
+      "observed": 5.2380766391024736e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:metrics_recomputed:rmse",
+      "passed": true,
+      "observed": 4.972866562980016e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:metrics_recomputed:r2",
+      "passed": true,
+      "observed": 6.287148579531276e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:metrics_recomputed:peak_mae",
+      "passed": true,
+      "observed": 5.714362316666666e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:metrics_recomputed:total_actual",
+      "passed": true,
+      "observed": 0.0,
+      "expected": 0
+    },
+    {
+      "check": "station:metrics_recomputed:total_predicted",
+      "passed": true,
+      "observed": 1.7000161278701853e-09,
+      "expected": 0
+    },
+    {
+      "check": "station:metrics_recomputed:total_bias",
+      "passed": true,
+      "observed": 1.700023233297543e-09,
+      "expected": 0
+    },
+    {
+      "check": "station:overall_metrics_recomputed:keys",
+      "passed": true,
+      "observed": 24,
+      "expected": 24
+    },
+    {
+      "check": "station:overall_metrics_recomputed:mae",
+      "passed": true,
+      "observed": 4.7618797793802514e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:overall_metrics_recomputed:rmse",
+      "passed": true,
+      "observed": 4.7901682620477004e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:overall_metrics_recomputed:peak_mae",
+      "passed": true,
+      "observed": 5.071498776487715e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:overall_metrics_recomputed:total_actual",
+      "passed": true,
+      "observed": 0.0,
+      "expected": 0
+    },
+    {
+      "check": "station:overall_metrics_recomputed:total_predicted",
+      "passed": true,
+      "observed": 3.499735612422228e-09,
+      "expected": 0
+    },
+    {
+      "check": "station:overall_metrics_recomputed:total_bias",
+      "passed": true,
+      "observed": 3.499735612422228e-09,
+      "expected": 0
+    },
+    {
+      "check": "city:daily_weekly_recomputed:keys",
+      "passed": true,
+      "observed": 64,
+      "expected": 64
+    },
+    {
+      "check": "city:daily_weekly_recomputed:actual_total",
+      "passed": true,
+      "observed": 0.0,
+      "expected": 0
+    },
+    {
+      "check": "city:daily_weekly_recomputed:predicted_total",
+      "passed": true,
+      "observed": 1.3023964129388332e-09,
+      "expected": 0
+    },
+    {
+      "check": "city:daily_weekly_recomputed:bias",
+      "passed": true,
+      "observed": 1.3023964129388332e-09,
+      "expected": 0
+    },
+    {
+      "check": "station:daily_weekly_recomputed:keys",
+      "passed": true,
+      "observed": 192,
+      "expected": 192
+    },
+    {
+      "check": "station:daily_weekly_recomputed:actual_total",
+      "passed": true,
+      "observed": 0.0,
+      "expected": 0
+    },
+    {
+      "check": "station:daily_weekly_recomputed:predicted_total",
+      "passed": true,
+      "observed": 3.3996911952272058e-09,
+      "expected": 0
+    },
+    {
+      "check": "station:daily_weekly_recomputed:bias",
+      "passed": true,
+      "observed": 3.3996911952272058e-09,
+      "expected": 0
+    },
+    {
+      "check": "city:selected_parameters:historical_mean",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:selected_parameters:last_week",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:selected_parameters:ridge",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:selected_parameters:random_forest",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:outflow:historical_mean",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:outflow:last_week",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:outflow:ridge",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:outflow:random_forest",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:inflow:historical_mean",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:inflow:last_week",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:inflow:ridge",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:selected_parameters:inflow:random_forest",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "city:recommendation_uses_validation",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "station:validation_recommendation_scores:keys",
+      "passed": true,
+      "observed": 4,
+      "expected": 4
+    },
+    {
+      "check": "station:validation_recommendation_scores:combined_mae",
+      "passed": true,
+      "observed": 4.9107162780615e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:validation_recommendation_scores:combined_rmse",
+      "passed": true,
+      "observed": 4.196643033083092e-11,
+      "expected": 0
+    },
+    {
+      "check": "station:recommendation_uses_borrow_return_only",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "undefined_improvement_when_baseline_zero",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "improvement_sign_hand_check",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "net_bias_percentage_omitted",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    },
+    {
+      "check": "source_tables_unchanged_after_analysis",
+      "passed": true,
+      "observed": null,
+      "expected": true
+    }
+  ],
+  "metadata": {
+    "forecast_horizon_hours": 168,
+    "source_hashes": {
+      "city_weekly_predictions.csv": "1a4fc1035fa76bd9612f4a1b98d354511a6cd7b3b9cfa08a4ebeea7c30c56577",
+      "city_model_metrics.csv": "4fc1fd8dd2420e2b375611e560cafc92d9a3689d86970a0b4ee40e23311e22e9",
+      "city_daily_weekly_totals.csv": "c39425ae8b856cf32c6ef8047ffd39ebb738255b3cf994502ebea7b32d95fdff",
+      "city_hourly_demand.csv": "20d62a4046117ea75628a00d8eab7e965065bd8b31cf1bbe944948c7ffeff9d7",
+      "city_parameter_candidates.csv": "d36f447895d4cc30230842d73a7dab8c1e669cb90328f336d872b20334eaef10",
+      "city_model_selection.json": "ee793f3d78097d1e0184aa76fec705dfa60d80aa05dc6c69e6ca49c017086514",
+      "city_feature_importance.csv": "05a56df77f29cf93e8972225fab57bf4f10417750af3e860d01782f1db629a4d",
+      "station_weekly_predictions.csv": "057b67e3be9a3976fb9bc2652bd755efeadbbc5d308e08aba05e7e17d48fc42c",
+      "station_model_metrics.csv": "623493862f5538f8028ecf2eb7648483a88c9b25690295ca5c0a678b49d927a4",
+      "station_overall_metrics.csv": "f7af5ed0edfa076889b0055b6b65d1b536007dccfb22e416339871e82315179a",
+      "station_daily_weekly_totals.csv": "34492736892771c6c474e1471575bc60bf8d9d24f47ab2ca3c9ccd2ab6d01d47",
+      "station_hourly_events.csv": "9f463eeb5444a09d31ae65583510a68c8c9d99857a98001a6cf9eb3d950ce2c8",
+      "station_parameter_candidates.csv": "5f8c51f1151b405041e8c691700310fc736b3813a0d2ce659114e8daa63c2f50",
+      "station_method_scores.csv": "3efcb90b7470cd07dffd778ce0b8812ae22059e1114759b24169a95601921f10",
+      "station_top10.csv": "b97f15950205b790704509595c63884c52488a1bdf5525b970f0e71d21c1b1c5",
+      "station_model_selection.json": "1b99e2432779ae50b12dc9dc24147df8bd05ec9796bd8ac3a2c2c3d53d1e421b",
+      "station_feature_importance.csv": "79ffba451d9510d6957a3328544dfa9f5d48d5ccec7c98a03e3f78108661457f"
+    },
+    "source_prediction_rows": {
+      "city": 1344,
+      "station": 40320
+    },
+    "comparison_rows": {
+      "model_comparison_summary.csv": 32,
+      "model_comparison_relative_mae.csv": 32,
+      "model_comparison_daily_bias.csv": 256,
+      "model_comparison_station.csv": 320
+    },
+    "display_models": [
+      "historical_mean",
+      "ridge",
+      "random_forest"
+    ],
+    "supplementary_model": "last_week",
+    "font": "Microsoft YaHei",
+    "mae_improvement_formula": "100*(historical_mean_mae-model_mae)/historical_mean_mae; undefined at denominator 0",
+    "peak_definition": "top two historical mean hours per workday/weekend, per station and target; absolute history for net outflow",
+    "station_rmse_definition": "square root of mean squared errors pooled across station-hours; not average station RMSE",
+    "combined_definition": "(outflow MAE + inflow MAE)/2; combined RMSE and R2 intentionally undefined"
+  }
+}

@@ -1,6 +1,6 @@
 # 成员 B：时间分析与需求预测
 
-当前已完成任务 1、2：整体时间规律（图 4/5）、会员与车型的分时段差异（图 6A/6B/6C-1/6C-2）。任务 3 的第一步全城整周预测（图 7/8）已验收；第二步新增核心站点筛选与借出／归还／净流出预测（图 9/10），等待本步骤验收。综合比较与汇报留到第三步。
+当前已完成任务 1、2：整体时间规律（图 4/5）、会员与车型的分时段差异（图 6A/6B/6C-1/6C-2）。任务 3 的第一步全城整周预测（图 7/8）、第二步核心站点筛选与借出／归还／净流出预测（图 9/10）均已验收；第三步新增综合比较、误差分析与结论汇总（图 11/12），等待本步骤验收。任务 3 为两个预测层级、三个验收步骤。
 
 ## 环境与运行
 
@@ -155,3 +155,34 @@ conda run -n Pyclass python -B -m unittest discover -s tests -p test_station_mod
 | `reports/tables/station_model_selection.json` | 固定口径、名单、参数、特征与代码／输入来源 |
 
 本步骤使用已有依赖，只更新station_*产物、图9/10及站点方法说明。再次运行不会调用或覆盖全城预测、图4/5/6及前两项报告。
+
+## 综合比较与误差分析：任务 3 / 第三步
+
+```powershell
+conda run -n Pyclass python -m src.model_comparison
+```
+
+独立入口 `src/model_comparison.py` 只读取前两步已经保存的 CSV/JSON，不导入或调用训练入口。默认来源和输出均为本项目 `reports`；可用 `--source-reports` 指定包含原有 `tables` 的报告目录，`--output-dir` 指定第三步报告输出目录。需要现有 NumPy、pandas、Matplotlib 和中文字体，无新增依赖。
+
+- 保留 2024 年 1 月 15–21 日验证、22–28 日最终测试、周初一次预测 168 小时的原安排；核对参数、推荐与冻结 Top 10。
+- 分别比较全城、站点借出／归还／净流出。站点总体 MAE 为逐站均值，RMSE 合并所有站点小时误差计算，不平均 R²。
+- MAE 改善率＝100×（历史均值 MAE－模型 MAE）÷历史均值 MAE；正值改善、负值退步，基线误差为零时无定义。
+- 从已有逐小时预测复算日周偏差与高峰 MAE；高峰标记与预测前历史重新核对，不按测试周重新挑时段。净流出不使用总量百分比偏差。
+- 借还综合 MAE＝（借出 MAE＋归还 MAE）÷2，综合 RMSE、R² 留空，避免混合没有约定的指标。
+- 页面先解释方法、指标与时间口径，再展示最终测试、误差和结论。验证与特征解释折叠展示，保留逐日对象／方法切换、逐站目标切换和 CSV 下载。
+
+| 新增位置 | 内容 |
+|---|---|
+| [综合比较 HTML](reports/model_comparison.html) | 第三步验收入口，图片和统计 CSV 内嵌，可单独离线使用 |
+| [综合比较说明](reports/sections/05_model_comparison.md) | 完整比较、误差解读、有效性与适用范围 |
+| [图 11](reports/figures/fig11_model_comparison.png) | 四类目标相对历史均值的最终测试 MAE 改善率，300 DPI |
+| [图 12](reports/figures/fig12_station_error_comparison.png) | 10 站借还综合 MAE，顺序沿用训练期筛选排名，300 DPI |
+| `reports/tables/model_comparison_summary.csv` | 32 行：两阶段 × 四方法 × 四类目标的总体指标 |
+| `reports/tables/model_comparison_relative_mae.csv` | 32 行：同一目标内相对历史均值的 MAE 改善率 |
+| `reports/tables/model_comparison_daily_bias.csv` | 256 行：全城与 10 站汇总的日／周偏差 |
+| `reports/tables/model_comparison_station.csv` | 320 行：逐站三目标与借还综合指标，含逐站 R² |
+| `reports/tables/model_comparison_checks.json` | 一致性检查、源产物指纹与指标定义；不进入 HTML |
+
+重复运行只更新本步骤同名产物。HTML 详情跳转需与前两步 HTML 放在同一目录；单独复制时，当前页面的图表、切换和下载仍可离线使用。
+
+本次两层验证均推荐历史同期均值，最终测试的整体比较也优于两种学习模型；仍有约三成的周总量低估。单月、一次验证周和一次测试周仅提供有限证据，不能保证未来周稳定。净流出是观测流量差，不是缺车数量或库存。
