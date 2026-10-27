@@ -1,6 +1,6 @@
 # 成员 B：时间分析与需求预测
 
-当前已完成任务 1、2：整体时间规律（图 4/5）、会员与车型的分时段差异（图 6A/6B/6C-1/6C-2），以及统计核验和离线 HTML。新增任务 3 的第一步：全城小时需求的整周预测（图 7/8）。站点筛选、站点预测及综合报告等待本步骤验收后另行开展。
+当前已完成任务 1、2：整体时间规律（图 4/5）、会员与车型的分时段差异（图 6A/6B/6C-1/6C-2）。任务 3 的第一步全城整周预测（图 7/8）已验收；第二步新增核心站点筛选与借出／归还／净流出预测（图 9/10），等待本步骤验收。综合比较与汇报留到第三步。
 
 ## 环境与运行
 
@@ -121,3 +121,37 @@ conda run -n Pyclass python -B -m unittest discover -s tests -p test_demand_mode
 CSV 保留 10 位小数；重复运行更新本步骤同名输出。交付检查另记录原成果校验值、重复运行一致性、独立重算及页面离线检查。
 
 HTML 按“认识模型 → 理解 MAE/RMSE/R² → 预测结果 → 结论与局限”组织。模型基础介绍直接显示；验证周曲线与随机森林特征重要性可展开。页面不显示上周同期预测曲线和结果行，也不显示核验、环境、运行命令或工程下载。完整四方法评估和工程记录仍保存在CSV、JSON、MD及成果包中。
+
+## 核心站点整周预测：任务 3 / 第二步
+
+```powershell
+conda run -n Pyclass python -m src.station_model
+conda run -n Pyclass python -B -m unittest discover -s tests -p test_station_model.py -v
+```
+
+独立入口`src/station_model.py`支持`--input`和`--output-dir`，复用本项目的有效集、时间特征与绘图接口，无需成员C名单或新增依赖。
+
+- 起点已知按开始时间产生借出事件，终点已知按结束时间产生归还事件。只丢弃未知端点，不因另一端缺失整行删除。
+- 月初前三小时归还及净流出不完整，记为缺失；借出保留。站点筛选从1月1日03:00到15日00:00，双方均排除最初三小时。
+- 以14天日均活动至少20次、至少7个活动日为门槛，分别按工作日／周末小时平均净流出绝对值之和加权评分。按分数、总活动量、站点ID固定排序，冻结Top10。
+- 10站共享模型，借出／归还分别拟合。16个时间和历史需求特征加9个站点类别指示，共25个特征。
+- 验证1月15–21日选择各方向参数，再在历史均值／Ridge／随机森林中按两方向逐站平均MAE统一推荐；1月22–28日仅最终检验。上周同期仅作后台补充对照。
+- 借还各自负预测截0后相减得到净流出，净流出可为负。没有库存、容量或未满足需求数据。
+- HTML先说明筛选、模型和指标，再以站点／目标选择器切换主图；只展示三种方法，补充内容折叠，工程复核不进入页面。
+
+| 新增位置 | 内容 |
+|---|---|
+| [站点HTML](reports/station_prediction.html) | 数据与图片内嵌、站点和目标切换，可独立离线阅读 |
+| [站点方法说明](reports/sections/04_station_demand_prediction.md) | 筛选公式、共享拟合理由、误差与适用范围 |
+| `reports/figures/stations/` | 10站×3目标×验证／测试，共60张300DPI预测图 |
+| [图10](reports/figures/fig10_station_feature_importance.png) | 借出与归还共享随机森林的内部重要性 |
+| `reports/tables/station_candidates.csv` / `station_top10.csv` | 候选与冻结名单 |
+| `reports/tables/station_hourly_events.csv` | 7,440行小时网格 |
+| `reports/tables/station_weekly_predictions.csv` | 40,320行，保留预测起点和滞后来源 |
+| `reports/tables/station_model_metrics.csv` / `station_overall_metrics.csv` | 240行逐站与24行总体指标 |
+| `reports/tables/station_parameter_candidates.csv` / `station_method_scores.csv` | 20个验证参数候选与统一选型分数 |
+| `reports/tables/station_daily_weekly_totals.csv` | 1,920行日周总量与偏差 |
+| `reports/tables/station_feature_importance.csv` / `station_prediction_validation.csv` | 模型解释与运行核验 |
+| `reports/tables/station_model_selection.json` | 固定口径、名单、参数、特征与代码／输入来源 |
+
+本步骤使用已有依赖，只更新station_*产物、图9/10及站点方法说明。再次运行不会调用或覆盖全城预测、图4/5/6及前两项报告。

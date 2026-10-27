@@ -1,0 +1,21 @@
+﻿direction,model,candidate_id,parameters,mean_station_mae,rmse,fit_rows,selected_within_family_direction
+outflow,historical_mean,0,{},1.4327380952,2.3326742266,3360,True
+outflow,last_week,0,{},1.7035714286,2.9354159274,3360,True
+outflow,ridge,0,"{""alpha"": 0.1}",1.7042313431,2.3685801063,1680,False
+outflow,ridge,1,"{""alpha"": 1.0}",1.7039552274,2.3679685586,1680,False
+outflow,ridge,2,"{""alpha"": 10.0}",1.7013581421,2.3619943628,1680,False
+outflow,ridge,3,"{""alpha"": 100.0}",1.6801951354,2.3112848749,1680,True
+outflow,random_forest,0,"{""max_depth"": 3, ""min_samples_leaf"": 8, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.7033349038,2.2823704016,1680,False
+outflow,random_forest,1,"{""max_depth"": 3, ""min_samples_leaf"": 16, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.7019523204,2.2859100056,1680,False
+outflow,random_forest,2,"{""max_depth"": 5, ""min_samples_leaf"": 8, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.6813199214,2.3516767854,1680,False
+outflow,random_forest,3,"{""max_depth"": 5, ""min_samples_leaf"": 16, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.6713455308,2.3302467123,1680,True
+inflow,historical_mean,0,{},1.4086309524,2.4207375401,3330,True
+inflow,last_week,0,{},1.6690476190,2.9816901567,3330,True
+inflow,ridge,0,"{""alpha"": 0.1}",1.8454515911,2.6720299374,1650,False
+inflow,ridge,1,"{""alpha"": 1.0}",1.8448519838,2.6707110515,1650,False
+inflow,ridge,2,"{""alpha"": 10.0}",1.8390127719,2.6578728372,1650,False
+inflow,ridge,3,"{""alpha"": 100.0}",1.7935764261,2.5548495125,1650,True
+inflow,random_forest,0,"{""max_depth"": 3, ""min_samples_leaf"": 8, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.7390084081,2.4319443987,1650,False
+inflow,random_forest,1,"{""max_depth"": 3, ""min_samples_leaf"": 16, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.7253162294,2.3887324748,1650,False
+inflow,random_forest,2,"{""max_depth"": 5, ""min_samples_leaf"": 8, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.7190276124,2.5192587390,1650,False
+inflow,random_forest,3,"{""max_depth"": 5, ""min_samples_leaf"": 16, ""n_estimators"": 200, ""n_jobs"": 1, ""random_state"": 42}",1.6940657580,2.4325278377,1650,True

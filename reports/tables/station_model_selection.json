@@ -1,0 +1,180 @@
+{
+  "recommended_model": "historical_mean",
+  "recommendation_candidates": [
+    "historical_mean",
+    "ridge",
+    "random_forest"
+  ],
+  "supplementary_only": [
+    "last_week"
+  ],
+  "selected_parameters": {
+    "outflow": {
+      "historical_mean": {},
+      "last_week": {},
+      "ridge": {
+        "alpha": 100.0
+      },
+      "random_forest": {
+        "n_estimators": 200,
+        "max_depth": 5,
+        "min_samples_leaf": 16,
+        "random_state": 42,
+        "n_jobs": 1
+      }
+    },
+    "inflow": {
+      "historical_mean": {},
+      "last_week": {},
+      "ridge": {
+        "alpha": 100.0
+      },
+      "random_forest": {
+        "n_estimators": 200,
+        "max_depth": 5,
+        "min_samples_leaf": 16,
+        "random_state": 42,
+        "n_jobs": 1
+      }
+    }
+  },
+  "parameter_grids": {
+    "historical_mean": [
+      {}
+    ],
+    "last_week": [
+      {}
+    ],
+    "ridge": [
+      {
+        "alpha": 0.1
+      },
+      {
+        "alpha": 1.0
+      },
+      {
+        "alpha": 10.0
+      },
+      {
+        "alpha": 100.0
+      }
+    ],
+    "random_forest": [
+      {
+        "n_estimators": 200,
+        "max_depth": 3,
+        "min_samples_leaf": 8,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 3,
+        "min_samples_leaf": 16,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 5,
+        "min_samples_leaf": 8,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 5,
+        "min_samples_leaf": 16,
+        "random_state": 42,
+        "n_jobs": 1
+      }
+    ]
+  },
+  "station_ids": [
+    "31623",
+    "31101",
+    "31229",
+    "31233",
+    "31232",
+    "31277",
+    "31102",
+    "31202",
+    "31613",
+    "31640"
+  ],
+  "selection_period": {
+    "start": "2024-01-01 03:00:00",
+    "end_exclusive": "2024-01-15 00:00:00"
+  },
+  "screening": {
+    "min_daily_activity": 20,
+    "days_denominator": 14,
+    "min_active_days": 7,
+    "tidal_weights": {
+      "workday": 0.7142857142857143,
+      "weekend": 0.2857142857142857
+    },
+    "tie_break": [
+      "tidal_score_desc",
+      "activity_total_desc",
+      "station_id_lexical_asc"
+    ]
+  },
+  "recommendation_score": "mean(mean_station_outflow_MAE, mean_station_inflow_MAE)",
+  "tie_break": "combined_validation_RMSE_then_predefined_model_order",
+  "shared_models": true,
+  "directions_fitted_separately": true,
+  "within_week_actual_updates": false,
+  "post_test_tuning": false,
+  "forecast_horizon_hours": 168,
+  "provenance": {
+    "input_rows": 233180,
+    "both_endpoints_known": 180914,
+    "only_start_known": 16781,
+    "only_end_known": 15049,
+    "neither_endpoint_known": 20436,
+    "max_duration_min": 179.76666666666668,
+    "outflow_events_in_january": 197695,
+    "inflow_events_in_january": 195949,
+    "inflow_events_after_january": 14,
+    "observed_inflow_first_3h": 635,
+    "eligible_stations": 220,
+    "input_sha256": "1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0",
+    "code_sha256": "d6e70d23018f62bb49ac1bf759393db04d11e496d160b51d7db6b34fa7b8fe21",
+    "shared_code_sha256": "4b2f3dc26a9c0fcd2d408c8f70984b3b6447be752845caa85d047e5729897823",
+    "versions": {
+      "python": "3.13.5",
+      "numpy": "2.5.2",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.0",
+      "scikit_learn": "1.9.1"
+    }
+  },
+  "feature_names": [
+    "hour_sin_24",
+    "hour_cos_24",
+    "hour_sin_12",
+    "hour_cos_12",
+    "weekday_1",
+    "weekday_2",
+    "weekday_3",
+    "weekday_4",
+    "weekday_5",
+    "weekday_6",
+    "is_weekend",
+    "weekend_x_hour_sin_24",
+    "weekend_x_hour_cos_24",
+    "weekend_x_hour_sin_12",
+    "weekend_x_hour_cos_12",
+    "lag_168h",
+    "station_1",
+    "station_2",
+    "station_3",
+    "station_4",
+    "station_5",
+    "station_6",
+    "station_7",
+    "station_8",
+    "station_9"
+  ]
+}
