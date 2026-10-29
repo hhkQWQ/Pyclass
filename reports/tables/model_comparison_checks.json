@@ -1196,7 +1196,7 @@
     {
       "check": "city:metrics_recomputed:peak_mae",
       "passed": true,
-      "observed": 4.9965365178650245e-11,
+      "observed": 5.002220859751105e-11,
       "expected": 0
     },
     {
@@ -1485,22 +1485,22 @@
   "metadata": {
     "forecast_horizon_hours": 168,
     "source_hashes": {
-      "city_weekly_predictions.csv": "1a4fc1035fa76bd9612f4a1b98d354511a6cd7b3b9cfa08a4ebeea7c30c56577",
+      "city_weekly_predictions.csv": "70b4593a315c8ea2db6ce6678122077be5b08c8992b8a7de1d91791d6fe86b08",
       "city_model_metrics.csv": "4fc1fd8dd2420e2b375611e560cafc92d9a3689d86970a0b4ee40e23311e22e9",
-      "city_daily_weekly_totals.csv": "c39425ae8b856cf32c6ef8047ffd39ebb738255b3cf994502ebea7b32d95fdff",
+      "city_daily_weekly_totals.csv": "90752720973c62985c4854170fbd3be544e02dfda30b38b6afc7461182154ea9",
       "city_hourly_demand.csv": "20d62a4046117ea75628a00d8eab7e965065bd8b31cf1bbe944948c7ffeff9d7",
-      "city_parameter_candidates.csv": "d36f447895d4cc30230842d73a7dab8c1e669cb90328f336d872b20334eaef10",
-      "city_model_selection.json": "ee793f3d78097d1e0184aa76fec705dfa60d80aa05dc6c69e6ca49c017086514",
+      "city_parameter_candidates.csv": "c3e5aa957c3b86f3560862a02964c7ee3ebbc76f13aab655e09c568d6a99d8b1",
+      "city_model_selection.json": "ecec88929044a87e1bd1c3f06aac84089df41ae40f6378d07269a46ae9f1f6ac",
       "city_feature_importance.csv": "05a56df77f29cf93e8972225fab57bf4f10417750af3e860d01782f1db629a4d",
       "station_weekly_predictions.csv": "057b67e3be9a3976fb9bc2652bd755efeadbbc5d308e08aba05e7e17d48fc42c",
       "station_model_metrics.csv": "623493862f5538f8028ecf2eb7648483a88c9b25690295ca5c0a678b49d927a4",
-      "station_overall_metrics.csv": "f7af5ed0edfa076889b0055b6b65d1b536007dccfb22e416339871e82315179a",
-      "station_daily_weekly_totals.csv": "34492736892771c6c474e1471575bc60bf8d9d24f47ab2ca3c9ccd2ab6d01d47",
+      "station_overall_metrics.csv": "1e863b17374e2a0daee5601316a776b7637f7f3b443c015015d1a6ce71566af2",
+      "station_daily_weekly_totals.csv": "3da76c19fb8d37f659fbd360a13eea2307a45beaff5f8532bb84b6be522b3de7",
       "station_hourly_events.csv": "9f463eeb5444a09d31ae65583510a68c8c9d99857a98001a6cf9eb3d950ce2c8",
       "station_parameter_candidates.csv": "5f8c51f1151b405041e8c691700310fc736b3813a0d2ce659114e8daa63c2f50",
       "station_method_scores.csv": "3efcb90b7470cd07dffd778ce0b8812ae22059e1114759b24169a95601921f10",
       "station_top10.csv": "b97f15950205b790704509595c63884c52488a1bdf5525b970f0e71d21c1b1c5",
-      "station_model_selection.json": "1b99e2432779ae50b12dc9dc24147df8bd05ec9796bd8ac3a2c2c3d53d1e421b",
+      "station_model_selection.json": "4014fcc45f22c196e7306adfcba9269d6555365f1f31c8d4dab51014bbce94cf",
       "station_feature_importance.csv": "79ffba451d9510d6957a3328544dfa9f5d48d5ccec7c98a03e3f78108661457f"
     },
     "source_prediction_rows": {

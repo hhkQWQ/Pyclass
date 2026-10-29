@@ -1,6 +1,6 @@
-"""成员 B 任务 1、2：时间规律、会员与车型差异，以及可离线阅读的 HTML。
+"""陈宇涵 任务 1、2：时间规律、会员与车型差异，以及可离线阅读的 HTML。
 
-在 temporal_modeling 目录运行：python -m src.temporal_analysis
+在项目根目录运行：python -m src.temporal_analysis
 """
 
 from __future__ import annotations
@@ -268,9 +268,11 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
     notes = "\n".join(f"- {text}" for text in findings(result))
     min_time, max_time = result.data["started_at"].min(), result.data["started_at"].max()
     station_missing = int((~result.data["has_station_info"]).sum())
-    text = f"""# 成员 B：时间规律与会员、车型差异（任务 1、2）
+    text = f"""# 5 时间规律与会员、车型差异
 
-## 1. 数据是什么
+**负责人：陈宇涵**
+
+## 5.1 数据是什么
 
 本部分研究一天和一周内的骑行需求变化。输入为 `data/processed/clean_trips.csv`：**{len(result.data):,} 行、{len(result.data.columns)} 列**，一行代表一次骑行。开始时间从 {min_time} 到 {max_time}，覆盖 2024 年 1 月的 31 天。
 
@@ -287,7 +289,7 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 
 **数据选择与检查**：分析对象是全城有效骑行，统计使用订单和出发时间字段。保留站点 ID 不完整但时间有效的 {station_missing:,} 次骑行（占 {station_missing / len(result.data):.1%}），避免因无关字段缺失而低估需求。读入后核对字段类型、关键字段缺失、订单唯一性和日期范围；站点、坐标等字段不参与本步需求计数，也不统一填零。订单次数不代表独立用户人数。
 
-## 2. 怎么统计，为什么这样做
+## 5.2 怎么统计，为什么这样做
 
 采用描述性统计与分组对比，依次回答“工作日和周末有什么差异”“一周哪些时段更繁忙”。用日期时间列的批量运算提取时间信息，`groupby` 分组汇总，`reindex` 对齐完整日历，计算过程可重复、可核对。
 
@@ -297,7 +299,7 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 - **比较日均量**：工作日 {result.counts['工作日']} 天、周末 {result.counts['周末']} 天，不能直接用总量比较。日均每小时次数 = 该类日期该小时的总次数 ÷ 该类日期天数。
 - **星期分别计算**：周一至周三各 5 天，周四至周日各 4 天；热力图每格也除以对应星期的天数。
 
-## 3. 为什么选这两种图
+## 5.3 为什么选这两种图
 
 **图 4 用折线图**：小时有先后顺序，折线便于对比日内变化和两类日期的差异。横轴为 0–23 时，纵轴为日均骑行次数，两组使用相同单位和坐标。直接绘制分组均值，保留实际峰值；标注工作日主要峰值及周末最高小时。
 
@@ -307,7 +309,7 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 
 ![图 5：星期与小时需求热力图](../figures/fig05_weekday_hour_heatmap.png)
 
-## 4. 实际结果与限制
+## 5.4 实际结果与限制
 
 {notes}
 
@@ -315,13 +317,12 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 
 {preference_markdown(preferences)}
 
-## 6. 如何复现与核对
+## 5.6 如何复现与核对
 
-在 `D:/Pyclass/terminal/temporal_modeling` 目录、已有的 Pyclass 环境中运行：
+在项目根目录、已按 `requirements.txt` 配置的 Python 环境中运行：
 
 ```powershell
-Set-Location 'D:/Pyclass/terminal/temporal_modeling'
-conda run -n Pyclass python -m src.temporal_analysis
+python -m src.temporal_analysis
 ```
 
 直接运行 `python src/temporal_analysis.py` 也可；确保使用 Pyclass 的 Python。脚本将统计、核验、绘图和导出分为独立函数，图与表共用一份统计结果。输出包括离线 HTML、图 4/5、图 6A/6B/6C-1/6C-2，以及对应 CSV。图 4/5 的数值保留四位小数，图 6 的数值保留八位小数；百分比在 CSV 中保存为 0–1 小数。

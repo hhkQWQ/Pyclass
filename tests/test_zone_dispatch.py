@@ -6,7 +6,8 @@ import numpy as np
 import pandas as pd
 
 from src.zone_dispatch import (
-    SEGMENTS, attach_coverage, build_quota, build_routes, segment_of, zone_name,
+    SEGMENTS, attach_coverage, build_quota, build_routes, dockless_hotspots,
+    dockless_trips, segment_of, zone_hotspot_balance, zone_name,
 )
 
 
@@ -110,6 +111,84 @@ class RouteTests(unittest.TestCase):
         self.assertAlmostEqual(result.loc["甲", "coverage"], 0.4)
         self.assertEqual(result.loc["乙", "delivered"], 0.0)
         self.assertIn("缺口", result.loc["甲", "remark"])
+
+
+class DispatchBoundaryTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.stations = pd.DataFrame({
+            "zone": ["西", "东"], "lat": [38.90, 38.90], "lng": [-77.10, -77.00],
+        })
+
+    def rides(self, starts, ends) -> pd.DataFrame:
+        return pd.DataFrame({
+            "started_at": pd.to_datetime(starts), "ended_at": pd.to_datetime(ends),
+            "start_lat": 38.90, "start_lng": -77.10,
+            "end_lat": 38.90, "end_lng": -77.00,
+            "is_dockless_ebike": True,
+        })
+
+    def test_cross_segment_arrival_uses_return_time(self) -> None:
+        data = self.rides(["2024-01-08 09:50"], ["2024-01-08 10:10"])
+        balance = zone_hotspot_balance(data, self.stations, 1).set_index(["zone", "segment"])
+        self.assertEqual(balance.loc[("西", "早高峰"), "departures"], 1)
+        self.assertEqual(balance.loc[("东", "日间平峰"), "arrivals"], 1)
+        self.assertNotIn(("东", "早高峰"), balance.index)
+
+    def test_weekend_boundary_filters_each_endpoint_independently(self) -> None:
+        data = self.rides(["2024-01-05 23:50", "2024-01-07 23:50"],
+                          ["2024-01-06 00:10", "2024-01-08 00:10"])
+        cohort = dockless_trips(data)
+        self.assertEqual(len(cohort), 2)  # 周日出发、周一归还不能提前删掉。
+        balance = zone_hotspot_balance(cohort, self.stations, 1)
+        self.assertEqual(balance.departures.sum(), 1)
+        self.assertEqual(balance.arrivals.sum(), 1)
+        hotspots = dockless_hotspots(cohort, self.stations, 1)
+        self.assertEqual(hotspots.departures.sum(), 1)
+        self.assertEqual(hotspots.arrivals.sum(), 1)
+
+    def test_non_electric_missing_station_is_not_dockless(self) -> None:
+        data = self.rides(["2024-01-08 09:50"], ["2024-01-08 10:10"])
+        data["is_dockless_ebike"] = False
+        self.assertTrue(dockless_trips(data).empty)
+
+    def test_supply_rounding_never_creates_an_extra_vehicle(self) -> None:
+        flows, correction, hotspots, zones = make_quota_inputs()
+        flows.loc[0, "observed_net"] = -1.1
+        correction["delta_net"] = 0
+        hotspots["hotspot_net"] = 0
+        quota = build_quota(flows, correction, hotspots, zones)
+        source = quota.loc[quota.zone.eq("甲")].iloc[0]
+        self.assertEqual(source.available, 1)
+        self.assertLessEqual(source.available, -source.gap)
+
+    def test_one_vehicle_can_satisfy_one_vehicle_demand(self) -> None:
+        quota = self.stations.assign(segment="早高峰", quota=[0., 1.], available=[1., 0.])
+        routes = build_routes(quota)
+        self.assertEqual(len(routes), 1)
+        self.assertEqual(routes.iloc[0].volume_per_day, 1)
+        self.assertEqual(routes.iloc[0].share_of_target, 1)
+
+    def test_empty_routes_have_schema_and_zero_coverage(self) -> None:
+        quota = self.stations.assign(segment="早高峰", quota=2., available=0.)
+        routes = build_routes(quota)
+        self.assertTrue(routes.empty)
+        result = attach_coverage(quota, routes)
+        self.assertTrue(result.delivered.eq(0).all())
+        self.assertTrue(result.uncovered.eq(2).all())
+        self.assertTrue(result.coverage.eq(0).all())
+
+    def test_total_supply_and_target_caps_hold_across_multiple_routes(self) -> None:
+        quota = pd.DataFrame({
+            "zone": ["甲", "乙", "丙", "丁"], "segment": ["早高峰"] * 4,
+            "quota": [0., 0., 5., 5.], "available": [4., 3., 0., 0.],
+            "lat": [38.90, 38.91, 38.92, 38.93], "lng": [-77.04] * 4,
+        })
+        routes = build_routes(quota)
+        sources = routes.groupby("source_zone").volume_per_day.sum()
+        targets = routes.groupby("target_zone").volume_per_day.sum()
+        self.assertEqual(routes.volume_per_day.sum(), 7)
+        self.assertTrue(sources.le(quota.set_index("zone").available.reindex(sources.index)).all())
+        self.assertTrue(targets.le(quota.set_index("zone").quota.reindex(targets.index)).all())
 
 
 if __name__ == "__main__":

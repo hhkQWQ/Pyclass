@@ -1,4 +1,4 @@
-"""成员 B / 第二步：冻结核心站点，共享建模预测下一自然周的借出、归还与净流出。
+"""陈宇涵 / 第二步：冻结核心站点，共享建模预测下一自然周的借出、归还与净流出。
 
 运行：python -m src.station_model。只生成 station_* 成果，不调用全城预测入口。
 """
@@ -445,7 +445,7 @@ def plot_results(experiment: StationExperiment, selected: pd.DataFrame, director
                 else:
                     ax.set_ylim(bottom=0)
                 ax.set(xlabel="日期", ylabel="净流出次数" if target == "net_outflow" else "骑行次数",
-                       title=f"图 9  {TARGET_NAMES[target]} · {PHASE_NAMES[phase]}（{actual.timestamp.min():%m/%d}–{actual.timestamp.max():%m/%d}）")
+                       title=f"图 15  {TARGET_NAMES[target]} · {PHASE_NAMES[phase]}（{actual.timestamp.min():%m/%d}–{actual.timestamp.max():%m/%d}）")
                 ax.xaxis.set_major_locator(mdates.DayLocator())
                 ax.xaxis.set_major_formatter(mdates.DateFormatter("%m/%d"))
                 ax.set_xlim(actual.timestamp.min(), actual.timestamp.max())
@@ -468,8 +468,8 @@ def plot_results(experiment: StationExperiment, selected: pd.DataFrame, director
         for i, value in enumerate(values.values): ax.text(value+.006, i, f"{value:.1%}", va="center", fontsize=9)
         ax.set(title=f"随机森林 · {TARGET_NAMES[direction]}", xlabel="内部重要性占比", xlim=(0, max(.15, float(values.max())*1.25)))
         ax.xaxis.set_major_formatter(matplotlib.ticker.PercentFormatter(1));ax.grid(axis="y", visible=False)
-    fig.suptitle("图 10  共享随机森林使用哪些信息", fontsize=14, fontweight="bold")
-    importance_path = save_figure(fig, "fig10_station_feature_importance.png", directory=directory)
+    fig.suptitle("图 16  共享随机森林使用哪些信息", fontsize=14, fontweight="bold")
+    importance_path = save_figure(fig, "fig16_station_feature_importance.png", directory=directory)
     remember_html_image(fig, importance_path)
     plt.close(fig)
     return charts, importance_path
@@ -527,11 +527,13 @@ def write_markdown(experiment: StationExperiment, selected: pd.DataFrame, candid
     params = json.dumps(experiment.selection["selected_parameters"], ensure_ascii=False, indent=2)
     first = selected.iloc[0]
     example = f"../figures/stations/{charts[first.station_id]['outflow']['test'].name}"
-    text = f"""# 核心站点筛选与整周需求预测（第二步）
+    text = f"""# 6.2 核心站点筛选与整周需求预测
 
-## 1. 研究对象与数据选择
+**负责人：陈宇涵**
 
-输入为成员B自己的clean_trips.csv，共{metadata['input_rows']:,}条有效骑行。按目标分别保留已知端点：起点已知就产生借出事件，终点已知就产生归还事件；缺另一端不删除已经可归属的事件。
+### 6.2.1 研究对象与数据选择
+
+输入为全组统一的 `data/processed/clean_trips.csv`，共{metadata['input_rows']:,}条有效骑行。按目标分别保留已知端点：起点已知就产生借出事件，终点已知就产生归还事件；缺另一端不删除已经可归属的事件。
 
 起终点都已知{metadata['both_endpoints_known']:,}条，仅起点已知{metadata['only_start_known']:,}条，仅终点已知{metadata['only_end_known']:,}条，两端都缺失{metadata['neither_endpoint_known']:,}条。1月可归属借出{metadata['outflow_events_in_january']:,}次、归还{metadata['inflow_events_in_january']:,}次，另有{metadata['inflow_events_after_january']}次归还发生在2月，不计入1月。
 
@@ -541,7 +543,7 @@ def write_markdown(experiment: StationExperiment, selected: pd.DataFrame, candid
 
 这是固定清洗有效集中的历史事件预测，不能保证实时系统中数据已经全部到齐；未知端点未被补全。净流出是可归属观测流量的差，不等于库存变化、缺车数或未满足需求。
 
-## 2. 仅训练期筛选Top10并冻结
+### 6.2.2 仅训练期筛选Top10并冻结
 
 筛选只用1月1日03:00至1月15日00:00前的事件。候选门槛为（借出＋归还）÷14个日历日≥20次/日，且至少7个活动日。最初3小时不计入活动量，仍除14天，采用保守口径。共有{int(candidates.eligible.sum())}个站点满足条件。
 
@@ -555,7 +557,7 @@ def write_markdown(experiment: StationExperiment, selected: pd.DataFrame, candid
 
 {markdown_table(top)}
 
-## 3. 共享模型如何拟合，为什么适用
+### 6.2.3 共享模型如何拟合，为什么适用
 
 10站合并训练，但借出与归还分别拟合。原有16个特征为24/12小时正余弦、星期类别、周末及其小时交互、该站上周同小时需求；加入9个站点类别指示，共25个特征。站点ID不是连续数值。跨站共享时间规律，同时通过站点类别和本站历史需求表达站点差异。
 
@@ -570,7 +572,7 @@ def write_markdown(experiment: StationExperiment, selected: pd.DataFrame, candid
 
 Ridge比较α=0.1/1/10/100；随机森林比较最大深度3/5、叶节点最少样本8/16，固定200棵树和随机种子42。两个学习模型使用相同特征；标准化只用训练行拟合。借还分别选择各家族的参数，统一方法家族可使用不同方向参数。
 
-## 4. 整周预测与统一推荐
+### 6.2.4 整周预测与统一推荐
 
 | 阶段 | 使用历史 | 一次预测 | 借出学习行数 | 归还学习行数 |
 |---|---|---|---:|---:|
@@ -593,7 +595,7 @@ Ridge比较α=0.1/1/10/100；随机森林比较最大深度3/5、叶节点最少
 
 10站测试周借出实际{result['test_volume']['outflow']['actual']:,.0f}次，预测{result['test_volume']['outflow']['predicted']:,.0f}次，总量偏差{format_value(result['test_volume']['outflow']['relative_bias'], '+.1%')}；归还实际{result['test_volume']['inflow']['actual']:,.0f}次，预测{result['test_volume']['inflow']['predicted']:,.0f}次，偏差{format_value(result['test_volume']['inflow']['relative_bias'], '+.1%')}。需要结合总量偏差判断效果，不能仅凭对照排名或较小的净流出误差认定高精度。
 
-## 5. 误差如何评价
+### 6.2.5 误差如何评价
 
 MAE是每小时绝对误差的平均，越低越好；RMSE是平方误差平均后开平方，更重视大误差；R²用目标序列自身均值作误差参照，可能为负，不是准确率。站点目标完全不变时R²记为无定义，不填0。
 
@@ -603,21 +605,21 @@ MAE是每小时绝对误差的平均，越低越好；RMSE是平方误差平均�
 
 {markdown_table(aggregate)}
 
-## 6. 展示与结论边界
+### 6.2.6 展示与结论边界
 
 ![排名第一站点的借出预测示例]({example})
 
 HTML先解释筛选、模型与指标，再通过站点和目标选择器，每次展示一张最终测试周图。曲线为真实值、历史均值、Ridge、随机森林；验证图、日周总量、RF重要性折叠显示。默认站点按训练期潮汐排名选择，不按测试效果挑选。
 
-图10只是借出与归还两个随机森林的内部重要性，按信息类型合并。类别或相关特征可能分摊权重，不能解释为因果，也不能证明模型有效。
+图16只是借出与归还两个随机森林的内部重要性，按信息类型合并。类别或相关特征可能分摊权重，不能解释为因果，也不能证明模型有效。
 
 只有一次验证周与一次最终测试周；样本仅为本次冻结Top10和可归属事件，不能推广成所有站点需求、真实库存或缺车量。没有天气、活动、容量等解释变量，不能确定需求波动原因。
 
-## 7. 工程与复现（不进入HTML）
+### 6.2.7 工程与复现（不进入HTML）
 
 ```powershell
-conda run -n Pyclass python -m src.station_model
-conda run -n Pyclass python -B -m unittest discover -s tests -p test_station_model.py -v
+python -m src.station_model
+python -B -m unittest discover -s tests -p test_station_model.py -v
 ```
 
 独立生成reports/station_prediction.html；参数--input和--output-dir可指定输入和输出。本步骤不调用全城预测入口，不覆盖已验收成果。

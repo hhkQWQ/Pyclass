@@ -1,4 +1,4 @@
-"""成员 B 任务 2：会员、车型与小时需求的分组比较。
+"""陈宇涵 任务 2：会员、车型与小时需求的分组比较。
 
 所有比例从同一份完整小时计数计算；百分比只在展示时乘以 100。
 """
@@ -386,7 +386,7 @@ def preference_html(result: PreferenceResult, assets: dict[str, Path]) -> str:
 
 def preference_markdown(result: PreferenceResult) -> str:
     notes = preference_notes(result)
-    lines = ["## 5. 会员与车型的时段差异（任务 2）", "",
+    lines = ["## 5.5 会员与车型的时段差异", "",
              "使用 `member_casual`（member=会员、casual=散客）与 `rideable_type`（classic_bike=经典车、electric_bike=电单车）。两个字段均通过缺失与类别核对；沿用全量有效骑行，分别分析工作日和周末。", "",
              "### 统计方法与三个分母", "",
              "先用批量日期运算与 `groupby` 计数，再用完整索引 `reindex` 对齐日期×小时×会员×车型。31×24×2×2=2,976 个组合全部保留，零记录组合计为 0。日均分母来自完整日历，而不是某组有骑行的日期数。", "",

@@ -1,4 +1,4 @@
-"""成员 B 第三项 / 步骤一：在自然周开始前预测未来 168 小时。
+"""陈宇涵 第三项 / 步骤一：在自然周开始前预测未来 168 小时。
 
 运行：python -m src.demand_model
 所有预测输入均在 forecast_origin 前可获得；验证选型，最终测试只评估。
@@ -414,13 +414,15 @@ def write_markdown(experiment: Experiment, totals: pd.DataFrame, metadata: dict,
     for _, row in experiment.metrics.iterrows():
         rows.append(f"| {PHASE_NAMES[row.phase]} | {MODEL_NAMES[row.model]} | {row.mae:.2f} | {row.rmse:.2f} | {format_value(row.r2, '.3f')} | {format_value(row.peak_mae, '.2f')} |")
     params = json.dumps(experiment.selection["selected_parameters"], ensure_ascii=False, indent=2)
-    text = f"""# 全城小时需求预测：周初一次预测未来一周
+    text = f"""# 6.1 全城小时需求预测
 
-## 本步骤回答什么
+**负责人：陈宇涵**
 
-在每周一 00:00，用此前已知的订单信息，一次预测接下来周一至周日的 168 个小时。周内不使用新发生的真实需求更新输入。本步骤只完成全城预测；核心站点筛选与预测在验收后另行开展。不生成跨月预测示例。
+### 6.1.1 本步骤回答什么
 
-## 数据与样本
+在每周一 00:00，用此前已知的订单信息，一次预测接下来周一至周日的 168 个小时。周内不使用新发生的真实需求更新输入。本节为全城预测；核心站点预测与模型比较见配套章节。不生成跨月预测示例。
+
+### 6.1.2 数据与样本
 
 输入为本项目 `data/processed/clean_trips.csv`：{metadata['input_rows']:,} 条有效骑行、21 个字段。每行是一次骑行，以 `started_at` 所在小时计数；保留站点信息不完整但时间有效的记录。先检查订单唯一、月份与时间派生字段一致、31 天均有记录，再补齐 744 个小时；确认完整日期内无订单的小时计为 0。小时计数之和必须等于输入订单数。
 
@@ -433,7 +435,7 @@ def write_markdown(experiment: Experiment, totals: pd.DataFrame, metadata: dict,
 
 学习模型需要上周同期值，所以删除最初 168 个缺少周滞后的训练行，不用未来数据填补。两种简单对照可使用截止前全部历史。各方法使用相同预测起点和目标时段，但有效拟合行数不同，CSV 会记录差异。
 
-## 特征与预测边界
+### 6.1.3 特征与预测边界
 
 - 小时：24 小时、12 小时的正余弦周期项，允许表达日内多峰变化。
 - 星期：周二至周日的类别指示，周一为参照；另含周末标记。
@@ -442,7 +444,7 @@ def write_markdown(experiment: Experiment, totals: pd.DataFrame, metadata: dict,
 
 共 16 个特征；Ridge 与随机森林使用相同特征。周末标记与星期类别存在确定关系，Ridge 通过系数约束处理冗余；系数只用于说明模型，不解释为独立的因果效应。预测周最后一个小时的滞后来源，最多到预测起点前一小时。整周输入可以在周初构造，不用短滞后递推，也不读取目标周实际需求。导出的逐小时预测保留 `forecast_origin`、`lag_source_time` 与 `lag_168h`，便于审查。
 
-## 四种预测与拟合方法
+### 6.1.4 四种预测与拟合方法
 
 ### 1. 历史同期均值
 
@@ -462,7 +464,7 @@ def write_markdown(experiment: Experiment, totals: pd.DataFrame, metadata: dict,
 
 预测骑行次数若为负，统一截为 0；评估保留小数，不提前取整。原始预测值和截断次数均保留，便于检查。
 
-## 选型与评估
+### 6.1.5 选型与评估
 
 先在验证周为每种方法选择参数，再以验证 MAE 最低的方法作为推荐；若并列，先比较 RMSE，再按预定方法/参数顺序取值。参数及推荐方法在最终测试前冻结。测试只评估，不据此重新调参、改特征或改推荐方法。
 
@@ -488,7 +490,7 @@ def write_markdown(experiment: Experiment, totals: pd.DataFrame, metadata: dict,
 {params}
 ```
 
-## 图表、有效性与限制
+### 6.1.6 图表、有效性与限制
 
 ![图7：验证周与最终测试周的实际值和预测值](../figures/fig07_city_weekly_prediction.png)
 
@@ -504,12 +506,12 @@ def write_markdown(experiment: Experiment, totals: pd.DataFrame, metadata: dict,
 
 有效性证据限于一次验证周和一次最终测试周。周总量有明显变化，当前没有天气、节假日、活动或库存等解释变量，不能确定变化原因，也不能保证未来周稳定表现。模型预测的是已观测有效订单量，不是全部潜在需求或未满足需求。
 
-## 复现与产物
+### 6.1.7 复现与产物
 
 在项目目录运行：
 
 ```powershell
-conda run -n Pyclass python -m src.demand_model
+python -m src.demand_model
 python -B -m unittest discover -s tests -p test_demand_model.py
 ```
 
