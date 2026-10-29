@@ -1,0 +1,5 @@
+﻿model,combined_mae,combined_rmse,eligible_for_recommendation
+historical_mean,1.4206845238,2.3767058834,True
+last_week,1.6863095238,2.9585530420,False
+ridge,1.7368857807,2.4330671937,True
+random_forest,1.6827056444,2.3813872750,True

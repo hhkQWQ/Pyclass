@@ -1,6 +1,6 @@
-"""陈宇涵：时间需求统计、图 4/5，以及可离线阅读的 HTML 报告。
+"""成员 B 任务 1、2：时间规律、会员与车型差异，以及可离线阅读的 HTML。
 
-在项目根目录运行：python -m src.temporal_analysis
+在 temporal_modeling 目录运行：python -m src.temporal_analysis
 """
 
 from __future__ import annotations
@@ -29,6 +29,10 @@ if __package__ in (None, ""):
 
 from src.data_io import read_clean_data
 from src.utils import PROJECT_ROOT, PROCESSED_DIR, REPORT_DIR, save_figure, set_plot_style
+from src.preference_analysis import (
+    PreferenceResult, analyze_preferences, export_preferences,
+    preference_highlights, preference_html, preference_markdown,
+)
 
 
 MONTH_START = pd.Timestamp("2024-01-01")
@@ -258,20 +262,15 @@ def repository_commit() -> str:
 
 
 def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
-                   source: Path, fingerprint: str, commit: str) -> None:
+                   source: Path, fingerprint: str, commit: str,
+                   preferences: PreferenceResult) -> None:
     """生成简要方法说明；图表相对路径适用于 reports/sections。"""
     notes = "\n".join(f"- {text}" for text in findings(result))
     min_time, max_time = result.data["started_at"].min(), result.data["started_at"].max()
     station_missing = int((~result.data["has_station_info"]).sum())
-    text = f"""# 共享单车时间规律分析
+    text = f"""# 成员 B：时间规律与会员、车型差异（任务 1、2）
 
-**本部分作者：陈宇涵**
-
-本部分包含已完成的时间规律分析与图4、图5；需求预测及模型评估仍待补充。
-
-## 5 时间规律分析
-
-### 5.1 数据与分析范围
+## 1. 数据是什么
 
 本部分研究一天和一周内的骑行需求变化。输入为 `data/processed/clean_trips.csv`：**{len(result.data):,} 行、{len(result.data.columns)} 列**，一行代表一次骑行。开始时间从 {min_time} 到 {max_time}，覆盖 2024 年 1 月的 31 天。
 
@@ -288,7 +287,7 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 
 **数据选择与检查**：分析对象是全城有效骑行，统计使用订单和出发时间字段。保留站点 ID 不完整但时间有效的 {station_missing:,} 次骑行（占 {station_missing / len(result.data):.1%}），避免因无关字段缺失而低估需求。读入后核对字段类型、关键字段缺失、订单唯一性和日期范围；站点、坐标等字段不参与本步需求计数，也不统一填零。订单次数不代表独立用户人数。
 
-### 5.2 统计方法与分母
+## 2. 怎么统计，为什么这样做
 
 采用描述性统计与分组对比，依次回答“工作日和周末有什么差异”“一周哪些时段更繁忙”。用日期时间列的批量运算提取时间信息，`groupby` 分组汇总，`reindex` 对齐完整日历，计算过程可重复、可核对。
 
@@ -298,7 +297,7 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 - **比较日均量**：工作日 {result.counts['工作日']} 天、周末 {result.counts['周末']} 天，不能直接用总量比较。日均每小时次数 = 该类日期该小时的总次数 ÷ 该类日期天数。
 - **星期分别计算**：周一至周三各 5 天，周四至周日各 4 天；热力图每格也除以对应星期的天数。
 
-### 5.3 可视化方法
+## 3. 为什么选这两种图
 
 **图 4 用折线图**：小时有先后顺序，折线便于对比日内变化和两类日期的差异。横轴为 0–23 时，纵轴为日均骑行次数，两组使用相同单位和坐标。直接绘制分组均值，保留实际峰值；标注工作日主要峰值及周末最高小时。
 
@@ -308,21 +307,24 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 
 ![图 5：星期与小时需求热力图](../figures/fig05_weekday_hour_heatmap.png)
 
-### 5.4 实际结果与限制
+## 4. 实际结果与限制
 
 {notes}
 
 这些结果为后续需求预测和调度讨论提供重点观察时段。分组差异只能说明分布不同，通勤、天气或假日等原因仍需其他资料验证。结果仅代表 2024 年 1 月，日均值也会掩盖日期间的波动；每天有记录并不能完全排除局部漏采。
 
-### 5.5 复现与核对
+{preference_markdown(preferences)}
 
-在项目根目录使用统一虚拟环境运行：
+## 6. 如何复现与核对
+
+在 `D:/Pyclass/terminal/temporal_modeling` 目录、已有的 Pyclass 环境中运行：
 
 ```powershell
-.\\.venv\\Scripts\\python.exe -m src.temporal_analysis
+Set-Location 'D:/Pyclass/terminal/temporal_modeling'
+conda run -n Pyclass python -m src.temporal_analysis
 ```
 
-直接运行 `python src/temporal_analysis.py` 也可；依赖与环境配置见 [README](../../README.md)。脚本将统计、核验、绘图和导出分为独立函数，图与表共用一份统计结果。输出包括离线 HTML、图 4/5 和两份汇总 CSV；其中 `total_rides` 是总次数，`days` 是天数，`daily_mean_rides` 是日均值（保留四位小数）。
+直接运行 `python src/temporal_analysis.py` 也可；确保使用 Pyclass 的 Python。脚本将统计、核验、绘图和导出分为独立函数，图与表共用一份统计结果。输出包括离线 HTML、图 4/5、图 6A/6B/6C-1/6C-2，以及对应 CSV。图 4/5 的数值保留四位小数，图 6 的数值保留八位小数；百分比在 CSV 中保存为 0–1 小数。
 
 本次 **{len(validation)} 项统计核验全部通过**：关键字段、日期覆盖、小时补齐、分组分母及总次数均一致。实际值与预期值保存在 [统计核验表](../tables/temporal_validation_summary.csv)，HTML 也可展开查看和下载。两张汇总表的总次数均为 {len(result.data):,}；核对依据是实际输入行数，不以固定参考行数作为筛选目标。
 
@@ -336,34 +338,46 @@ def write_markdown(result: TemporalResult, validation: pd.DataFrame, path: Path,
 
 HTML_TEMPLATE = Template("""<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>共享单车 · 时间需求分析</title><style>
+<title>共享单车 · 时间与使用差异</title><style>
 :root{--ink:#203548;--muted:#596e7c;--blue:#315d8a;--green:#159a85;--line:#dbe4e9}
-*{box-sizing:border-box}body{margin:0;background:#f2f6f8;color:var(--ink);font:16px/1.75 "Microsoft YaHei","PingFang SC",sans-serif}
-main{max-width:1180px;margin:0 auto;padding:44px 28px 30px}header{margin-bottom:26px}.eyebrow{font-size:12px;letter-spacing:2px;color:var(--green);font-weight:700}
-h1{font-size:34px;line-height:1.3;margin:9px 0 12px}h2{font-size:22px;margin:0 0 10px}p{margin:8px 0}.muted{color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}.card{background:white;border:1px solid var(--line);border-radius:12px;padding:17px 22px}.card strong{display:block;font-size:28px;line-height:1.4}.card span{font-size:13px;color:var(--muted)}
-section{background:white;border:1px solid var(--line);border-radius:14px;padding:26px;margin:18px 0}.finding{padding:12px 17px;border-left:4px solid var(--green);background:#eff8f6;margin:10px 0}
-figure{margin:18px 0 4px}figure img{display:block;width:100%;height:auto}figcaption{color:var(--muted);font-size:12px;line-height:1.6;margin-top:10px}
-details{border-top:1px solid var(--line);margin-top:20px;padding-top:14px}summary{cursor:pointer;color:var(--blue);font-weight:700}.scroll{overflow:auto;margin:14px 0}
-table{border-collapse:collapse;width:100%;font-size:13px;font-variant-numeric:tabular-nums;text-align:right}th,td{padding:7px 11px;border-bottom:1px solid #e7edf1;white-space:nowrap}th{background:#eef4f7;color:var(--blue)}td:first-child,th:first-child{text-align:left}
-a{color:var(--blue);text-underline-offset:3px}.download{display:inline-block;border:1px solid var(--line);padding:4px 12px;border-radius:6px;font-size:13px;text-decoration:none}ul{padding-left:22px}footer{font-size:12px;color:var(--muted);overflow-wrap:anywhere;padding:12px 3px}.formula{background:#f2f6f8;border-radius:8px;padding:13px 16px;font-weight:700}
-@media(max-width:640px){main{padding:24px 14px}h1{font-size:27px}.cards{grid-template-columns:1fr;gap:9px}.card{padding:11px 16px}.card strong{font-size:24px}section{padding:18px 12px}h2{font-size:20px}}
-@media print{body{background:white}main{padding:0;max-width:none}section{break-inside:avoid}.cards{grid-template-columns:repeat(3,1fr)}details{display:none}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f2f6f8;color:var(--ink);font:16px/1.75 "Microsoft YaHei","PingFang SC",sans-serif}
+main{max-width:1180px;margin:0 auto;padding:38px 28px 24px}header{margin-bottom:22px}h1{font-size:32px;line-height:1.35;margin:0 0 10px}h2{font-size:22px;line-height:1.45;margin:0 0 10px}h3{font-size:17px;margin:18px 0 8px}p{margin:8px 0}.muted{color:var(--muted)}.meta{font-size:13px;color:var(--muted)}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}nav a{background:white;border:1px solid var(--line);border-radius:20px;padding:5px 15px;text-decoration:none;font-size:14px}
+section{background:white;border:1px solid var(--line);border-radius:14px;padding:25px;margin:18px 0;scroll-margin-top:16px}.findings{display:grid;grid-template-columns:1fr 1fr;gap:12px}.finding{padding:14px 17px;border-radius:9px;background:#f0f7f6;border-left:3px solid var(--green);font-size:15px}.insight{margin:15px 0 8px;padding:10px 16px;background:#f0f7f6;border-left:3px solid var(--green);font-size:14px}
+figure{margin:16px 0 8px}figure img{display:block;width:100%;height:auto}figcaption{color:var(--muted);font-size:12px;line-height:1.6;margin-top:9px}
+details{border-top:1px solid var(--line);margin-top:16px;padding-top:12px}summary{cursor:pointer;color:var(--blue);font-weight:600;font-size:14px}details[open]>summary{margin-bottom:12px}.scroll{overflow:auto;max-height:430px;margin:14px 0;overscroll-behavior:contain}
+table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums;text-align:right}th,td{padding:7px 10px;border-bottom:1px solid #e7edf1;white-space:nowrap}th{background:#eef4f7;color:var(--blue);position:sticky;top:0}td:first-child,th:first-child{text-align:left}
+a{color:var(--blue);text-underline-offset:3px}.download{display:inline-block;border:1px solid var(--line);padding:4px 12px;border-radius:6px;font-size:13px;text-decoration:none;margin:2px 6px 2px 0}ul{padding-left:22px}dt{font-weight:600;margin-top:12px}dd{margin:3px 0 0;color:var(--muted);font-size:14px}.source{font-size:12px;overflow-wrap:anywhere}footer{font-size:12px;color:var(--muted);padding:10px 3px}
+figure img{cursor:zoom-in}figure img:focus-visible{outline:3px solid var(--green);outline-offset:3px}dialog{width:96vw;max-width:1500px;max-height:94vh;border:1px solid var(--line);border-radius:12px;padding:0;color:var(--ink)}dialog::backdrop{background:#142b40aa}.viewer-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 15px;border-bottom:1px solid var(--line)}.viewer-bar button{font:inherit;font-size:14px;border:1px solid var(--line);border-radius:6px;padding:4px 12px;background:white;color:var(--blue);cursor:pointer}.zoom-scroll{overflow:auto;max-height:82vh}.zoom-scroll img{display:block;width:max(1100px,90vw);max-width:none}
+@media(max-width:640px){main{padding:24px 12px}h1{font-size:26px}h2{font-size:20px}.findings{grid-template-columns:1fr;gap:9px}section{padding:18px 12px}.finding{padding:12px 14px}nav a{padding:4px 11px}nav{gap:6px}}
+@media print{body{background:white}main{padding:0;max-width:none}nav,.download{display:none}section{break-inside:auto}figure{break-inside:avoid}.scroll{max-height:none}.findings{grid-template-columns:1fr 1fr}}
 </style></head><body><main>
-<header><h1>共享单车时间需求分析</h1><p class="muted">观察一天与一周内的需求变化。以骑行开始时间计数，比较日均每小时骑行次数。</p></header>
-<div class="cards"><div class="card"><strong>$rides 次</strong><span>清洗有效骑行 · $columns 个字段</span></div><div class="card"><strong>31 天 / 744 小时</strong><span>完整月份，每个小时都纳入统计</span></div><div class="card"><strong>$workdays 天 / $weekends 天</strong><span>工作日 / 周末，分别计算日均值</span></div></div>
-<section aria-labelledby="findings"><h2 id="findings">先看三个发现</h2>$findings</section>
-<section aria-labelledby="fig4"><h2 id="fig4">图 4 · 工作日与周末，何时需求更高？</h2><p class="muted">用折线观察小时变化和峰值。两类日期天数不同，分别除以各自天数后再比较。</p><figure><img src="$fig4" alt="工作日与周末的日均每小时骑行次数对比曲线"><figcaption>注：2024 年 1 月，按出发时间计数。周一至周五为工作日，周六、日为周末；各组按对应天数求日均，单位为次/天。标注点为主要峰值。</figcaption></figure><details><summary>查看逐小时均值与原始汇总表</summary><div class="scroll">$table4</div><a class="download" href="$csv4" download="fig04_hourly_by_day_type.csv">下载 CSV：总次数、天数、日均值</a></details></section>
-<section aria-labelledby="fig5"><h2 id="fig5">图 5 · 一周中，哪些时段最繁忙？</h2><p class="muted">颜色越深，日均需求越高。每个星期分别除以它在当月出现的天数，橙框标记最高格。</p><figure><img src="$fig5" alt="周一到周日、0到23小时的日均骑行需求热力图"><figcaption>注：每格 = 该星期、该小时的总次数 ÷ 对应星期天数；周一至周三各 5 天，其余各 4 天。单位为次/天，橙框为最高值。</figcaption></figure><details><summary>查看星期 × 小时均值表</summary><p class="muted">表格单位：次/天；窄屏可左右滚动。</p><div class="scroll">$table5</div><a class="download" href="$csv5" download="fig05_weekday_hourly.csv">下载 CSV：总次数、天数、日均值</a></details></section>
-<section aria-labelledby="method"><h2 id="method">统计依据，简要说明</h2><p>本步分析全城有效骑行，一行代表一次骑行；保留时间有效但站点信息不全的记录，避免因无关字段缺失而低估需求。采用分组统计，图与表共用一份汇总结果。</p><div class="formula">日均每小时次数 = 该类日期该小时的总次数 ÷ 该类日期天数</div><ul><li>按开始时间计数，工作日为周一至周五，周末为周六、周日；未额外识别当地公共假日。</li><li>先核对每天有记录，再对齐 744 个小时格。按订单计数口径，无记录小时计 0；整天无记录则提示排查数据完整性。</li><li>两张汇总表的骑行总次数均为 $rides，与输入记录数一致，日均值按对应天数计算。</li></ul><p class="muted">结果仅代表一个月，日均值会掩盖日期间的波动；分组差异可提示进一步分析的方向，原因仍需其他资料验证。每天有记录也不能完全排除局部漏采。</p><details><summary>查看本次统计核验：$validation_count 项均通过</summary><div class="scroll">$validation_table</div><a class="download" href="$validation_csv" download="temporal_validation_summary.csv">下载统计核验 CSV</a></details></section>
-<footer>输入版本：<a href="$source">项目数据版本</a> · 实际开始时间：$range<br>输入：$input · 本地基线：$commit<br>输入文件 SHA-256：$fingerprint<br>本页已内嵌两张图、统计表和 CSV，断网后仍可阅读与下载；数值显示作四舍五入。</footer>
-</main></body></html>
+<header><h1>共享单车时间与使用差异</h1><p class="muted">从整体时间规律，进一步观察会员、散客与两种车型的使用分布。</p><p class="meta">2024 年 1 月 · $rides 次有效骑行 · 工作日 $workdays 天 / 周末 $weekends 天 · 图表可点开放大</p><nav aria-label="报告导航"><a href="#time">整体时间</a><a href="#members">会员与散客</a><a href="#vehicles">车型对比</a><a href="#cross">交叉分析</a><a href="#method">方法与核验</a></nav></header>
+<section aria-labelledby="findings"><h2 id="findings">先看四个发现</h2><div class="findings">$findings</div></section>
+<section id="time"><h2>整体时间规律</h2><p class="muted">工作日与周末分别计算日均次数，避免天数不同影响比较。</p>
+<figure><img src="$fig4" alt="图4，工作日与周末的日均每小时骑行次数"><figcaption>图 4 · 按出发时间计数。周一至周五为工作日，周六、日为周末；单位为次/天，标注点为主要峰值。</figcaption></figure>
+<details><summary>展开星期 × 小时热力图 · 图 5</summary><figure><img src="$fig5" alt="图5，星期与小时的日均骑行需求热力图"><figcaption>每格总次数分别除以该星期的天数。颜色越深，日均需求越高，橙框为最高格；周一至周三各 5 天，其余各 4 天。</figcaption></figure><div class="scroll">$table5</div><a class="download" href="$csv5" download="fig05_weekday_hourly.csv">下载图 5 CSV</a></details>
+<details><summary>工作日与周末逐小时统计</summary><div class="scroll">$table4</div><a class="download" href="$csv4" download="fig04_hourly_by_day_type.csv">下载图 4 CSV</a></details></section>
+$preference_sections
+<section id="method"><h2>方法与核验</h2><p>选择全城有效骑行，按日期、小时、人群和车型分组统计。用日均次数比较规模，用占比比较分布；图、表和结论共用一份统计结果。</p><p class="muted">已通过 $validation_count 项核验：覆盖完整、分母正确、分组计数可相互还原。</p>
+<details><summary>展开计算公式、数据选择与核验明细</summary><dl><dt>日均每小时次数</dt><dd>该组该小时总次数 ÷ 对应日期类型天数。</dd><dt>组内时段占比</dt><dd>该组该小时总次数 ÷ 该组在对应日期类型内的全天总次数。每组 24 小时合计 100%。</dd><dt>该小时车型占比</dt><dd>该人群该小时某车型次数 ÷ 该人群该小时全部骑行次数。两车型合计 100%。</dd></dl><p>保留时间有效、站点信息不完整的骑行，避免无关字段缺失造成需求低估。确认每天有记录后补齐小时与分类组合，零记录记为 0；比例分母为零时标为无数据。</p><p class="muted">通过日期列批量运算、分组聚合和完整索引对齐得到结果，再核对原始记录、交叉表边际及占比合计。</p><div class="scroll">$validation_table</div><a class="download" href="$validation_csv" download="temporal_validation_summary.csv">下载统计核验 CSV</a>$summary_download</details>
+<details class="source"><summary>数据版本与来源</summary><p>输入：$input · $columns 个字段 · 实际开始时间：$range<br>版本：<a href="$source">项目数据版本</a> · 本地提交：$commit<br>输入文件 SHA-256：$fingerprint</p></details></section>
+<footer>结果描述本月骑行记录的使用分布，骑行次数不等于独立用户人数；日均值会掩盖日期间波动。图表、统计表和 CSV 已内嵌，可离线阅读与下载。</footer>
+</main><dialog id="chart-viewer" aria-labelledby="viewer-title"><div class="viewer-bar"><strong id="viewer-title">图表放大查看</strong><button id="close-viewer" type="button">关闭</button></div><div class="zoom-scroll"><img id="zoom-image" alt=""></div></dialog>
+<script>
+const viewer=document.getElementById('chart-viewer');
+const zoom=document.getElementById('zoom-image');
+function openChart(img){zoom.src=img.src;zoom.alt=img.alt;viewer.showModal();viewer.querySelector('.zoom-scroll').scrollTo(0,0);}
+document.querySelectorAll('figure img').forEach(img=>{img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-label',img.alt+'，放大查看');img.addEventListener('click',()=>openChart(img));img.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openChart(img);}});});
+document.getElementById('close-viewer').addEventListener('click',()=>viewer.close());
+</script></body></html>
 """)
 
 
 def write_html(result: TemporalResult, validation: pd.DataFrame, validation_path: Path,
                path: Path, figures: list[Path], tables: list[Path],
-               source: Path, fingerprint: str, commit: str) -> None:
+               source: Path, fingerprint: str, commit: str,
+               preferences: PreferenceResult, preference_assets: dict[str, Path]) -> None:
     table4 = result.day_type["daily_mean_rides"].unstack("day_type").reindex(columns=DAY_TYPES)
     table4.index = [f"{hour:02d}:00–{hour + 1:02d}:00" for hour in table4.index]
     table4.index.name = "开始时段"
@@ -372,10 +386,16 @@ def write_html(result: TemporalResult, validation: pd.DataFrame, validation_path
     table5.index = WEEKDAYS
     table5.index.name = "星期"
     table5.columns = [f"{hour:02d} 时" for hour in table5.columns]
+    work_peaks = "、".join(f"{hour:02d} 时" for hour in main_peak_hours(result.day_type.loc["工作日", "daily_mean_rides"]))
+    weekend_peak = int(result.day_type.loc["周末", "daily_mean_rides"].idxmax())
+    highlights = [f"工作日主要峰值在 {work_peaks}；周末最高在 {weekend_peak:02d} 时。", *preference_highlights(preferences)]
+    summary_path = preference_assets["summary_table"]
     content = HTML_TEMPLATE.substitute(
         rides=f"{len(result.data):,}", columns=len(result.data.columns),
         workdays=result.counts["工作日"], weekends=result.counts["周末"],
-        findings="".join(f'<div class="finding">{escape(text)}</div>' for text in findings(result)),
+        findings="".join(f'<div class="finding">{escape(text)}</div>' for text in highlights),
+        preference_sections=preference_html(preferences, preference_assets),
+        summary_download=f'<a class="download" href="{csv_data_url(summary_path)}" download="{summary_path.name}">下载峰值与总量摘要 CSV</a>',
         fig4=image_data_url(figures[0]), fig5=image_data_url(figures[1]),
         table4=table4.to_html(border=0, float_format=lambda x: f"{x:,.1f}"),
         table5=table5.to_html(border=0, float_format=lambda x: f"{x:,.1f}"),
@@ -395,12 +415,14 @@ def main() -> None:
     arguments = parser.parse_args()
     source = arguments.input.resolve()
     result = analyze_temporal(read_clean_data(source))
-    validation = build_validation_summary(result)
+    preferences = analyze_preferences(result.data, result.hourly, result.counts, result.day_type)
+    validation = pd.concat([build_validation_summary(result), preferences.validation], ignore_index=True)
     output = arguments.output_dir.resolve()
     for directory in (output, output / "figures", output / "tables", output / "sections"):
         directory.mkdir(parents=True, exist_ok=True)
     font = set_plot_style()
     figures = [plot_day_types(result, output / "figures"), plot_weekday_heatmap(result, output / "figures")]
+    preference_assets = export_preferences(preferences, output)
     tables = [output / "tables" / "fig04_hourly_by_day_type.csv", output / "tables" / "fig05_weekday_hourly.csv"]
     result.day_type.reset_index().to_csv(tables[0], index=False, encoding="utf-8-sig", float_format="%.4f", lineterminator="\n")
     weekday = result.weekday.reset_index()
@@ -411,14 +433,17 @@ def main() -> None:
     fingerprint, commit = input_fingerprint(source), repository_commit()
     markdown = output / "sections" / "02_temporal_and_prediction.md"
     html = output / "temporal_analysis.html"
-    write_markdown(result, validation, markdown, source, fingerprint, commit)
-    write_html(result, validation, validation_path, html, figures, tables, source, fingerprint, commit)
+    write_markdown(result, validation, markdown, source, fingerprint, commit, preferences)
+    write_html(result, validation, validation_path, html, figures, tables, source, fingerprint, commit,
+               preferences, preference_assets)
     print(f"有效骑行：{len(result.data):,} 次，{len(result.data.columns)} 列；744 小时；工作日 {result.counts['工作日']} 天，周末 {result.counts['周末']} 天。")
     print(f"{len(validation)} 项统计核验通过：订单与时间字段、日期覆盖、小时补齐、分母及总次数。")
     print(f"中文字体：{font}")
     for text in findings(result):
         print(text)
-    for path in (*figures, *tables, validation_path, markdown, html):
+    for text in preference_highlights(preferences):
+        print(text)
+    for path in (*figures, *tables, *preference_assets.values(), validation_path, markdown, html):
         print(path)
 
 

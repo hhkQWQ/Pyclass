@@ -1,0 +1,27 @@
+﻿phase,check,observed,expected,passed
+input,hour_count,744,744,True
+input,observed_dates,31,31,True
+input,count_conservation,233180,233180,True
+input,unique_orders,233180,233180,True
+validation,forecast_hours,168,168,True
+validation,forecast_starts_monday_00,"(0, 0)","(0, 0)",True
+validation,history_hours,336,336,True
+validation,latest_history_before_origin,True,True,True
+validation,latest_lag_source_before_origin,True,True,True
+validation,historical_mean:finite_nonnegative,True,True,True
+validation,last_week:finite_nonnegative,True,True,True
+validation,ridge:finite_nonnegative,True,True,True
+validation,ridge:fit_rows_after_week_lag,168,168,True
+validation,random_forest:finite_nonnegative,True,True,True
+validation,random_forest:fit_rows_after_week_lag,168,168,True
+test,forecast_hours,168,168,True
+test,forecast_starts_monday_00,"(0, 0)","(0, 0)",True
+test,history_hours,504,504,True
+test,latest_history_before_origin,True,True,True
+test,latest_lag_source_before_origin,True,True,True
+test,historical_mean:finite_nonnegative,True,True,True
+test,last_week:finite_nonnegative,True,True,True
+test,ridge:finite_nonnegative,True,True,True
+test,ridge:fit_rows_after_week_lag,336,336,True
+test,random_forest:finite_nonnegative,True,True,True
+test,random_forest:fit_rows_after_week_lag,336,336,True

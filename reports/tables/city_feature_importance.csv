@@ -1,0 +1,17 @@
+﻿feature,importance,group,group_label
+hour_sin_24,0.2073027064,hour,小时周期
+hour_cos_24,0.4487589098,hour,小时周期
+hour_sin_12,0.0240660357,hour,小时周期
+hour_cos_12,0.0085609552,hour,小时周期
+weekday_1,0.0228643941,weekday,星期类别
+weekday_2,0.0015822255,weekday,星期类别
+weekday_3,0.0069620653,weekday,星期类别
+weekday_4,0.0001070467,weekday,星期类别
+weekday_5,0.0000000000,weekday,星期类别
+weekday_6,0.0000000000,weekday,星期类别
+is_weekend,0.0007117209,weekend,周末标记
+weekend_x_hour_sin_24,0.0018756217,interaction,周末与小时的交互
+weekend_x_hour_cos_24,0.0076124721,interaction,周末与小时的交互
+weekend_x_hour_sin_12,0.0000000000,interaction,周末与小时的交互
+weekend_x_hour_cos_12,0.0009812466,interaction,周末与小时的交互
+lag_168h,0.2686146000,lag,上周同小时需求

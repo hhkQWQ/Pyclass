@@ -1,0 +1,107 @@
+{
+  "selection_metric": "validation_mae",
+  "tie_break": "validation_rmse_then_predefined_order",
+  "recommended_model": "historical_mean",
+  "selected_parameters": {
+    "historical_mean": {},
+    "last_week": {},
+    "ridge": {
+      "alpha": 100.0
+    },
+    "random_forest": {
+      "n_estimators": 200,
+      "max_depth": 5,
+      "min_samples_leaf": 16,
+      "random_state": 42,
+      "n_jobs": 1
+    }
+  },
+  "parameter_grids": {
+    "historical_mean": [
+      {}
+    ],
+    "last_week": [
+      {}
+    ],
+    "ridge": [
+      {
+        "alpha": 0.1
+      },
+      {
+        "alpha": 1.0
+      },
+      {
+        "alpha": 10.0
+      },
+      {
+        "alpha": 100.0
+      }
+    ],
+    "random_forest": [
+      {
+        "n_estimators": 200,
+        "max_depth": 3,
+        "min_samples_leaf": 8,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 3,
+        "min_samples_leaf": 16,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 5,
+        "min_samples_leaf": 8,
+        "random_state": 42,
+        "n_jobs": 1
+      },
+      {
+        "n_estimators": 200,
+        "max_depth": 5,
+        "min_samples_leaf": 16,
+        "random_state": 42,
+        "n_jobs": 1
+      }
+    ]
+  },
+  "validation_origin": "2024-01-15 00:00:00",
+  "test_origin": "2024-01-22 00:00:00",
+  "within_week_actual_updates": false,
+  "post_test_tuning": false,
+  "forecast_horizon_hours": 168,
+  "provenance": {
+    "input_rows": 233180,
+    "input_columns": 21,
+    "input_sha256": "1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0",
+    "code_sha256": "4b2f3dc26a9c0fcd2d408c8f70984b3b6447be752845caa85d047e5729897823",
+    "versions": {
+      "python": "3.13.5",
+      "numpy": "2.5.2",
+      "pandas": "3.0.5",
+      "matplotlib": "3.11.0",
+      "scikit_learn": "1.9.1"
+    }
+  },
+  "feature_names": [
+    "hour_sin_24",
+    "hour_cos_24",
+    "hour_sin_12",
+    "hour_cos_12",
+    "weekday_1",
+    "weekday_2",
+    "weekday_3",
+    "weekday_4",
+    "weekday_5",
+    "weekday_6",
+    "is_weekend",
+    "weekend_x_hour_sin_24",
+    "weekend_x_hour_cos_24",
+    "weekend_x_hour_sin_12",
+    "weekend_x_hour_cos_12",
+    "lag_168h"
+  ]
+}
