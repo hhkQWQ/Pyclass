@@ -1,2 +1,5 @@
 # Preserve CSV bytes and line endings so source checksums stay reproducible.
 *.csv -text
+
+# Keep Python source fingerprints stable on Windows and Unix checkouts.
+*.py text eol=lf
