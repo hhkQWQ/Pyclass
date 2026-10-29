@@ -136,11 +136,44 @@ station_trips = read_clean_data("data/processed/station_trips.csv")
 .\.venv\Scripts\python.exe -m unittest tests.test_spatial_dispatch -v
 ```
 
+## 分区预投放与跨区调度（任务 3）
+
+```powershell
+.\.venv\Scripts\python.exe -m src.zone_dispatch
+```
+
+| 图表 | 内容 |
+| --- | --- |
+| [图13](reports/figures/fig13_zone_dispatch_routes.html) | 四个时段的区域角色、跨区调度路线与无桩电单车热点 |
+| [图14](reports/figures/fig14_zone_quota_hotspots.html) | 区域 × 时段的预投放配额热力图与热点排行 |
+
+把 760 个站点按坐标做加权 k-means（k=7，权重为站点月流量）划成 7 个片区，按早高峰、日间平峰、晚高峰、夜间四个时段计算净缺口：
+
+```
+净缺口 = 预测净流量 − 无桩热点净流入
+预投放配额 = ceil(净缺口 × 1.15)
+```
+
+预测净流量 = 分区观测净流量 + 10 个核心站点的“预测 − 实测”修正量。核心站点的逐小时预测取自成员 B 的 `feat/temporal-and-modeling` 分支（`historical_mean` 模型，test 窗口 2024-01-22 至 01-28），只保留这些站点的子集存放在 `data/derived/core_station_predictions.csv`（10 站 × 168 小时 × 3 目标），不复制 6.9 MB 原表。无桩热点指缺站点 ID 的电单车订单（52,266 条），按 0.0025° 方格取活动量前 15 格。跨区路线在同一时段内按“最近邻优先”匹配，五条线路合计 499 辆/日、平均 4.8 km。
+
+配套表格：
+
+- [区域划分](reports/tables/zone_profile.csv)：7 个片区的站点数、流量份额与重心。
+- [分区预投放配额表](reports/tables/zone_preallocation_quota.csv)：区域 × 时段的观测/预测净流量、热点净流入、缺口、配额、覆盖情况与处置建议。
+- [跨区调度路线表](reports/tables/zone_dispatch_routes.csv)：五条路线的调出/投放区域、调运量与距离。
+- [无桩电单车热点](reports/tables/dockless_hotspots.csv)：热点方格坐标、取还车量与所属区域。
+
+报告 9.5 节专门讨论了“无实时库存时以净流量作为代理指标”的四个偏差（净流量≠库存、跨时段边界效应、缺车抑制需求、预测与热点误差），结论是配额应作为情景估计而非排班承诺。测试：
+
+```powershell
+.\.venv\Scripts\python.exe -m unittest tests.test_zone_dispatch -v
+```
+
 ## Notebook 复现
 
 [01_cleaning_and_eda.ipynb](notebooks/01_cleaning_and_eda.ipynb) 串联原始数据概览、清洗规则、质量审查、双子集导出、图1–3、动态数值结论和数据接口检查。
 
-[03_spatial_and_dispatch.ipynb](notebooks/03_spatial_and_dispatch.ipynb) 串联站点与 OD 汇总、图9–图12、失衡分级、调运方案和产物校验，最后调用 `src.spatial_analysis` 与 `src.imbalance_dispatch` 重写全部图表与统计表。
+[03_spatial_and_dispatch.ipynb](notebooks/03_spatial_and_dispatch.ipynb) 串联站点与 OD 汇总、图9–图14、失衡分级、站点调运与分区配额，最后调用 `src/` 的三个入口重写全部图表与统计表。
 
 在 Jupyter 中打开该文件，选择 `Python (Pyclass)` 内核，执行“重启内核并运行全部单元格”。Notebook 可从项目根目录或 `notebooks/` 目录启动，直接调用 `src/` 中的现有函数，不维护另一套清洗规则。
 
