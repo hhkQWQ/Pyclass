@@ -53,7 +53,7 @@ def make_quota_inputs() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.Da
 class QuotaTests(unittest.TestCase):
     def test_quota_applies_safety_stock_and_hotspot_supply(self) -> None:
         flows, correction, hotspots, zones = make_quota_inputs()
-        quota = build_quota(flows, correction, hotspots, zones).set_index("zone")
+        quota = build_quota(flows, correction, hotspots, zones).query("segment == '早高峰'").set_index("zone")
         # 甲：观测 60 + 修正 10 − 热点 10 = 60，配额 ceil(60×1.15)=69
         self.assertAlmostEqual(quota.loc["甲", "gap"], 60.0)
         self.assertAlmostEqual(quota.loc["甲", "quota"], 69.0)
@@ -83,7 +83,7 @@ class QuotaTests(unittest.TestCase):
 class RouteTests(unittest.TestCase):
     def test_routes_respect_supply_and_demand(self) -> None:
         flows, correction, hotspots, zones = make_quota_inputs()
-        quota = build_quota(flows, correction, hotspots, zones)
+        quota = build_quota(flows, correction, hotspots, zones).query("segment == '早高峰'").copy()
         quota["available"] = [0.0, 0.0, 50.0]
         routes = build_routes(quota)
         self.assertFalse(routes.empty)

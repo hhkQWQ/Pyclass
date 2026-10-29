@@ -1490,7 +1490,7 @@
       "city_daily_weekly_totals.csv": "90752720973c62985c4854170fbd3be544e02dfda30b38b6afc7461182154ea9",
       "city_hourly_demand.csv": "20d62a4046117ea75628a00d8eab7e965065bd8b31cf1bbe944948c7ffeff9d7",
       "city_parameter_candidates.csv": "c3e5aa957c3b86f3560862a02964c7ee3ebbc76f13aab655e09c568d6a99d8b1",
-      "city_model_selection.json": "ecec88929044a87e1bd1c3f06aac84089df41ae40f6378d07269a46ae9f1f6ac",
+      "city_model_selection.json": "633577dc7e7b3966e83198992d2939ffd41b322926f46e09fb533f02efe590f0",
       "city_feature_importance.csv": "05a56df77f29cf93e8972225fab57bf4f10417750af3e860d01782f1db629a4d",
       "station_weekly_predictions.csv": "057b67e3be9a3976fb9bc2652bd755efeadbbc5d308e08aba05e7e17d48fc42c",
       "station_model_metrics.csv": "623493862f5538f8028ecf2eb7648483a88c9b25690295ca5c0a678b49d927a4",
@@ -1500,7 +1500,7 @@
       "station_parameter_candidates.csv": "5f8c51f1151b405041e8c691700310fc736b3813a0d2ce659114e8daa63c2f50",
       "station_method_scores.csv": "3efcb90b7470cd07dffd778ce0b8812ae22059e1114759b24169a95601921f10",
       "station_top10.csv": "b97f15950205b790704509595c63884c52488a1bdf5525b970f0e71d21c1b1c5",
-      "station_model_selection.json": "4014fcc45f22c196e7306adfcba9269d6555365f1f31c8d4dab51014bbce94cf",
+      "station_model_selection.json": "482268e893ddf951c322ac46aabff29b8155d9e5392f31aba265bff3ab89497b",
       "station_feature_importance.csv": "79ffba451d9510d6957a3328544dfa9f5d48d5ccec7c98a03e3f78108661457f"
     },
     "source_prediction_rows": {

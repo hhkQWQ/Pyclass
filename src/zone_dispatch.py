@@ -105,6 +105,11 @@ def build_zones(summary: pd.DataFrame, k: int = ZONE_COUNT, seed: int = ZONE_SEE
         .reset_index()
     )
     zones["zone"] = [zone_name(row.lat, row.lng, center_lat, center_lng) for row in zones.itertuples()]
+    # 后续表格以名称关联；同方位的不同聚类必须保留独立身份。
+    duplicated = zones["zone"].duplicated(keep=False)
+    zones.loc[duplicated, "zone"] = [
+        f"{row.zone}（片区{row.zone_id + 1}）" for row in zones.loc[duplicated].itertuples()
+    ]
     zones["trips_share"] = zones["trips"] / zones["trips"].sum()
     stations["zone"] = stations["zone_id"].map(zones.set_index("zone_id")["zone"])
     return stations, zones.sort_values("trips", ascending=False).reset_index(drop=True)
@@ -125,20 +130,39 @@ def zone_name(lat: float, lng: float, center_lat: float, center_lng: float) -> s
     return f"{label}（外围）" if distance > 0.10 else label
 
 
+def located_endpoints(points: pd.DataFrame, lat_col: str, lng_col: str) -> pd.Series:
+    """空间统计仅使用完整且合法的坐标对；另一端仍可独立计数。"""
+    return (points[lat_col].between(-90, 90) & points[lng_col].between(-180, 180)).fillna(False)
+
+
+def require_days(days: int) -> None:
+    if not np.isfinite(days) or days <= 0:
+        raise ValueError("工作日分母必须为正数。")
+
+
 def assign_nearest_zone(points: pd.DataFrame, stations: pd.DataFrame, lat_col: str = "lat",
                         lng_col: str = "lng") -> pd.Series:
-    """按最近区域重心给点赋区域。"""
+    """按最近区域重心给点赋区域；无法定位的端点保留缺失值。"""
     centers = stations.groupby("zone")[["lat", "lng"]].mean()
-    lat = points[lat_col].to_numpy(dtype=float)[:, None]
-    lng = points[lng_col].to_numpy(dtype=float)[:, None]
+    centers = centers.loc[located_endpoints(centers, "lat", "lng")]
+    valid = located_endpoints(points, lat_col, lng_col)
+    result = pd.Series(pd.NA, index=points.index, dtype="string")
+    if not valid.any():
+        return result
+    if centers.empty:
+        raise ValueError("没有可用于分区的有效区域坐标。")
+    lat = points.loc[valid, lat_col].to_numpy(dtype=float)[:, None]
+    lng = points.loc[valid, lng_col].to_numpy(dtype=float)[:, None]
     dlat = lat - centers["lat"].to_numpy()[None, :]
     dlng = (lng - centers["lng"].to_numpy()[None, :]) * np.cos(np.radians(lat))
     distance = np.hypot(dlat, dlng)
-    return pd.Series(centers.index[distance.argmin(axis=1)], index=points.index)
+    result.loc[valid] = centers.index[distance.argmin(axis=1)].to_numpy()
+    return result
 
 
 def zone_segment_flows(station_trips: pd.DataFrame, stations: pd.DataFrame, days: int) -> pd.DataFrame:
     """各区域分时段的日均出发、到达与净流量（辆/日）；到达量按还车时间归属。"""
+    require_days(days)
     data = station_trips.copy()
     returned = pd.to_datetime(data["ended_at"], errors="coerce")
     data["end_hour"] = returned.dt.hour
@@ -168,7 +192,7 @@ def zone_segment_flows(station_trips: pd.DataFrame, stations: pd.DataFrame, days
 def export_core_predictions() -> Path:
     """从统一的预测表导出冻结推荐模型的测试周子集，避免维护两份不同精度的输入。"""
     selection = json.loads((TABLE_DIR / "station_model_selection.json").read_text(encoding="utf-8"))
-    raw = pd.read_csv(STATION_PREDICTION_FILE, dtype={"station_id": "string"})
+    raw = pd.read_csv(STATION_PREDICTION_FILE, dtype={"station_id": "string"}, keep_default_na=False, na_values=[""])
     columns = ["station_id", "timestamp", "target", "actual", "prediction", "is_peak"]
     subset = raw.loc[raw["phase"].eq("test") & raw["model"].eq(selection["recommended_model"]), columns]
     if subset.empty or subset.duplicated(["station_id", "timestamp", "target"]).any():
@@ -180,13 +204,13 @@ def export_core_predictions() -> Path:
 
 def load_core_predictions(path: Path = CORE_PREDICTION_FILE) -> pd.DataFrame:
     """读取成员 B 的核心站点逐小时预测，整理为 (站点, 时段) 的日均值。"""
-    raw = pd.read_csv(path)
-    raw["station_id"] = raw["station_id"].astype("string")
+    raw = pd.read_csv(path, dtype={"station_id": "string"}, keep_default_na=False, na_values=[""])
     raw["timestamp"] = pd.to_datetime(raw["timestamp"])
     raw["segment"] = segment_of(raw["timestamp"].dt.hour)
     raw["weekday"] = raw["timestamp"].dt.dayofweek
     weekday = raw.loc[raw["weekday"].lt(5)]
     days = int(weekday["timestamp"].dt.normalize().nunique())
+    require_days(days)
     grouped = weekday.groupby(["station_id", "segment", "target"]).agg(
         actual=("actual", "sum"), prediction=("prediction", "sum")
     ).reset_index()
@@ -218,8 +242,11 @@ def dockless_trips(clean_trips: pd.DataFrame) -> pd.DataFrame:
 def dockless_hotspots(dockless: pd.DataFrame, stations: pd.DataFrame, days: int,
                       grid: float = GRID_DEG, top_n: int = HOTSPOT_TOP_N) -> pd.DataFrame:
     """无桩电单车的方格热点；net = 还车 − 取车，正值为可回收车辆。"""
-    start = dockless.loc[pd.to_datetime(dockless["started_at"]).dt.dayofweek.lt(5)]
-    end = dockless.loc[pd.to_datetime(dockless["ended_at"]).dt.dayofweek.lt(5)]
+    require_days(days)
+    start = dockless.loc[pd.to_datetime(dockless["started_at"]).dt.dayofweek.lt(5)
+                         & located_endpoints(dockless, "start_lat", "start_lng")]
+    end = dockless.loc[pd.to_datetime(dockless["ended_at"]).dt.dayofweek.lt(5)
+                       & located_endpoints(dockless, "end_lat", "end_lng")]
     origin = pd.DataFrame({
         "cell_lat": (start["start_lat"] / grid).round().astype(int),
         "cell_lng": (start["start_lng"] / grid).round().astype(int),
@@ -242,6 +269,7 @@ def dockless_hotspots(dockless: pd.DataFrame, stations: pd.DataFrame, days: int,
 
 def zone_hotspot_balance(dockless: pd.DataFrame, stations: pd.DataFrame, days: int) -> pd.DataFrame:
     """按区域 × 时段汇总无桩电单车的日均取车、还车与净流入。"""
+    require_days(days)
     data = dockless.copy()
     started = pd.to_datetime(data["started_at"])
     returned = pd.to_datetime(data["ended_at"])
@@ -262,11 +290,16 @@ def zone_hotspot_balance(dockless: pd.DataFrame, stations: pd.DataFrame, days: i
 def build_quota(flows: pd.DataFrame, correction: pd.DataFrame, hotspots: pd.DataFrame,
                 zones: pd.DataFrame) -> pd.DataFrame:
     """区域 × 时段的预测缺口、预投放配额与可调出量。"""
-    base = flows.merge(correction, on=["zone", "segment"], how="left").fillna(
+    keys = ["zone", "segment"]
+    base = pd.MultiIndex.from_product([zones["zone"], SEGMENTS], names=keys).to_frame(index=False)
+    base = base.merge(flows, on=keys, how="left", validate="one_to_one").fillna(
+        {"departures": 0.0, "arrivals": 0.0, "observed_net": 0.0}
+    )
+    base = base.merge(correction, on=keys, how="left", validate="one_to_one").fillna(
         {"delta_net": 0.0, "core_stations": 0}
     )
-    base = base.merge(hotspots, on=["zone", "segment"], how="left").fillna(
-        {"departures": 0.0, "arrivals": 0.0, "hotspot_net": 0.0}
+    base = base.merge(hotspots[keys + ["hotspot_net"]], on=keys, how="left", validate="one_to_one").fillna(
+        {"hotspot_net": 0.0}
     )
     base["predicted_net"] = base["observed_net"] + base["delta_net"]
     # 站点净流量为正（缺车）时，无桩热点回收的车辆可以抵扣；热点自身缺车则加需求。
@@ -561,6 +594,14 @@ def write_scenario_report(zones: pd.DataFrame, quota: pd.DataFrame, routes: pd.D
 同一时段按最近邻匹配，并限制每个来源区域的累计调出量和每个目标区域的累计接收量。恰好 1 辆也参与匹配，没有供给或距离内没有来源时保留零覆盖结果。本次得到 {len(routes)} 条候选路线，区域重心间直线距离上限为 25 km。
 
 {route_table}
+
+![图13 分时段跨区调度路线与配额](../figures/fig13_zone_dispatch_routes.png)
+
+**图13说明：**四个面板分别展示四个时段的区域角色、候选调度路线与热点位置；路线按区域重心之间的直线距离匹配。
+
+![图14 分区配额与缺站点电单车热点](../figures/fig14_zone_quota_hotspots.png)
+
+**图14说明：**热力图展示区域与时段的情景缺口，热点排行展示格网取还活动。图13–14使用同一组配额和流量数据。
 
 ### 9.5 解释与局限
 

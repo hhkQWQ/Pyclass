@@ -96,7 +96,7 @@
 
 ### 6.1.6 图表、有效性与限制
 
-![图7：验证周与最终测试周的实际值和预测值](../figures/fig07_city_weekly_prediction.png)
+![图7：最终测试周的实际值和预测值](../figures/fig07_city_weekly_prediction.png)
 
 图 7 只呈现最终测试周，保留真实值、历史同期均值、Ridge、随机森林四条曲线。用折线观察日内形状、峰值和偏差；指标表用于精确比较，不能仅凭曲线接近认定有效。上周同期仍保留在完整评估中，不在图表和 HTML 结果表中展示。
 
@@ -121,6 +121,6 @@ python -B -m unittest discover -s tests -p test_demand_model.py
 
 默认独立生成 `reports/demand_prediction.html`，不调用前两项入口。对应表格位于 `reports/tables/city_*.csv`，参数和来源位于 `city_model_selection.json`。CSV 保留 10 位小数，HTML 为阅读而适当四舍五入。统计核验表与单元测试共同检查时间边界、计数和信息泄漏；运行命令会更新本步骤同名产物。
 
-输入 SHA-256：`1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0`。代码 SHA-256：`394794ace3130ad560da46d86b30501d65b5aaa629711ce80844e6bd1cc7a223`。环境：Python 3.12.14、NumPy 2.5.2、pandas 3.0.5、scikit-learn 1.9.1。
+输入 SHA-256：`1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0`。代码 SHA-256：`5a4ccb43a4f68577d4ace2a1518fe668184a7ea87df3ebc5dd3bf3b282453dca`。环境：Python 3.12.14、NumPy 2.5.2、pandas 3.0.5、scikit-learn 1.9.1。
 
 方法参考：[简单预测与季节朴素法](https://otexts.com/fpp3/toolbox.html)、[Ridge](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html)、[随机森林](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html)、[周期时间特征](https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_feature_engineering.html)。参考方法说明不构成本数据上的有效性结论。

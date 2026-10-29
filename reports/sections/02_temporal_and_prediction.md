@@ -125,4 +125,4 @@ python -m src.temporal_analysis
 
 方法对应教材中的向量化、分组聚合、索引对齐、函数复用与按问题选图；核验用于检查本步统计结果的可靠性。
 
-输入版本：[项目数据版本](https://github.com/hhkQWQ/Pyclass/tree/777c65867a129d6f0dba03c0acfefbbce1e98cae)；本地基线提交：`c274707ae9c95e4b524e140e8776ecec93764c47`。输入文件：`clean_trips.csv`；SHA-256：`1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0`。
+输入版本：[项目数据版本](https://github.com/hhkQWQ/Pyclass/tree/777c65867a129d6f0dba03c0acfefbbce1e98cae)；本地基线提交：`3dc7f25e173b5ddc0feabc127e93a8550340cb04`。输入文件：`clean_trips.csv`；SHA-256：`1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0`。

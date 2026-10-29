@@ -492,7 +492,7 @@ def write_markdown(experiment: Experiment, totals: pd.DataFrame, metadata: dict,
 
 ### 6.1.6 图表、有效性与限制
 
-![图7：验证周与最终测试周的实际值和预测值](../figures/fig07_city_weekly_prediction.png)
+![图7：最终测试周的实际值和预测值](../figures/fig07_city_weekly_prediction.png)
 
 图 7 只呈现最终测试周，保留真实值、历史同期均值、Ridge、随机森林四条曲线。用折线观察日内形状、峰值和偏差；指标表用于精确比较，不能仅凭曲线接近认定有效。上周同期仍保留在完整评估中，不在图表和 HTML 结果表中展示。
 

@@ -57,16 +57,14 @@ def shorten(name: str, width: int = NAME_WIDTH) -> str:
 
 
 def attach_coordinates(station: pd.DataFrame) -> pd.DataFrame:
-    """起终点分别取首个可用坐标，按站点 ID 汇总为 (lat, lng)。"""
-    start = station.groupby("start_station_id").agg(
-        start_lat=("start_lat", "first"), start_lng=("start_lng", "first")
-    )
-    end = station.groupby("end_station_id").agg(
-        end_lat=("end_lat", "first"), end_lng=("end_lng", "first")
-    )
-    coordinates = start.join(end, how="outer")
-    coordinates["lat"] = coordinates["start_lat"].fillna(coordinates["end_lat"])
-    coordinates["lng"] = coordinates["start_lng"].fillna(coordinates["end_lng"])
+    """取同一次端点观测的首个完整坐标对，优先起点，再回退到终点。"""
+    observations = pd.concat([
+        station[[f"{side}_station_id", f"{side}_lat", f"{side}_lng"]].rename(columns={
+            f"{side}_station_id": "station_id", f"{side}_lat": "lat", f"{side}_lng": "lng",
+        }) for side in ("start", "end")
+    ], ignore_index=True)
+    located = observations.lat.between(-90, 90) & observations.lng.between(-180, 180)
+    coordinates = observations.loc[located.fillna(False)].drop_duplicates("station_id").set_index("station_id")
     counts = pd.concat([
         station.groupby("start_station_id").size().rename("departures"),
         station.groupby("end_station_id").size().rename("arrivals"),

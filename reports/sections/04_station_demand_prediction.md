@@ -102,9 +102,13 @@ MAE是每小时绝对误差的平均，越低越好；RMSE是平方误差平均�
 
 ### 6.2.6 展示与结论边界
 
-![排名第一站点的借出预测示例](../figures/stations/station_01_outflow_test.png)
+![图15：核心站点逐小时预测（排名第一站点的测试周借出示例）](../figures/stations/station_01_outflow_test.png)
+
+图15为逐站预测系列，共10个站点 × 3个目标（借出、归还、净流出）× 2个窗口（验证周、测试周）＝60张图。完整系列见 [逐站预测图目录](../figures/stations/)，文件名中的 `station_01` 至 `station_10` 表示站点筛选排名，不是报告图号。
 
 HTML先解释筛选、模型与指标，再通过站点和目标选择器，每次展示一张最终测试周图。曲线为真实值、历史均值、Ridge、随机森林；验证图、日周总量、RF重要性折叠显示。默认站点按训练期潮汐排名选择，不按测试效果挑选。
+
+![图16：共享随机森林特征重要性](../figures/fig16_station_feature_importance.png)
 
 图16只是借出与归还两个随机森林的内部重要性，按信息类型合并。类别或相关特征可能分摊权重，不能解释为因果，也不能证明模型有效。
 
@@ -128,7 +132,7 @@ python -B -m unittest discover -s tests -p test_station_model.py -v
 - station_feature_importance.csv / station_prediction_validation.csv：RF内部重要性与运行核验。
 - station_model_selection.json：冻结名单、参数、输入、特征与来源说明。
 
-CSV保留10位小数，HTML为阅读适当舍入。输入SHA-256：`1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0`；站点代码SHA-256：`e12daf3433c7899d4283ec5751e1a4a21281b138bbe28664fb2a000d0123747e`；复用时间特征代码SHA-256：`394794ace3130ad560da46d86b30501d65b5aaa629711ce80844e6bd1cc7a223`。
+CSV保留10位小数，HTML为阅读适当舍入。输入SHA-256：`1ea4c2d6ccc091e73f3633ec2f58b551fc9c3d1aec5e58f235995c426879d7c0`；站点代码SHA-256：`5985b2a4b4b91dabdb61dee5202dbdb6a690503e897a8e0e62b7eb0236d3dc98`；复用时间特征代码SHA-256：`5a4ccb43a4f68577d4ace2a1518fe668184a7ea87df3ebc5dd3bf3b282453dca`。
 
 选定参数：
 

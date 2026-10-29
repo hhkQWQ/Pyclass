@@ -607,9 +607,13 @@ MAE是每小时绝对误差的平均，越低越好；RMSE是平方误差平均�
 
 ### 6.2.6 展示与结论边界
 
-![排名第一站点的借出预测示例]({example})
+![图15：核心站点逐小时预测（排名第一站点的测试周借出示例）]({example})
+
+图15为逐站预测系列，共10个站点 × 3个目标（借出、归还、净流出）× 2个窗口（验证周、测试周）＝60张图。完整系列见 [逐站预测图目录](../figures/stations/)，文件名中的 `station_01` 至 `station_10` 表示站点筛选排名，不是报告图号。
 
 HTML先解释筛选、模型与指标，再通过站点和目标选择器，每次展示一张最终测试周图。曲线为真实值、历史均值、Ridge、随机森林；验证图、日周总量、RF重要性折叠显示。默认站点按训练期潮汐排名选择，不按测试效果挑选。
+
+![图16：共享随机森林特征重要性](../figures/fig16_station_feature_importance.png)
 
 图16只是借出与归还两个随机森林的内部重要性，按信息类型合并。类别或相关特征可能分摊权重，不能解释为因果，也不能证明模型有效。
 
@@ -682,7 +686,7 @@ def write_html(experiment: StationExperiment, selected: pd.DataFrame, candidates
     <section id="results"><span class="step">03 · 逐站预测</span><h2>一次查看一个站点、一个目标</h2>
     <div class="cards"><div class="card"><small>10站统一推荐方法</small><strong>{result['name']}</strong><span>依据验证周借还综合表现选择</span></div><div class="card"><small>最终测试借还综合MAE</small><strong>{result['test_combined_mae']:.2f} 次/小时</strong><span>20个借出／归还序列的平均MAE</span></div><div class="card"><small>最终测试净流出平均MAE</small><strong>{result['test_mean_net_mae']:.2f} 次/小时</strong><span>逐站先算误差，再取平均</span></div></div>
     <div class="controls"><label>站点<select id="station-select" aria-label="选择站点"></select></label><label>预测对象<select id="target-select" aria-label="预测对象"><option value="outflow">借出</option><option value="inflow">归还</option><option value="net_outflow">净流出</option></select></label></div>
-    <h3 id="current-title"></h3><button class="figure" type="button" aria-label="放大最终测试图"><img id="test-image" alt="最终测试周预测"></button><p class="note">1月22–28日最终测试周。真实值与三种方法同图，点击可放大。统一推荐针对整体，不保证每个站点或目标单独最优。</p>
+    <h3 id="current-title"></h3><button class="figure" type="button" aria-label="放大最终测试图"><img id="test-image" alt="图15，核心站点最终测试周预测"></button><p class="note">图15 · 核心站点逐小时预测系列，当前展示1月22–28日最终测试周。真实值与三种方法同图，点击可放大。统一推荐针对整体，不保证每个站点或目标单独最优。</p>
     <div class="table-scroll"><table><thead><tr><th>方法</th><th>MAE ↓</th><th>RMSE ↓</th><th>R² ↑</th></tr></thead><tbody id="test-metrics"></tbody></table></div>
     <p class="note" id="target-note"></p>
     <details id="validation-results"><summary>查看当前站点、目标的验证周表现</summary><button class="figure" type="button" aria-label="放大验证图"><img id="validation-image" alt="验证周预测"></button><div class="table-scroll"><table><thead><tr><th>方法</th><th>MAE ↓</th><th>RMSE ↓</th><th>R² ↑</th></tr></thead><tbody id="validation-metrics"></tbody></table></div></details>
@@ -691,7 +695,7 @@ def write_html(experiment: StationExperiment, selected: pd.DataFrame, candidates
     <section id="conclusion"><span class="step">04 · 结论与局限</span><h2>哪些结论有依据？</h2><p class="verdict">{result['verdict']}</p>
     <p>10站测试周借出实际{result['test_volume']['outflow']['actual']:,.0f}次，预测{result['test_volume']['outflow']['predicted']:,.0f}次，偏差{format_value(result['test_volume']['outflow']['relative_bias'], '+.1%')}；归还实际{result['test_volume']['inflow']['actual']:,.0f}次，预测{result['test_volume']['inflow']['predicted']:,.0f}次，偏差{format_value(result['test_volume']['inflow']['relative_bias'], '+.1%')}。总量变化仍未充分捕捉，对照排名较好不等于高精度预测。</p>
     <p>站点名单在验证前冻结，方法依据验证周选择；最终测试只检验。当前只有一次验证与一次最终测试，站点间共享数据并没有增加独立历史周数，不能保证未来长期稳定。</p><p>净流出为正表示借出多于归还，为负表示归还更多；它不是库存变化或缺车数量。未知站点没有补全，也没有天气、活动、容量等信息。</p>
-    <details id="feature-explanation"><summary>补充：共享随机森林主要使用哪些信息？</summary><button class="figure" type="button" aria-label="放大特征解释图"><img src="{png_data_url(importance_path)}" alt="借出与归还随机森林的内部特征重要性"></button><p class="note">分别解释两个随机森林，按信息类型合并。类别和相关特征可能分摊权重，重要性不代表因果或预测有效。</p></details>
+    <details id="feature-explanation"><summary>图16：共享随机森林主要使用哪些信息？</summary><button class="figure" type="button" aria-label="放大特征解释图"><img src="{png_data_url(importance_path)}" alt="图16，借出与归还随机森林的内部特征重要性"></button><p class="note">分别解释两个随机森林，按信息类型合并。类别和相关特征可能分摊权重，重要性不代表因果或预测有效。</p></details>
     <p class="sources">方法参考：<a href="https://arxiv.org/abs/2008.00444">共享预测研究</a> · <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">Ridge</a> · <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html">随机森林</a> · <a href="https://scikit-learn.org/stable/modules/model_evaluation.html">评价指标</a></p></section>
     <footer>站点数据、图片和表格已内嵌，可单独复制此页面离线查看。</footer><dialog id="zoom"><button type="button">关闭</button><img alt="图表放大"></dialog><script id="station-data" type="application/json">{bundle}</script>
     """

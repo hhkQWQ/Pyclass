@@ -31,6 +31,11 @@ FLOW_COLORS = {"deficit": "#AE5F67", "surplus": "#2F6E8F"}
 PEAK_TABLE_FILE = TABLE_DIR / "peak_imbalance_summary.csv"
 HOURLY_TABLE_FILE = TABLE_DIR / "hourly_net_flow.csv"
 DISPATCH_TABLE_FILE = TABLE_DIR / "dispatch_plan.csv"
+DISPATCH_COLUMNS = [
+    "period", "target_station_id", "target_station", "target_need_per_day",
+    "source_station_id", "source_station", "source_capacity_per_day",
+    "volume_per_day", "distance_km", "priority",
+]
 
 
 def weekday_count(station: pd.DataFrame) -> int:
@@ -123,7 +128,10 @@ def build_hourly_panel(station: pd.DataFrame) -> pd.DataFrame:
     panel.index.names = ["station_id", "hour"]
     panel = panel.reset_index()
     panel["net_flow"] = panel["departures"] - panel["arrivals"]
-    names = station.groupby("start_station_id")["start_station_name"].first()
+    names = pd.concat([
+        station.groupby("start_station_id")["start_station_name"].first(),
+        station.groupby("end_station_id")["end_station_name"].first(),
+    ]).groupby(level=0).first()
     panel["station_name"] = names.reindex(panel["station_id"]).to_numpy()
     return panel
 
@@ -162,6 +170,8 @@ def choose_representatives(peak: pd.DataFrame, summary: pd.DataFrame,
 def build_dispatch_plan(peak: pd.DataFrame, summary: pd.DataFrame, days: int,
                         max_distance_km: float = 6.0, top_targets: int = 30) -> pd.DataFrame:
     """按“最近可供给站点优先”的贪心匹配生成调运方案，量纲为辆/日。"""
+    if not np.isfinite(days) or days <= 0:
+        raise ValueError("工作日分母必须为正数。")
     supply_geo = summary.set_index("station_id")[["lat", "lng"]]
     names = summary.set_index("station_id")["station_name"]
     rows = []
@@ -174,8 +184,8 @@ def build_dispatch_plan(peak: pd.DataFrame, summary: pd.DataFrame, days: int,
         available = dict(zip(supply["station_id"], supply["daily_supply"]))
         for target in demand.itertuples():
             remaining = float(target.daily_need)
-            while remaining > 1.0:
-                candidates = [sid for sid, volume in available.items() if volume > 1.0]
+            while remaining >= 1.0:
+                candidates = [sid for sid, volume in available.items() if volume >= 1.0]
                 if not candidates:
                     break
                 target_point = supply_geo.loc[target.station_id]
@@ -187,20 +197,21 @@ def build_dispatch_plan(peak: pd.DataFrame, summary: pd.DataFrame, days: int,
                 volume = min(remaining, available[source])
                 rows.append({
                     "period": period,
+                    "target_station_id": target.station_id,
                     "target_station": target.station_name,
-                    "target_need_per_day": round(float(target.daily_need), 1),
+                    "target_need_per_day": float(target.daily_need),
+                    "source_station_id": source,
                     "source_station": names.get(source, source),
-                    "source_capacity_per_day": round(float(available[source]), 1),
-                    "volume_per_day": round(float(volume), 1),
-                    "distance_km": round(float(distances.loc[source]), 2),
+                    "source_capacity_per_day": float(available[source]),
+                    "volume_per_day": float(volume),
+                    "distance_km": float(distances.loc[source]),
                     "priority": "高" if float(target.daily_need) >= 8 else "中",
                 })
                 remaining -= volume
                 available[source] -= volume
-    plan = pd.DataFrame(rows)
+    plan = pd.DataFrame(rows, columns=DISPATCH_COLUMNS)
     if plan.empty:
         return plan
-    plan["target_need_per_day"] = plan["target_need_per_day"].round(1)
     return plan.sort_values(["period", "volume_per_day"], ascending=[True, False]).reset_index(drop=True)
 
 
@@ -327,7 +338,7 @@ def plot_tidal_curves(profiles: dict[str, pd.DataFrame], days: int) -> plt.Figur
                             color=color, va="center", clip_on=False)
 
     figure.text(0.05, 0.118,
-                "浅灰竖带为早晚高峰（7–9 时、17–19 时）。累计值为正表示当日累计净流出（账面车辆减少），为负表示累计净流入（账面增加）。",
+                "浅灰竖带为早晚高峰（7–9 时、17–19 时）。累计值为正表示净流出（账面减少方向），为负表示净流入（账面增加方向）。",
                 fontsize=10)
     figure.text(0.05, 0.074,
                 "出发与到达按各自时间归属；累计值为工作日按小时合并的月累计流量，库存变化方向与其符号相反。",
@@ -347,7 +358,9 @@ def write_tables(peak: pd.DataFrame, panel: pd.DataFrame, plan: pd.DataFrame) ->
     }
     paths = {}
     for name, (frame, path) in outputs.items():
-        frame.to_csv(path, index=False, encoding="utf-8-sig", float_format="%.6f")
+        # 调运表供下游累计核对供需上限，不再把每条路线的流量舍入。
+        frame.to_csv(path, index=False, encoding="utf-8-sig",
+                     float_format=None if name == "dispatch" else "%.6f")
         paths[name] = path
     return paths
 
@@ -401,7 +414,7 @@ def run(figure_dir: Path = FIGURE_DIR) -> dict[str, float]:
             "fig12_tidal_curves",
             "图12  典型居住区与商务区站点的 24 小时潮汐曲线",
             "；".join(f"{label}站点 {profiles[label]['station_name'].iloc[0]}" for label in profiles),
-            "累计净流量为正表示当日账面车辆净减少（缺车方向），为负表示净增加（积车方向）。"
+            "累计净流量由多个工作日按小时合并，为正表示账面车辆净减少方向，为负表示净增加方向。"
             "居住区站点先失血后回补，商务区站点先积压后释放，二者方向相反但幅度不对等。",
             top_plan[["period", "target_station", "source_station", "volume_per_day", "distance_km", "priority"]]
             .rename(columns={"period": "时段", "target_station": "补车站点", "source_station": "取车站点",
